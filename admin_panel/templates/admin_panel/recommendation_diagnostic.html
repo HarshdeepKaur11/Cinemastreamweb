@@ -1,0 +1,131 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    .diagnostic-container {
+        padding-top: 100px;
+        min-height: 100vh;
+        background: radial-gradient(circle at top right, #0f172a, #020617);
+        font-family: 'Inter', sans-serif;
+        color: #fff;
+    }
+    .fleet-card {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        margin-bottom: 2rem;
+        transition: transform 0.3s ease;
+    }
+    .fleet-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(99, 102, 241, 0.3);
+    }
+    .user-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .logic-tile {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 16px;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid #6366f1;
+        border: 1px solid rgba(255,255,255,0.05);
+    }
+    .match-tag {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #10b981;
+        background: rgba(16, 185, 129, 0.1);
+        padding: 4px 10px;
+        border-radius: 100px;
+    }
+    .reason-text {
+        font-size: 0.9rem;
+        color: #94a3b8;
+        margin-top: 0.5rem;
+    }
+    .inspector-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #6366f1;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    .glass-pill {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 4px 12px;
+        border-radius: 100px;
+        font-size: 0.75rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="diagnostic-container">
+    <div class="container py-5">
+        
+        
+        <div class="row">
+            <div class="col-12">
+                {% for item in fleet_diag %}
+                <div class="fleet-card p-4 animate-fade-in">
+                    <div class="user-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="fw-bold mb-1 text-primary">{{ item.user.username }}</h4>
+                            <div class="d-flex gap-3">
+                                <span class="text-white-50 small">ID: #UX-{{ item.user.user_id }}</span>
+                                <span class="text-white-50 small"><i class="bi bi-translate me-1"></i>{{ item.user.language_preference|default:"English" }}</span>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-20 px-3 py-2">
+                                <i class="bi bi-check-circle-fill me-2"></i>AI Match Inspector
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12 mb-2">
+                            <span class="inspector-label" style="font-size: 0.6rem;">Primary Recommendation Logic (Top 3 Match)</span>
+                        </div>
+                        {% for rec in item.recs %}
+                        <div class="col-md-4">
+                            <div class="logic-tile h-100">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="fw-bold mb-0 text-truncate" style="max-width: 150px;">{{ rec.title }}</h6>
+                                    <span class="match-tag">{{ rec.match }}%</span>
+                                </div>
+                                <div class="reason-text">
+                                    <i class="bi bi-robot me-2 text-primary"></i>{{ rec.reason }}
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-12">
+                            <div class="text-center py-4 text-white-50 border border-dashed rounded-4 opacity-50">
+                                <i class="bi bi-exclamation-triangle me-2"></i>Insufficient behavioral data for trace.
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center py-5">
+                    <div class="display-1 text-white-10 mb-4"><i class="bi bi-people"></i></div>
+                    <h3 class="text-white-50">No active users found for diagnostic.</h3>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

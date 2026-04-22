@@ -1,0 +1,133 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load static %}
+
+{% block title %}User Registry | {{ target_user.username }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .profile-card { border-radius: 20px; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .stat-badge { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem; }
+    
+    
+    @media (max-width: 768px) {
+        .profile-card { padding: 1.5rem !important; margin-bottom: 1rem; }
+        .h3 { font-size: 1.25rem; }
+        .table thead { display: none; }
+        .table tr { display: block; margin-bottom: 1rem; border: 1px solid #eee; border-radius: 12px; padding: 1rem; background: #fff; }
+        .table td { display: block; padding: 0.5rem 0; border: none; }
+        .table td::before { content: attr(data-label); font-weight: 700; display: block; font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; margin-bottom: 0.25rem; }
+        .progress { width: 100% !important; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="d-flex align-items-center mb-4 mb-md-5">
+    <a href="{% url 'admin_panel:users_list' %}" class="btn btn-light rounded-circle me-3 me-md-4 shadow-sm">
+        <i class="bi bi-arrow-left"></i>
+    </a>
+    <div>
+        <h1 class="h3 fw-800 mb-1">User Inspection</h1>
+        <p class="text-secondary small mb-0">Deep dive into user activity and preferences</p>
+    </div>
+</header>
+
+<div class="row g-4">
+    
+    <div class="col-lg-4">
+        <div class="profile-card p-4">
+            <div class="text-center mb-4">
+                <img src="{% if target_user.profile_pic %}{{ target_user.profile_pic.url }}{% else %}https://ui-avatars.com/api/?name={{ target_user.username }}&background=6366f1&color=fff&size=128{% endif %}" 
+                     class="rounded-4 shadow-sm border mb-3" style="width: 100px; height: 100px; md-width: 120px; md-height: 120px; object-fit: cover;">
+                <h4 class="fw-800 mb-0">{{ target_user.username }}</h4>
+                <p class="text-secondary small mb-2">{{ target_user.email }}</p>
+                <div class="d-flex justify-content-center gap-2 mt-2">
+                    {% if target_user.is_active %}
+                        <span class="badge bg-success-allow text-success border border-success-allow px-3 py-2 rounded-pill fw-600 x-small">ACTIVE</span>
+                    {% else %}
+                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-3 py-2 rounded-pill fw-600 x-small">SUSPENDED</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="border-top pt-4">
+                <h6 class="fw-700 mb-3 small text-uppercase tracking-wider">Attributes</h6>
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex justify-content-between x-small">
+                        <span class="text-secondary">Member Since</span>
+                        <span class="fw-600">{{ target_user.created_at|date:"M d, Y" }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between x-small">
+                        <span class="text-secondary">Age Group</span>
+                        <span class="fw-600">{{ target_user.age }} Years</span>
+                    </div>
+                    <div class="d-flex justify-content-between x-small">
+                        <span class="text-secondary">Gender</span>
+                        <span class="fw-600">{{ target_user.gender }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-top pt-4 mt-4">
+                <h6 class="fw-700 mb-3 small text-uppercase tracking-wider">Genre Preferences</h6>
+                <div class="d-flex flex-wrap gap-2">
+                    {% for pref in preferences %}
+                        <span class="badge bg-indigo-subtle text-dark border border-indigo-subtle px-2 py-1 rounded-pill fw-500 x-small">{{ pref.genre.genre_name }}</span>
+                    {% empty %}
+                        <span class="text-secondary small italic">No preferences set</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-lg-8">
+        <div class="profile-card p-4">
+            <h5 class="fw-800 mb-4">Viewing History</h5>
+            <div class="table-responsive border-0">
+                <table class="table align-middle">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-3">Content</th>
+                            <th>Genre</th>
+                            <th>Engagement</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in history %}
+                        <tr>
+                            <td data-label="Content" class="ps-md-3">
+                                <div class="fw-700 text-dark">{{ item.movie.title }}</div>
+                                <div class="x-small text-secondary">{{ item.movie.language }} | {{ item.movie.release_year }}</div>
+                            </td>
+                            <td data-label="Genre">
+                                <div class="x-small fw-600 text-indigo">{{ item.movie.get_genres_display }}</div>
+                            </td>
+                            <td data-label="Engagement">
+                                <div class="progress" style="height: 6px; width: 100px;">
+                                    <div class="progress-bar bg-primary" style="width: {{ item.progress }}%"></div>
+                                </div>
+                                <div class="x-small text-secondary mt-1">{{ item.progress|floatformat:0 }}% watched</div>
+                            </td>
+                            <td data-label="Timestamp" class="small text-secondary fw-500">
+                                {{ item.watched_at|date:"M d, Y" }}<br>
+                                <span class="x-small opacity-75">{{ item.watched_at|date:"H:i" }}</span>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center py-5 text-secondary">
+                                <i class="bi bi-clock-history fs-1 d-block mb-3 opacity-25"></i>
+                                No watch history available.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

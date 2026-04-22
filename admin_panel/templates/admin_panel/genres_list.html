@@ -1,0 +1,107 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load static %}
+
+{% block title %}Manage Genres | Cinemastream Admin{% endblock %}
+
+{% block content %}
+<header class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4 mb-5">
+    <div>
+        <h1 class="h3 fw-800 mb-1">Manage Genres</h1>
+        <p class="text-secondary small mb-0">Organize and classify your movie categories</p>
+    </div>
+    <div class="d-flex align-items-center gap-2 flex-grow-1 mx-md-5" style="max-width: 500px;">
+        <form action="." method="GET" class="w-100 position-relative">
+            <input type="text" name="q" class="form-control rounded-pill ps-4 pe-5 border-secondary bg-white" placeholder="Search genres by name..." value="{{ query|default:'' }}">
+            <button type="submit" class="btn btn-link position-absolute end-0 top-50 translate-middle-y text-secondary pe-3">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+    </div>
+    <button class="btn btn-primary rounded-pill px-4 fw-600 shadow-sm" data-bs-toggle="modal" data-bs-target="#addGenreModal">
+        <i class="bi bi-plus-lg me-2"></i> Create Genre
+    </button>
+</header>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-4 border-0 shadow-sm mb-4">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="table-card p-0 overflow-hidden">
+    <div class="table-responsive">
+        <table class="table align-middle m-0">
+            <thead class="bg-light">
+                <tr>
+                    <th class="ps-4 py-3">Genre Classification</th>
+                    <th class="text-end pe-4 py-3">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for g in genres %}
+                <tr>
+                    <td class="ps-4">
+    <div class="fw-700 text-dark">{{ g.genre_name }}</div>
+    <div class="small text-secondary fw-500">ID: {{ g.genre_id }} | <span class="text-primary fw-600">{{ g.movie_count }} Movies linked</span></div>
+</td>
+                    <td class="text-end pe-4">
+                        <div class="d-flex justify-content-end gap-2">
+                            <button class="btn btn-sm btn-light rounded-pill px-3 fw-600" data-bs-toggle="modal" data-bs-target="#editGenre{{ g.genre_id }}">
+                                <i class="bi bi-pencil me-1 text-primary"></i> Modify
+                            </button>
+                            <a href="{% url 'admin_panel:delete_genre' g.genre_id %}" class="btn-delete-pro" onclick="return confirm('Prune this genre?')">
+                                <i class="bi bi-trash-fill small"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="addGenreModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-4 border-0 shadow">
+            <form action="{% url 'admin_panel:add_genre' %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-header border-0 pb-0 px-4 pt-4"><h5 class="fw-800 text-indigo mb-0">Create New Genre</h5></div>
+                <div class="modal-body p-4"><input type="text" name="name" class="form-control rounded-3" placeholder="Genre Name (e.g. Sci-Fi)" required></div>
+                <div class="modal-footer border-0 p-4 pt-0"><button type="submit" class="btn btn-primary w-100 py-2.5 rounded-pill fw-700 shadow-sm">Save Genre</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% for g in genres %}
+<div class="modal fade" id="editGenre{{ g.genre_id }}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-4 border-0 shadow">
+            <form action="{% url 'admin_panel:edit_genre' g.genre_id %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-header border-0 pb-0 px-4 pt-4"><h5 class="fw-800 text-indigo mb-0">Modify Classification</h5></div>
+                <div class="modal-body p-4"><input type="text" name="name" class="form-control rounded-3" value="{{ g.genre_name }}" required></div>
+                <div class="modal-footer border-0 p-4 pt-0"><button type="submit" class="btn btn-primary w-100 py-2.5 rounded-pill fw-700 shadow-sm">Sync Changes</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const alerts = document.querySelectorAll('.alert');
+                alerts.forEach(function(alert) {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                });
+            }, 2000);
+        });
+    </script>

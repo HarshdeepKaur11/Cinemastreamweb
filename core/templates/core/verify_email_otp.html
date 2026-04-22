@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email Change | CinemaStream</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'users/css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/otp.css' %}">
+</head>
+<body class="bg-dark text-white">
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+        <div class="card p-4 auth-card glass-morphism">
+            <div class="text-center mb-4">
+                <div class="mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle otp-icon-wrapper">
+                    <i class="bi bi-shield-lock-fill fs-2"></i>
+                </div>
+                <h2 class="fw-bold gradient-text">Verify Your Identity</h2>
+                <p class="text-white-50 small">We've sent a 6-digit verification code to:<br><b class="text-info">{{ pending_email }}</b></p>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show py-2 small mb-4" role="alert">
+                    <i class="bi bi-exclamation-circle me-2"></i> {{ message }}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group mb-4 text-center">
+                    <label class="label-small text-start mb-2 opacity-60">Enter Verification Code</label>
+                    <input type="text" name="otp" class="form-control auth-input text-center otp-input-field" 
+                           placeholder="000000" maxlength="6" pattern="\d{6}" required autofocus autocomplete="one-time-code">
+                </div>
+                
+                <button type="submit" class="btn btn-glow w-100 rounded-pill fw-bold py-3 mb-3 shadow-lg letter-spacing-05">
+                    Verify & Update Email
+                </button>
+            </form>
+
+            <div class="text-center mt-3 pt-3 border-top border-white-10">
+                <p id="timer-text" class="text-white-50 small mb-2">Resend code in <b id="timer" class="timer-b">30</b>s</p>
+                <a href="{% url 'core:resend_email_change_otp' %}" id="resend-link" class="text-info text-decoration-none fw-bold d-none resend-link">Resend OTP</a>
+                
+                <p class="text-white-50 mt-4 mb-0 small">
+                    Decided not to change? <a href="{% url 'core:security' %}" class="text-info text-decoration-none">Go back to Security</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        let timeLeft = 30;
+        const timerLabel = document.getElementById('timer');
+        const timerText = document.getElementById('timer-text');
+        const resendLink = document.getElementById('resend-link');
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            if (timerLabel) timerLabel.innerText = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                if (timerText) timerText.classList.add('d-none');
+                if (resendLink) resendLink.classList.remove('d-none');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'core/css/navbar.css' %}">
+<style>
+    @media (max-width: 991px) {
+        .main-content-wrapper {
+            padding-top: 65px !important;
+        }
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark px-2 px-md-4 sticky-top navbar-custom">
+    <div class="container-fluid d-flex align-items-center justify-content-between p-0 flex-nowrap navbar-container">
+        
+        <div class="d-flex align-items-center">
+            {% if not hide_sidebar %}
+            <button class="btn btn-outline-light me-1 border-0 btn-hamburger-modern" onclick="toggleSidebar();" aria-label="Toggle Navigation">
+                <i class="bi bi-list fs-3"></i>
+            </button>
+            {% endif %}
+            <a class="navbar-brand d-flex align-items-center flex-nowrap m-0 p-0 brand-wrapper" href="{% url 'core:index' %}">
+                <div class="logo-circle-wrapper">
+                    <img src="{% static 'images/logo_futuristic.png' %}" alt="Logo">
+                </div>
+                <span class="brand-text d-block">Cinemastream</span>
+            </a>
+        </div>
+        
+        
+        {% if not hide_search %}
+        <div class="search-container-main flex-grow-1 mx-2 mx-md-4 d-none d-md-block">
+            <form action="{% url 'core:search' %}" method="GET" class="search-form-modern position-relative" style="transition: all 0.3s ease;">
+                <div class="input-group glass-search-group rounded-pill overflow-hidden border border-white-10">
+                    <span class="input-group-text bg-transparent border-0 pe-1 ps-3 text-white-50"><i class="bi bi-search"></i></span>
+                    <input type="text" name="q" id="movieSearch" class="form-control bg-transparent border-0 text-white py-2 ps-2 pe-3" placeholder="Search movies..." autocomplete="off">
+                    <button type="button" id="clearSearch" class="btn btn-link text-white-50 p-2 border-0" style="display: none;"><i class="bi bi-x-circle-fill"></i></button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+
+        
+        <div class="d-flex align-items-center gap-1 gap-md-2 flex-shrink-0 ms-auto right-nav-group">
+            
+            {% if not hide_search %}
+            <button class="btn btn-link text-white-50 d-md-none p-1 border-0" id="mobileSearchTrigger" aria-label="Search">
+                <i class="bi bi-search fs-4"></i>
+            </button>
+            {% endif %}
+
+            <div class="d-flex align-items-center gap-1 gap-md-2 p-1 rounded-pill nav-icons-wrapper">
+                <a href="{% url 'dashboard:user_dashboard' %}" class="btn btn-nav-pill-modern rounded-circle d-flex align-items-center justify-content-center" title="Home">
+                    <i class="bi bi-house-door"></i>
+                </a>
+                <a href="{% url 'core:contact' %}" class="btn btn-nav-pill-modern rounded-circle d-flex align-items-center justify-content-center" title="Contact">
+                    <i class="bi bi-envelope"></i>
+                </a>
+            </div>
+            
+            {% if current_user %}
+            <a href="{% url 'users:profile' %}" title="Profile" class="ms-1 profile-nav-wrapper">
+                <div class="avatar-container rounded-circle p-0.5">
+                    <img src="{% if current_user.profile_pic %}{{ current_user.profile_pic.url }}{% else %}https://ui-avatars.com/api/?name={{ current_user.username }}{% endif %}" 
+                         class="rounded-circle shadow-lg" width="36" height="36">
+                </div>
+            </a>
+            {% else %}
+            <a href="{% url 'users:login' %}" class="btn btn-primary btn-sm ms-2 px-3 py-2 rounded-pill shadow-lg d-flex align-items-center fw-bold btn-login-modern">
+                <i class="bi bi-person-fill me-1"></i> LOGIN
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    
+    {% if not hide_search %}
+    <div id="mobileSearchContent" class="mobile-search-dropdown w-100 p-2 d-none d-md-none">
+        <form action="{% url 'core:search' %}" method="GET" class="w-100">
+            <div class="input-group glass-search-group rounded-pill border border-white-10">
+                <span class="input-group-text bg-transparent border-0 pe-1 ps-3 text-white-50"><i class="bi bi-search"></i></span>
+                <input type="text" name="q" class="form-control bg-transparent border-0 text-white py-2 ps-2 pe-3" placeholder="Search movies..." autocomplete="off">
+            </div>
+        </form>
+    </div>
+    {% endif %}
+</nav>
+
+<script>
+(function() {
+    
+    window.toggleSidebar = function() {
+        
+        document.body.classList.toggle('sidebar-active');
+        
+        
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        
+        if (sidebar) sidebar.classList.toggle('active');
+        if (overlay) overlay.classList.toggle('active');
+    };
+
+    
+    const navSearchInput = document.getElementById('movieSearch');
+    const navClearBtn = document.getElementById('clearSearch');
+    
+    if (navSearchInput && navClearBtn) {
+        navSearchInput.addEventListener('input', () => {
+            navClearBtn.style.display = navSearchInput.value ? 'inline-block' : 'none';
+        });
+        navClearBtn.addEventListener('click', () => {
+            navSearchInput.value = '';
+            navClearBtn.style.display = 'none';
+            navSearchInput.focus();
+        });
+    }
+
+    
+    const mobileSearchTrigger = document.getElementById('mobileSearchTrigger');
+    const mobileSearchContent = document.getElementById('mobileSearchContent');
+    
+    if (mobileSearchTrigger && mobileSearchContent) {
+        mobileSearchTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            mobileSearchContent.classList.toggle('d-none');
+            if (!mobileSearchContent.classList.contains('d-none')) {
+                const innerInput = mobileSearchContent.querySelector('input');
+                if (innerInput) innerInput.focus();
+            }
+        });
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                try {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                } catch(e) {}
+            });
+        }, 5000);
+    });
+})();
+</script>

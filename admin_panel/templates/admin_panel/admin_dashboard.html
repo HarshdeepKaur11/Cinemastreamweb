@@ -1,0 +1,168 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load static %}
+
+{% block title %}Admin Dashboard | Cinemastream{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin_panel/css/admin_dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="d-flex justify-content-between align-items-center mb-5">
+    <div>
+        <h1 class="h3 fw-800 mb-1">System Overview</h1>
+        <p class="text-secondary small mb-0 fw-500">Welcome back, Administrator</p>
+    </div>
+</header>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-4 border-0 shadow-sm mb-4">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<section class="row g-3 g-md-4 mb-5">
+    <div class="col-6 col-md-3">
+        <div class="stat-card h-100 d-flex flex-column">
+            <div class="stat-icon bg-indigo-soft"><i class="bi bi-people-fill"></i></div>
+            <div class="text-secondary x-small fw-700 text-uppercase tracking-wider mb-1">Users</div>
+            <div class="h2 fw-800 mb-0">{{ total_users }}</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="stat-card h-100 d-flex flex-column">
+            <div class="stat-icon bg-purple-soft"><i class="bi bi-film"></i></div>
+            <div class="text-secondary x-small fw-700 text-uppercase tracking-wider mb-1">Movies</div>
+            <div class="h2 fw-800 mb-0">{{ total_movies }}</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="stat-card h-100 d-flex flex-column">
+            <div class="stat-icon bg-emerald-soft"><i class="bi bi-tags-fill"></i></div>
+            <div class="text-secondary x-small fw-700 text-uppercase tracking-wider mb-1">Genres</div>
+            <div class="h2 fw-800 mb-0">{{ total_genres }}</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="stat-card h-100 d-flex flex-column">
+            <div class="stat-icon bg-rose-soft"><i class="bi bi-star-fill"></i></div>
+            <div class="text-secondary x-small fw-700 text-uppercase tracking-wider mb-1">Avg Rating</div>
+            <div class="h2 fw-800 mb-0">{{ total_ratings }}</div>
+        </div>
+    </div>
+</section>
+
+<section class="row g-4 mb-5">
+    
+    <div class="col-lg-12 mb-4">
+        <div class="table-card p-0 d-flex flex-column overflow-hidden" style="height: 480px;">
+            <div class="p-4 d-flex justify-content-between align-items-center bg-white border-bottom flex-shrink-0">
+                <h5 class="fw-700 m-0 text-dark">Recent Media Assets</h5>
+                <a href="{% url 'admin_panel:movies_list' %}" class="btn btn-primary btn-sm rounded-pill px-4 fw-600">Explore Library</a>
+            </div>
+            <div class="table-responsive flex-grow-1 overflow-auto log-container">
+                <table class="table align-middle m-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-4">Poster</th>
+                            <th>Title</th>
+                            <th class="d-none-mobile">Runtime</th>
+                            <th class="d-none-mobile">Release</th>
+                            <th class="text-end pe-4">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for movie in movies %}
+                        <tr>
+                            <td class="ps-4">
+                                <img src="{{ movie.poster_url }}" width="40" height="40" class="rounded-3 shadow-sm border" style="object-fit:cover;" onerror="this.src='https://placehold.co/400x600?text=No+Poster'">
+                            </td>
+                            <td class="fw-600 text-dark">{{ movie.title }}</td>
+                            <td class="text-secondary small fw-500 d-none-mobile">{{ movie.duration_formatted }}</td>
+                            <td class="text-secondary small fw-500 d-none-mobile">{{ movie.release_year }}</td>
+                            <td class="text-end pe-4">
+                                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill fw-600">ONLINE</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-lg-6 mb-4">
+        <div class="table-card p-4 d-flex flex-column" style="height: 480px;">
+            <h5 class="fw-700 mb-4 d-flex align-items-center"><i class="bi bi-journal-text me-2 text-indigo"></i> Admin Activity</h5>
+            <div class="log-container overflow-auto pe-2 flex-grow-1">
+                {% for log in recent_logs %}
+                <div class="admin-log-item position-relative mb-3">
+                    <div class="d-flex justify-content-between small text-secondary mb-1">
+                        <span class="fw-700 text-indigo">{{ log.admin.username|default:log.admin.email }}</span>
+                        <div class="d-flex align-items-center">
+                            <span class="opacity-75 me-2">{{ log.action_time|date:"H:i" }}</span>
+                            <a href="{% url 'admin_panel:delete_activity_log' log.log_id %}" class="text-danger opacity-50 hover-opacity-100" onclick="return confirm('Clear this log entry?')">
+                                <i class="bi bi-x-circle-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="small fw-500 text-dark">{{ log.action }}</div>
+                </div>
+                {% empty %}
+                <div class="text-center py-5">
+                    <p class="text-secondary small">Historical logs empty.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="table-card p-4 d-flex flex-column" style="height: 480px;">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="fw-700 m-0 d-flex align-items-center"><i class="bi bi-chat-dots me-2 text-primary"></i> Customer Inquiries</h5>
+                <a href="{% url 'admin_panel:contact_messages_list' %}" class="small text-primary fw-600 text-decoration-none">View All</a>
+            </div>
+            <div class="log-container overflow-auto pe-2 flex-grow-1">
+                {% for msg in recent_messages %}
+                <div class="admin-log-item position-relative mb-3 py-2 bg-light bg-opacity-50">
+                    <div class="d-flex justify-content-between small text-secondary mb-1">
+                        <span class="fw-700 text-dark">{{ msg.name }}</span>
+                        <div class="d-flex align-items-center gap-2">
+                            {% if msg.status_info.status == 'In Progress' %}
+                                <span class="badge bg-danger text-white extra-small p-1 px-2 rounded-pill shadow-sm">HANDLING</span>
+                            {% elif msg.status_info.status == 'Completed' %}
+                                <span class="badge bg-success text-white extra-small p-1 px-2 rounded-pill shadow-sm">DONE</span>
+                            {% endif %}
+                            <span class="opacity-75 small text-uppercase fw-600">{{ msg.created_at|date:"M d" }}</span>
+                        </div>
+                    </div>
+                    <div class="small fw-600 text-primary mb-1">{{ msg.subject|default:"No Subject" }}</div>
+                    <div class="small text-secondary text-truncate">{{ msg.message|default:"No content." }}</div>
+                </div>
+                {% empty %}
+                <div class="text-center py-5">
+                    <p class="text-secondary small">Inbox is quiet today.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const alerts = document.querySelectorAll('.alert');
+                alerts.forEach(function(alert) {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                });
+            }, 5000);
+        });
+    </script>

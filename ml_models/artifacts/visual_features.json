@@ -1,0 +1,6442 @@
+{
+    "515634": {
+        "palette": [
+            {
+                "r": 7,
+                "g": 134,
+                "b": 195,
+                "hex": "#0786c3"
+            },
+            {
+                "r": 192,
+                "g": 175,
+                "b": 130,
+                "hex": "#c0af82"
+            },
+            {
+                "r": 100,
+                "g": 76,
+                "b": 71,
+                "hex": "#644c47"
+            }
+        ],
+        "dominant_hex": "#0786c3",
+        "saturation": 159.61434074074074,
+        "brightness": 168.89822222222222,
+        "vibe": "Standard",
+        "complexity": 5174.248984637805,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515637": {
+        "palette": [
+            {
+                "r": 222,
+                "g": 215,
+                "b": 204,
+                "hex": "#ded7cc"
+            },
+            {
+                "r": 57,
+                "g": 17,
+                "b": 11,
+                "hex": "#39110b"
+            },
+            {
+                "r": 150,
+                "g": 113,
+                "b": 90,
+                "hex": "#96715a"
+            }
+        ],
+        "dominant_hex": "#ded7cc",
+        "saturation": 83.53579259259259,
+        "brightness": 172.23979259259258,
+        "vibe": "Standard",
+        "complexity": 6916.265318122578,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515638": {
+        "palette": [
+            {
+                "r": 52,
+                "g": 33,
+                "b": 25,
+                "hex": "#342119"
+            },
+            {
+                "r": 250,
+                "g": 251,
+                "b": 251,
+                "hex": "#fafbfb"
+            },
+            {
+                "r": 189,
+                "g": 151,
+                "b": 122,
+                "hex": "#bd977a"
+            }
+        ],
+        "dominant_hex": "#342119",
+        "saturation": 79.82562962962963,
+        "brightness": 182.05964444444444,
+        "vibe": "Standard",
+        "complexity": 8545.211422537393,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515639": {
+        "palette": [
+            {
+                "r": 136,
+                "g": 177,
+                "b": 207,
+                "hex": "#88b1cf"
+            },
+            {
+                "r": 2,
+                "g": 6,
+                "b": 13,
+                "hex": "#02060d"
+            },
+            {
+                "r": 27,
+                "g": 75,
+                "b": 116,
+                "hex": "#1b4b74"
+            }
+        ],
+        "dominant_hex": "#88b1cf",
+        "saturation": 143.03407407407408,
+        "brightness": 56.41783703703704,
+        "vibe": "Noir/Dark",
+        "complexity": 2246.0838565925924,
+        "visual_style": "Cinematic"
+    },
+    "515641": {
+        "palette": [
+            {
+                "r": 253,
+                "g": 249,
+                "b": 246,
+                "hex": "#fdf9f6"
+            },
+            {
+                "r": 43,
+                "g": 26,
+                "b": 29,
+                "hex": "#2b1a1d"
+            },
+            {
+                "r": 203,
+                "g": 105,
+                "b": 96,
+                "hex": "#cb6960"
+            }
+        ],
+        "dominant_hex": "#fdf9f6",
+        "saturation": 61.8741037037037,
+        "brightness": 198.17291851851851,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 8096.432129492456,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515644": {
+        "palette": [
+            {
+                "r": 16,
+                "g": 8,
+                "b": 12,
+                "hex": "#10080c"
+            },
+            {
+                "r": 179,
+                "g": 161,
+                "b": 160,
+                "hex": "#b3a1a0"
+            },
+            {
+                "r": 97,
+                "g": 59,
+                "b": 62,
+                "hex": "#613b3e"
+            }
+        ],
+        "dominant_hex": "#10080c",
+        "saturation": 90.95051851851852,
+        "brightness": 84.62788148148148,
+        "vibe": "Standard",
+        "complexity": 4874.202329902003,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515645": {
+        "palette": [
+            {
+                "r": 19,
+                "g": 13,
+                "b": 13,
+                "hex": "#130d0d"
+            },
+            {
+                "r": 235,
+                "g": 189,
+                "b": 133,
+                "hex": "#ebbd85"
+            },
+            {
+                "r": 136,
+                "g": 72,
+                "b": 64,
+                "hex": "#884840"
+            }
+        ],
+        "dominant_hex": "#130d0d",
+        "saturation": 108.47220740740741,
+        "brightness": 118.73638518518518,
+        "vibe": "Standard",
+        "complexity": 6170.940286331962,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515646": {
+        "palette": [
+            {
+                "r": 209,
+                "g": 226,
+                "b": 230,
+                "hex": "#d1e2e6"
+            },
+            {
+                "r": 38,
+                "g": 176,
+                "b": 225,
+                "hex": "#26b0e1"
+            },
+            {
+                "r": 121,
+                "g": 107,
+                "b": 89,
+                "hex": "#796b59"
+            }
+        ],
+        "dominant_hex": "#d1e2e6",
+        "saturation": 91.21259259259259,
+        "brightness": 215.04485925925925,
+        "vibe": "Standard",
+        "complexity": 5958.333729171139,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515647": {
+        "palette": [
+            {
+                "r": 26,
+                "g": 24,
+                "b": 29,
+                "hex": "#1a181d"
+            },
+            {
+                "r": 224,
+                "g": 186,
+                "b": 168,
+                "hex": "#e0baa8"
+            },
+            {
+                "r": 154,
+                "g": 83,
+                "b": 72,
+                "hex": "#9a5348"
+            }
+        ],
+        "dominant_hex": "#1a181d",
+        "saturation": 105.99253333333333,
+        "brightness": 85.09813333333334,
+        "vibe": "Standard",
+        "complexity": 1183.0602471980246,
+        "visual_style": "Cinematic"
+    },
+    "515648": {
+        "palette": [
+            {
+                "r": 227,
+                "g": 205,
+                "b": 164,
+                "hex": "#e3cda4"
+            },
+            {
+                "r": 192,
+                "g": 118,
+                "b": 32,
+                "hex": "#c07620"
+            },
+            {
+                "r": 45,
+                "g": 23,
+                "b": 13,
+                "hex": "#2d170d"
+            }
+        ],
+        "dominant_hex": "#e3cda4",
+        "saturation": 159.87404444444445,
+        "brightness": 166.37108148148147,
+        "vibe": "Standard",
+        "complexity": 5124.128664111056,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515649": {
+        "palette": [
+            {
+                "r": 3,
+                "g": 1,
+                "b": 1,
+                "hex": "#030101"
+            },
+            {
+                "r": 219,
+                "g": 150,
+                "b": 99,
+                "hex": "#db9663"
+            },
+            {
+                "r": 113,
+                "g": 57,
+                "b": 38,
+                "hex": "#713926"
+            }
+        ],
+        "dominant_hex": "#030101",
+        "saturation": 72.77558518518518,
+        "brightness": 33.33457777777778,
+        "vibe": "Noir/Dark",
+        "complexity": 3157.0744295032096,
+        "visual_style": "Cinematic"
+    },
+    "515652": {
+        "palette": [
+            {
+                "r": 182,
+                "g": 211,
+                "b": 220,
+                "hex": "#b6d3dc"
+            },
+            {
+                "r": 33,
+                "g": 75,
+                "b": 81,
+                "hex": "#214b51"
+            },
+            {
+                "r": 213,
+                "g": 133,
+                "b": 58,
+                "hex": "#d5853a"
+            }
+        ],
+        "dominant_hex": "#b6d3dc",
+        "saturation": 131.45647407407407,
+        "brightness": 158.53081481481482,
+        "vibe": "Standard",
+        "complexity": 13239.254111485541,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515653": {
+        "palette": [
+            {
+                "r": 241,
+                "g": 234,
+                "b": 214,
+                "hex": "#f1ead6"
+            },
+            {
+                "r": 98,
+                "g": 22,
+                "b": 12,
+                "hex": "#62160c"
+            },
+            {
+                "r": 230,
+                "g": 124,
+                "b": 53,
+                "hex": "#e67c35"
+            }
+        ],
+        "dominant_hex": "#f1ead6",
+        "saturation": 178.2677925925926,
+        "brightness": 153.87312592592593,
+        "vibe": "Neon/Vibrant",
+        "complexity": 6965.15683118793,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515655": {
+        "palette": [
+            {
+                "r": 4,
+                "g": 6,
+                "b": 8,
+                "hex": "#040608"
+            },
+            {
+                "r": 96,
+                "g": 130,
+                "b": 156,
+                "hex": "#60829c"
+            },
+            {
+                "r": 215,
+                "g": 30,
+                "b": 49,
+                "hex": "#d71e31"
+            }
+        ],
+        "dominant_hex": "#040608",
+        "saturation": 63.09842962962963,
+        "brightness": 34.873096296296296,
+        "vibe": "Noir/Dark",
+        "complexity": 1544.9715251875994,
+        "visual_style": "Cinematic"
+    },
+    "515656": {
+        "palette": [
+            {
+                "r": 22,
+                "g": 19,
+                "b": 25,
+                "hex": "#161319"
+            },
+            {
+                "r": 116,
+                "g": 71,
+                "b": 82,
+                "hex": "#744752"
+            },
+            {
+                "r": 180,
+                "g": 157,
+                "b": 168,
+                "hex": "#b49da8"
+            }
+        ],
+        "dominant_hex": "#161319",
+        "saturation": 80.02565925925926,
+        "brightness": 69.92705185185186,
+        "vibe": "Standard",
+        "complexity": 2780.23583420225,
+        "visual_style": "Cinematic"
+    },
+    "515657": {
+        "palette": [
+            {
+                "r": 178,
+                "g": 117,
+                "b": 76,
+                "hex": "#b2754c"
+            },
+            {
+                "r": 49,
+                "g": 86,
+                "b": 90,
+                "hex": "#31565a"
+            },
+            {
+                "r": 190,
+                "g": 181,
+                "b": 181,
+                "hex": "#beb5b5"
+            }
+        ],
+        "dominant_hex": "#b2754c",
+        "saturation": 92.97943703703703,
+        "brightness": 163.78758518518518,
+        "vibe": "Standard",
+        "complexity": 1755.1235865775586,
+        "visual_style": "Cinematic"
+    },
+    "515658": {
+        "palette": [
+            {
+                "r": 10,
+                "g": 3,
+                "b": 2,
+                "hex": "#0a0302"
+            },
+            {
+                "r": 154,
+                "g": 64,
+                "b": 20,
+                "hex": "#9a4014"
+            },
+            {
+                "r": 235,
+                "g": 176,
+                "b": 87,
+                "hex": "#ebb057"
+            }
+        ],
+        "dominant_hex": "#0a0302",
+        "saturation": 124.06728888888888,
+        "brightness": 73.54773333333333,
+        "vibe": "Standard",
+        "complexity": 5434.359775169492,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515659": {
+        "palette": [
+            {
+                "r": 214,
+                "g": 200,
+                "b": 197,
+                "hex": "#d6c8c5"
+            },
+            {
+                "r": 105,
+                "g": 73,
+                "b": 65,
+                "hex": "#694941"
+            },
+            {
+                "r": 237,
+                "g": 199,
+                "b": 16,
+                "hex": "#edc710"
+            }
+        ],
+        "dominant_hex": "#d6c8c5",
+        "saturation": 138.19534814814816,
+        "brightness": 184.48737777777777,
+        "vibe": "Standard",
+        "complexity": 8713.89410479583,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515660": {
+        "palette": [
+            {
+                "r": 52,
+                "g": 150,
+                "b": 202,
+                "hex": "#3496ca"
+            },
+            {
+                "r": 73,
+                "g": 59,
+                "b": 63,
+                "hex": "#493b3f"
+            },
+            {
+                "r": 214,
+                "g": 208,
+                "b": 206,
+                "hex": "#d6d0ce"
+            }
+        ],
+        "dominant_hex": "#3496ca",
+        "saturation": 108.39351111111111,
+        "brightness": 193.9893925925926,
+        "vibe": "Standard",
+        "complexity": 3783.9367949906173,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515662": {
+        "palette": [
+            {
+                "r": 8,
+                "g": 18,
+                "b": 14,
+                "hex": "#08120e"
+            },
+            {
+                "r": 44,
+                "g": 81,
+                "b": 50,
+                "hex": "#2c5132"
+            },
+            {
+                "r": 193,
+                "g": 166,
+                "b": 76,
+                "hex": "#c1a64c"
+            }
+        ],
+        "dominant_hex": "#08120e",
+        "saturation": 157.22441481481482,
+        "brightness": 54.49122962962963,
+        "vibe": "Noir/Dark",
+        "complexity": 4593.792076217064,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515663": {
+        "palette": [
+            {
+                "r": 172,
+                "g": 108,
+                "b": 84,
+                "hex": "#ac6c54"
+            },
+            {
+                "r": 242,
+                "g": 225,
+                "b": 208,
+                "hex": "#f2e1d0"
+            },
+            {
+                "r": 23,
+                "g": 12,
+                "b": 8,
+                "hex": "#170c08"
+            }
+        ],
+        "dominant_hex": "#ac6c54",
+        "saturation": 115.78773333333334,
+        "brightness": 113.38293333333333,
+        "vibe": "Standard",
+        "complexity": 2153.315550379369,
+        "visual_style": "Cinematic"
+    },
+    "515664": {
+        "palette": [
+            {
+                "r": 132,
+                "g": 82,
+                "b": 68,
+                "hex": "#845244"
+            },
+            {
+                "r": 241,
+                "g": 219,
+                "b": 210,
+                "hex": "#f1dbd2"
+            },
+            {
+                "r": 32,
+                "g": 19,
+                "b": 13,
+                "hex": "#20130d"
+            }
+        ],
+        "dominant_hex": "#845244",
+        "saturation": 112.8117037037037,
+        "brightness": 77.56856296296296,
+        "vibe": "Standard",
+        "complexity": 6420.376950115556,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515665": {
+        "palette": [
+            {
+                "r": 146,
+                "g": 136,
+                "b": 141,
+                "hex": "#92888d"
+            },
+            {
+                "r": 6,
+                "g": 3,
+                "b": 4,
+                "hex": "#060304"
+            },
+            {
+                "r": 202,
+                "g": 8,
+                "b": 9,
+                "hex": "#ca0809"
+            }
+        ],
+        "dominant_hex": "#92888d",
+        "saturation": 64.4746074074074,
+        "brightness": 41.776118518518516,
+        "vibe": "Noir/Dark",
+        "complexity": 1008.4843547645543,
+        "visual_style": "Cinematic"
+    },
+    "515667": {
+        "palette": [
+            {
+                "r": 39,
+                "g": 31,
+                "b": 28,
+                "hex": "#271f1c"
+            },
+            {
+                "r": 232,
+                "g": 191,
+                "b": 137,
+                "hex": "#e8bf89"
+            },
+            {
+                "r": 154,
+                "g": 95,
+                "b": 117,
+                "hex": "#9a5f75"
+            }
+        ],
+        "dominant_hex": "#271f1c",
+        "saturation": 128.50642962962962,
+        "brightness": 157.97007407407406,
+        "vibe": "Standard",
+        "complexity": 5684.203429487847,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515669": {
+        "palette": [
+            {
+                "r": 25,
+                "g": 21,
+                "b": 13,
+                "hex": "#19150d"
+            },
+            {
+                "r": 234,
+                "g": 221,
+                "b": 187,
+                "hex": "#eaddbb"
+            },
+            {
+                "r": 190,
+                "g": 116,
+                "b": 68,
+                "hex": "#be7444"
+            }
+        ],
+        "dominant_hex": "#19150d",
+        "saturation": 87.94622222222222,
+        "brightness": 110.60115555555555,
+        "vibe": "Standard",
+        "complexity": 4261.689495268258,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515671": {
+        "palette": [
+            {
+                "r": 250,
+                "g": 247,
+                "b": 247,
+                "hex": "#faf7f7"
+            },
+            {
+                "r": 33,
+                "g": 27,
+                "b": 47,
+                "hex": "#211b2f"
+            },
+            {
+                "r": 182,
+                "g": 122,
+                "b": 127,
+                "hex": "#b67a7f"
+            }
+        ],
+        "dominant_hex": "#faf7f7",
+        "saturation": 43.562814814814814,
+        "brightness": 206.7219851851852,
+        "vibe": "Pastel/Soft",
+        "complexity": 3923.5182126529494,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515672": {
+        "palette": [
+            {
+                "r": 221,
+                "g": 216,
+                "b": 217,
+                "hex": "#ddd8d9"
+            },
+            {
+                "r": 30,
+                "g": 27,
+                "b": 25,
+                "hex": "#1e1b19"
+            },
+            {
+                "r": 178,
+                "g": 109,
+                "b": 106,
+                "hex": "#b26d6a"
+            }
+        ],
+        "dominant_hex": "#ddd8d9",
+        "saturation": 49.41102222222222,
+        "brightness": 184.25567407407408,
+        "vibe": "Pastel/Soft",
+        "complexity": 9382.62163124148,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515673": {
+        "palette": [
+            {
+                "r": 169,
+                "g": 98,
+                "b": 57,
+                "hex": "#a96239"
+            },
+            {
+                "r": 241,
+                "g": 236,
+                "b": 171,
+                "hex": "#f1ecab"
+            },
+            {
+                "r": 51,
+                "g": 28,
+                "b": 22,
+                "hex": "#331c16"
+            }
+        ],
+        "dominant_hex": "#a96239",
+        "saturation": 129.3752,
+        "brightness": 157.01037037037037,
+        "vibe": "Standard",
+        "complexity": 5622.997298414266,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515674": {
+        "palette": [
+            {
+                "r": 42,
+                "g": 43,
+                "b": 37,
+                "hex": "#2a2b25"
+            },
+            {
+                "r": 101,
+                "g": 97,
+                "b": 79,
+                "hex": "#65614f"
+            },
+            {
+                "r": 160,
+                "g": 159,
+                "b": 140,
+                "hex": "#a09f8c"
+            }
+        ],
+        "dominant_hex": "#2a2b25",
+        "saturation": 45.70951111111111,
+        "brightness": 68.9210962962963,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 4531.290762658766,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515675": {
+        "palette": [
+            {
+                "r": 5,
+                "g": 6,
+                "b": 7,
+                "hex": "#050607"
+            },
+            {
+                "r": 213,
+                "g": 221,
+                "b": 221,
+                "hex": "#d5dddd"
+            },
+            {
+                "r": 93,
+                "g": 130,
+                "b": 150,
+                "hex": "#5d8296"
+            }
+        ],
+        "dominant_hex": "#050607",
+        "saturation": 41.913866666666664,
+        "brightness": 54.873718518518515,
+        "vibe": "Noir/Dark",
+        "complexity": 9547.14429067764,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515676": {
+        "palette": [
+            {
+                "r": 231,
+                "g": 186,
+                "b": 156,
+                "hex": "#e7ba9c"
+            },
+            {
+                "r": 56,
+                "g": 7,
+                "b": 11,
+                "hex": "#38070b"
+            },
+            {
+                "r": 152,
+                "g": 81,
+                "b": 54,
+                "hex": "#985136"
+            }
+        ],
+        "dominant_hex": "#e7ba9c",
+        "saturation": 206.3978962962963,
+        "brightness": 77.06645925925926,
+        "vibe": "Neon/Vibrant",
+        "complexity": 3419.319851654321,
+        "visual_style": "Cinematic"
+    },
+    "515677": {
+        "palette": [
+            {
+                "r": 88,
+                "g": 68,
+                "b": 65,
+                "hex": "#584441"
+            },
+            {
+                "r": 7,
+                "g": 5,
+                "b": 5,
+                "hex": "#070505"
+            },
+            {
+                "r": 147,
+                "g": 168,
+                "b": 172,
+                "hex": "#93a8ac"
+            }
+        ],
+        "dominant_hex": "#584441",
+        "saturation": 171.2977185185185,
+        "brightness": 32.016414814814816,
+        "vibe": "Noir/Dark",
+        "complexity": 3830.269274074074,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515678": {
+        "palette": [
+            {
+                "r": 2,
+                "g": 5,
+                "b": 25,
+                "hex": "#020519"
+            },
+            {
+                "r": 10,
+                "g": 124,
+                "b": 176,
+                "hex": "#0a7cb0"
+            },
+            {
+                "r": 130,
+                "g": 218,
+                "b": 226,
+                "hex": "#82dae2"
+            }
+        ],
+        "dominant_hex": "#020519",
+        "saturation": 229.75004444444446,
+        "brightness": 87.15223703703704,
+        "vibe": "Neon/Vibrant",
+        "complexity": 1048.2420690032372,
+        "visual_style": "Cinematic"
+    },
+    "515680": {
+        "palette": [
+            {
+                "r": 146,
+                "g": 78,
+                "b": 61,
+                "hex": "#924e3d"
+            },
+            {
+                "r": 18,
+                "g": 23,
+                "b": 22,
+                "hex": "#121716"
+            },
+            {
+                "r": 222,
+                "g": 171,
+                "b": 109,
+                "hex": "#deab6d"
+            }
+        ],
+        "dominant_hex": "#924e3d",
+        "saturation": 107.13813333333333,
+        "brightness": 71.4365037037037,
+        "vibe": "Standard",
+        "complexity": 1501.2535273736075,
+        "visual_style": "Cinematic"
+    },
+    "515681": {
+        "palette": [
+            {
+                "r": 21,
+                "g": 11,
+                "b": 11,
+                "hex": "#150b0b"
+            },
+            {
+                "r": 231,
+                "g": 211,
+                "b": 154,
+                "hex": "#e7d39a"
+            },
+            {
+                "r": 178,
+                "g": 88,
+                "b": 56,
+                "hex": "#b25838"
+            }
+        ],
+        "dominant_hex": "#150b0b",
+        "saturation": 147.1576,
+        "brightness": 105.49934814814814,
+        "vibe": "Standard",
+        "complexity": 5512.881761368669,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515682": {
+        "palette": [
+            {
+                "r": 235,
+                "g": 167,
+                "b": 86,
+                "hex": "#eba756"
+            },
+            {
+                "r": 12,
+                "g": 1,
+                "b": 1,
+                "hex": "#0c0101"
+            },
+            {
+                "r": 118,
+                "g": 16,
+                "b": 18,
+                "hex": "#761012"
+            }
+        ],
+        "dominant_hex": "#eba756",
+        "saturation": 162.97632592592592,
+        "brightness": 51.25848888888889,
+        "vibe": "Noir/Dark",
+        "complexity": 3175.6640591714677,
+        "visual_style": "Cinematic"
+    },
+    "515683": {
+        "palette": [
+            {
+                "r": 7,
+                "g": 6,
+                "b": 5,
+                "hex": "#070605"
+            },
+            {
+                "r": 169,
+                "g": 150,
+                "b": 124,
+                "hex": "#a9967c"
+            },
+            {
+                "r": 250,
+                "g": 250,
+                "b": 248,
+                "hex": "#fafaf8"
+            }
+        ],
+        "dominant_hex": "#070605",
+        "saturation": 34.05158518518518,
+        "brightness": 124.9522962962963,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 7770.606537043402,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515686": {
+        "palette": [
+            {
+                "r": 34,
+                "g": 21,
+                "b": 21,
+                "hex": "#221515"
+            },
+            {
+                "r": 107,
+                "g": 79,
+                "b": 97,
+                "hex": "#6b4f61"
+            },
+            {
+                "r": 190,
+                "g": 149,
+                "b": 140,
+                "hex": "#be958c"
+            }
+        ],
+        "dominant_hex": "#221515",
+        "saturation": 107.90382222222222,
+        "brightness": 144.37626666666668,
+        "vibe": "Standard",
+        "complexity": 1557.8060370137723,
+        "visual_style": "Cinematic"
+    },
+    "515687": {
+        "palette": [
+            {
+                "r": 24,
+                "g": 55,
+                "b": 27,
+                "hex": "#18371b"
+            },
+            {
+                "r": 89,
+                "g": 150,
+                "b": 94,
+                "hex": "#59965e"
+            },
+            {
+                "r": 230,
+                "g": 194,
+                "b": 117,
+                "hex": "#e6c275"
+            }
+        ],
+        "dominant_hex": "#18371b",
+        "saturation": 148.24097777777777,
+        "brightness": 131.28918518518518,
+        "vibe": "Standard",
+        "complexity": 6818.694197566859,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515688": {
+        "palette": [
+            {
+                "r": 37,
+                "g": 30,
+                "b": 32,
+                "hex": "#251e20"
+            },
+            {
+                "r": 159,
+                "g": 141,
+                "b": 140,
+                "hex": "#9f8d8c"
+            },
+            {
+                "r": 82,
+                "g": 61,
+                "b": 66,
+                "hex": "#523d42"
+            }
+        ],
+        "dominant_hex": "#251e20",
+        "saturation": 63.973303703703706,
+        "brightness": 55.53585185185185,
+        "vibe": "Noir/Dark",
+        "complexity": 3008.5474461155554,
+        "visual_style": "Cinematic"
+    },
+    "515691": {
+        "palette": [
+            {
+                "r": 215,
+                "g": 217,
+                "b": 215,
+                "hex": "#d7d9d7"
+            },
+            {
+                "r": 16,
+                "g": 16,
+                "b": 15,
+                "hex": "#10100f"
+            },
+            {
+                "r": 115,
+                "g": 106,
+                "b": 95,
+                "hex": "#736a5f"
+            }
+        ],
+        "dominant_hex": "#d7d9d7",
+        "saturation": 42.85448888888889,
+        "brightness": 93.96082962962963,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 4471.281127963567,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515693": {
+        "palette": [
+            {
+                "r": 98,
+                "g": 71,
+                "b": 121,
+                "hex": "#624779"
+            },
+            {
+                "r": 19,
+                "g": 18,
+                "b": 19,
+                "hex": "#131213"
+            },
+            {
+                "r": 221,
+                "g": 223,
+                "b": 229,
+                "hex": "#dddfe5"
+            }
+        ],
+        "dominant_hex": "#624779",
+        "saturation": 98.38017777777777,
+        "brightness": 94.43208888888888,
+        "vibe": "Standard",
+        "complexity": 4237.854734190618,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515694": {
+        "palette": [
+            {
+                "r": 22,
+                "g": 12,
+                "b": 10,
+                "hex": "#160c0a"
+            },
+            {
+                "r": 132,
+                "g": 65,
+                "b": 28,
+                "hex": "#84411c"
+            },
+            {
+                "r": 212,
+                "g": 3,
+                "b": 3,
+                "hex": "#d40303"
+            }
+        ],
+        "dominant_hex": "#160c0a",
+        "saturation": 166.74112592592593,
+        "brightness": 68.91688888888889,
+        "vibe": "Neon/Vibrant",
+        "complexity": 573.7967343635665,
+        "visual_style": "Minimalist"
+    },
+    "515696": {
+        "palette": [
+            {
+                "r": 253,
+                "g": 253,
+                "b": 253,
+                "hex": "#fdfdfd"
+            },
+            {
+                "r": 53,
+                "g": 69,
+                "b": 131,
+                "hex": "#354583"
+            },
+            {
+                "r": 206,
+                "g": 155,
+                "b": 93,
+                "hex": "#ce9b5d"
+            }
+        ],
+        "dominant_hex": "#fdfdfd",
+        "saturation": 83.67217777777778,
+        "brightness": 196.34465185185186,
+        "vibe": "Standard",
+        "complexity": 6265.545955555555,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515697": {
+        "palette": [
+            {
+                "r": 70,
+                "g": 50,
+                "b": 48,
+                "hex": "#463230"
+            },
+            {
+                "r": 234,
+                "g": 241,
+                "b": 245,
+                "hex": "#eaf1f5"
+            },
+            {
+                "r": 189,
+                "g": 153,
+                "b": 132,
+                "hex": "#bd9984"
+            }
+        ],
+        "dominant_hex": "#463230",
+        "saturation": 82.45834074074074,
+        "brightness": 196.09905185185184,
+        "vibe": "Standard",
+        "complexity": 7397.542627446694,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515698": {
+        "palette": [
+            {
+                "r": 186,
+                "g": 182,
+                "b": 217,
+                "hex": "#bab6d9"
+            },
+            {
+                "r": 79,
+                "g": 42,
+                "b": 46,
+                "hex": "#4f2a2e"
+            },
+            {
+                "r": 219,
+                "g": 135,
+                "b": 83,
+                "hex": "#db8753"
+            }
+        ],
+        "dominant_hex": "#bab6d9",
+        "saturation": 123.73721481481482,
+        "brightness": 164.04245925925926,
+        "vibe": "Standard",
+        "complexity": 3326.192243857558,
+        "visual_style": "Cinematic"
+    },
+    "515699": {
+        "palette": [
+            {
+                "r": 17,
+                "g": 8,
+                "b": 16,
+                "hex": "#110810"
+            },
+            {
+                "r": 183,
+                "g": 185,
+                "b": 224,
+                "hex": "#b7b9e0"
+            },
+            {
+                "r": 61,
+                "g": 69,
+                "b": 128,
+                "hex": "#3d4580"
+            }
+        ],
+        "dominant_hex": "#110810",
+        "saturation": 156.3096888888889,
+        "brightness": 56.458933333333334,
+        "vibe": "Noir/Dark",
+        "complexity": 7362.197773805212,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515702": {
+        "palette": [
+            {
+                "r": 234,
+                "g": 86,
+                "b": 27,
+                "hex": "#ea561b"
+            },
+            {
+                "r": 54,
+                "g": 37,
+                "b": 39,
+                "hex": "#362527"
+            },
+            {
+                "r": 185,
+                "g": 168,
+                "b": 150,
+                "hex": "#b9a896"
+            }
+        ],
+        "dominant_hex": "#ea561b",
+        "saturation": 136.38500740740741,
+        "brightness": 155.82856296296296,
+        "vibe": "Standard",
+        "complexity": 6590.001084224966,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515703": {
+        "palette": [
+            {
+                "r": 103,
+                "g": 40,
+                "b": 31,
+                "hex": "#67281f"
+            },
+            {
+                "r": 199,
+                "g": 154,
+                "b": 108,
+                "hex": "#c79a6c"
+            },
+            {
+                "r": 15,
+                "g": 7,
+                "b": 10,
+                "hex": "#0f070a"
+            }
+        ],
+        "dominant_hex": "#67281f",
+        "saturation": 173.58183703703705,
+        "brightness": 74.33303703703703,
+        "vibe": "Neon/Vibrant",
+        "complexity": 2697.1897095629083,
+        "visual_style": "Cinematic"
+    },
+    "515708": {
+        "palette": [
+            {
+                "r": 195,
+                "g": 80,
+                "b": 64,
+                "hex": "#c35040"
+            },
+            {
+                "r": 252,
+                "g": 245,
+                "b": 239,
+                "hex": "#fcf5ef"
+            },
+            {
+                "r": 25,
+                "g": 22,
+                "b": 24,
+                "hex": "#191618"
+            }
+        ],
+        "dominant_hex": "#c35040",
+        "saturation": 109.4749925925926,
+        "brightness": 177.96936296296298,
+        "vibe": "Standard",
+        "complexity": 7510.132873056571,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515709": {
+        "palette": [
+            {
+                "r": 16,
+                "g": 15,
+                "b": 19,
+                "hex": "#100f13"
+            },
+            {
+                "r": 162,
+                "g": 157,
+                "b": 156,
+                "hex": "#a29d9c"
+            },
+            {
+                "r": 83,
+                "g": 71,
+                "b": 65,
+                "hex": "#534741"
+            }
+        ],
+        "dominant_hex": "#100f13",
+        "saturation": 62.324296296296296,
+        "brightness": 57.86545185185185,
+        "vibe": "Noir/Dark",
+        "complexity": 3406.996512466173,
+        "visual_style": "Cinematic"
+    },
+    "515710": {
+        "palette": [
+            {
+                "r": 6,
+                "g": 5,
+                "b": 4,
+                "hex": "#060504"
+            },
+            {
+                "r": 152,
+                "g": 146,
+                "b": 149,
+                "hex": "#989295"
+            },
+            {
+                "r": 233,
+                "g": 204,
+                "b": 53,
+                "hex": "#e9cc35"
+            }
+        ],
+        "dominant_hex": "#060504",
+        "saturation": 109.78379259259259,
+        "brightness": 137.66082962962963,
+        "vibe": "Standard",
+        "complexity": 8258.956405728395,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515711": {
+        "palette": [
+            {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "hex": "#010101"
+            },
+            {
+                "r": 224,
+                "g": 223,
+                "b": 223,
+                "hex": "#e0dfdf"
+            },
+            {
+                "r": 144,
+                "g": 140,
+                "b": 141,
+                "hex": "#908c8d"
+            }
+        ],
+        "dominant_hex": "#010101",
+        "saturation": 3.8257777777777777,
+        "brightness": 20.049451851851853,
+        "vibe": "Noir/Dark",
+        "complexity": 3571.249007280988,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515712": {
+        "palette": [
+            {
+                "r": 9,
+                "g": 4,
+                "b": 3,
+                "hex": "#090403"
+            },
+            {
+                "r": 209,
+                "g": 126,
+                "b": 54,
+                "hex": "#d17e36"
+            },
+            {
+                "r": 244,
+                "g": 244,
+                "b": 244,
+                "hex": "#f4f4f4"
+            }
+        ],
+        "dominant_hex": "#090403",
+        "saturation": 89.16708148148147,
+        "brightness": 62.06465185185185,
+        "vibe": "Standard",
+        "complexity": 4230.758393805432,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515714": {
+        "palette": [
+            {
+                "r": 3,
+                "g": 1,
+                "b": 0,
+                "hex": "#030100"
+            },
+            {
+                "r": 226,
+                "g": 121,
+                "b": 10,
+                "hex": "#e2790a"
+            },
+            {
+                "r": 110,
+                "g": 35,
+                "b": 8,
+                "hex": "#6e2308"
+            }
+        ],
+        "dominant_hex": "#030100",
+        "saturation": 102.38512592592592,
+        "brightness": 45.94888888888889,
+        "vibe": "Noir/Dark",
+        "complexity": 2514.9670383530315,
+        "visual_style": "Cinematic"
+    },
+    "515715": {
+        "palette": [
+            {
+                "r": 116,
+                "g": 85,
+                "b": 54,
+                "hex": "#745536"
+            },
+            {
+                "r": 206,
+                "g": 224,
+                "b": 216,
+                "hex": "#cee0d8"
+            },
+            {
+                "r": 79,
+                "g": 189,
+                "b": 213,
+                "hex": "#4fbdd5"
+            }
+        ],
+        "dominant_hex": "#745536",
+        "saturation": 110.63608888888889,
+        "brightness": 185.96162962962964,
+        "vibe": "Standard",
+        "complexity": 4669.1129925925925,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515719": {
+        "palette": [
+            {
+                "r": 179,
+                "g": 194,
+                "b": 183,
+                "hex": "#b3c2b7"
+            },
+            {
+                "r": 85,
+                "g": 62,
+                "b": 50,
+                "hex": "#553e32"
+            },
+            {
+                "r": 111,
+                "g": 113,
+                "b": 113,
+                "hex": "#6f7171"
+            }
+        ],
+        "dominant_hex": "#b3c2b7",
+        "saturation": 83.40545185185185,
+        "brightness": 139.5706074074074,
+        "vibe": "Standard",
+        "complexity": 3081.5965348916325,
+        "visual_style": "Cinematic"
+    },
+    "515721": {
+        "palette": [
+            {
+                "r": 34,
+                "g": 37,
+                "b": 47,
+                "hex": "#22252f"
+            },
+            {
+                "r": 92,
+                "g": 111,
+                "b": 120,
+                "hex": "#5c6f78"
+            },
+            {
+                "r": 220,
+                "g": 215,
+                "b": 206,
+                "hex": "#dcd7ce"
+            }
+        ],
+        "dominant_hex": "#22252f",
+        "saturation": 87.35182222222222,
+        "brightness": 93.34788148148148,
+        "vibe": "Standard",
+        "complexity": 7871.4341323184635,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515722": {
+        "palette": [
+            {
+                "r": 55,
+                "g": 32,
+                "b": 15,
+                "hex": "#37200f"
+            },
+            {
+                "r": 231,
+                "g": 197,
+                "b": 153,
+                "hex": "#e7c599"
+            },
+            {
+                "r": 163,
+                "g": 92,
+                "b": 50,
+                "hex": "#a35c32"
+            }
+        ],
+        "dominant_hex": "#37200f",
+        "saturation": 146.28506666666667,
+        "brightness": 154.78355555555555,
+        "vibe": "Standard",
+        "complexity": 2776.7745111168174,
+        "visual_style": "Cinematic"
+    },
+    "515724": {
+        "palette": [
+            {
+                "r": 118,
+                "g": 115,
+                "b": 124,
+                "hex": "#76737c"
+            },
+            {
+                "r": 229,
+                "g": 221,
+                "b": 212,
+                "hex": "#e5ddd4"
+            },
+            {
+                "r": 25,
+                "g": 36,
+                "b": 43,
+                "hex": "#19242b"
+            }
+        ],
+        "dominant_hex": "#76737c",
+        "saturation": 62.150133333333336,
+        "brightness": 140.57336296296296,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 4258.719192477147,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515726": {
+        "palette": [
+            {
+                "r": 167,
+                "g": 113,
+                "b": 87,
+                "hex": "#a77157"
+            },
+            {
+                "r": 254,
+                "g": 253,
+                "b": 253,
+                "hex": "#fefdfd"
+            },
+            {
+                "r": 34,
+                "g": 24,
+                "b": 20,
+                "hex": "#221814"
+            }
+        ],
+        "dominant_hex": "#a77157",
+        "saturation": 42.410637037037034,
+        "brightness": 195.24648888888888,
+        "vibe": "Pastel/Soft",
+        "complexity": 3047.3060945303705,
+        "visual_style": "Cinematic"
+    },
+    "515727": {
+        "palette": [
+            {
+                "r": 32,
+                "g": 31,
+                "b": 43,
+                "hex": "#201f2b"
+            },
+            {
+                "r": 225,
+                "g": 204,
+                "b": 188,
+                "hex": "#e1ccbc"
+            },
+            {
+                "r": 175,
+                "g": 119,
+                "b": 89,
+                "hex": "#af7759"
+            }
+        ],
+        "dominant_hex": "#201f2b",
+        "saturation": 126.57022222222223,
+        "brightness": 128.20702222222224,
+        "vibe": "Standard",
+        "complexity": 3967.0775223387654,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515728": {
+        "palette": [
+            {
+                "r": 51,
+                "g": 48,
+                "b": 46,
+                "hex": "#33302e"
+            },
+            {
+                "r": 233,
+                "g": 229,
+                "b": 219,
+                "hex": "#e9e5db"
+            },
+            {
+                "r": 126,
+                "g": 116,
+                "b": 111,
+                "hex": "#7e746f"
+            }
+        ],
+        "dominant_hex": "#33302e",
+        "saturation": 22.494903703703702,
+        "brightness": 111.05057777777778,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 7732.7408639683945,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515729": {
+        "palette": [
+            {
+                "r": 229,
+                "g": 230,
+                "b": 233,
+                "hex": "#e5e6e9"
+            },
+            {
+                "r": 42,
+                "g": 49,
+                "b": 68,
+                "hex": "#2a3144"
+            },
+            {
+                "r": 141,
+                "g": 148,
+                "b": 163,
+                "hex": "#8d94a3"
+            }
+        ],
+        "dominant_hex": "#e5e6e9",
+        "saturation": 30.718192592592594,
+        "brightness": 185.77857777777777,
+        "vibe": "Pastel/Soft",
+        "complexity": 2374.9964863920986,
+        "visual_style": "Cinematic"
+    },
+    "515730": {
+        "palette": [
+            {
+                "r": 77,
+                "g": 107,
+                "b": 130,
+                "hex": "#4d6b82"
+            },
+            {
+                "r": 195,
+                "g": 198,
+                "b": 165,
+                "hex": "#c3c6a5"
+            },
+            {
+                "r": 86,
+                "g": 63,
+                "b": 78,
+                "hex": "#563f4e"
+            }
+        ],
+        "dominant_hex": "#4d6b82",
+        "saturation": 85.19952592592593,
+        "brightness": 147.38539259259258,
+        "vibe": "Standard",
+        "complexity": 2545.789203209657,
+        "visual_style": "Cinematic"
+    },
+    "515731": {
+        "palette": [
+            {
+                "r": 128,
+                "g": 130,
+                "b": 148,
+                "hex": "#808294"
+            },
+            {
+                "r": 13,
+                "g": 14,
+                "b": 36,
+                "hex": "#0d0e24"
+            },
+            {
+                "r": 215,
+                "g": 216,
+                "b": 226,
+                "hex": "#d7d8e2"
+            }
+        ],
+        "dominant_hex": "#808294",
+        "saturation": 121.21757037037037,
+        "brightness": 97.05517037037038,
+        "vibe": "Standard",
+        "complexity": 2382.057683128889,
+        "visual_style": "Cinematic"
+    },
+    "515732": {
+        "palette": [
+            {
+                "r": 13,
+                "g": 8,
+                "b": 14,
+                "hex": "#0d080e"
+            },
+            {
+                "r": 220,
+                "g": 188,
+                "b": 175,
+                "hex": "#dcbcaf"
+            },
+            {
+                "r": 159,
+                "g": 56,
+                "b": 58,
+                "hex": "#9f383a"
+            }
+        ],
+        "dominant_hex": "#0d080e",
+        "saturation": 144.7788148148148,
+        "brightness": 65.87804444444444,
+        "vibe": "Standard",
+        "complexity": 3666.8607383668586,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515733": {
+        "palette": [
+            {
+                "r": 195,
+                "g": 221,
+                "b": 239,
+                "hex": "#c3ddef"
+            },
+            {
+                "r": 27,
+                "g": 162,
+                "b": 228,
+                "hex": "#1ba2e4"
+            },
+            {
+                "r": 197,
+                "g": 166,
+                "b": 69,
+                "hex": "#c5a645"
+            }
+        ],
+        "dominant_hex": "#c3ddef",
+        "saturation": 69.26734814814814,
+        "brightness": 237.18758518518518,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 1026.9427849314677,
+        "visual_style": "Cinematic"
+    },
+    "515735": {
+        "palette": [
+            {
+                "r": 244,
+                "g": 230,
+                "b": 215,
+                "hex": "#f4e6d7"
+            },
+            {
+                "r": 37,
+                "g": 30,
+                "b": 28,
+                "hex": "#251e1c"
+            },
+            {
+                "r": 156,
+                "g": 126,
+                "b": 116,
+                "hex": "#9c7e74"
+            }
+        ],
+        "dominant_hex": "#f4e6d7",
+        "saturation": 62.355318518518516,
+        "brightness": 126.56195555555556,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 7666.267169256296,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515736": {
+        "palette": [
+            {
+                "r": 4,
+                "g": 4,
+                "b": 5,
+                "hex": "#040405"
+            },
+            {
+                "r": 171,
+                "g": 206,
+                "b": 237,
+                "hex": "#abceed"
+            },
+            {
+                "r": 173,
+                "g": 133,
+                "b": 92,
+                "hex": "#ad855c"
+            }
+        ],
+        "dominant_hex": "#040405",
+        "saturation": 62.678251851851854,
+        "brightness": 86.09377777777777,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 6646.63034074074,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515739": {
+        "palette": [
+            {
+                "r": 74,
+                "g": 28,
+                "b": 26,
+                "hex": "#4a1c1a"
+            },
+            {
+                "r": 226,
+                "g": 195,
+                "b": 162,
+                "hex": "#e2c3a2"
+            },
+            {
+                "r": 176,
+                "g": 112,
+                "b": 61,
+                "hex": "#b0703d"
+            }
+        ],
+        "dominant_hex": "#4a1c1a",
+        "saturation": 150.27751111111112,
+        "brightness": 155.26426666666666,
+        "vibe": "Standard",
+        "complexity": 11328.579469716542,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515741": {
+        "palette": [
+            {
+                "r": 20,
+                "g": 19,
+                "b": 13,
+                "hex": "#14130d"
+            },
+            {
+                "r": 236,
+                "g": 229,
+                "b": 207,
+                "hex": "#ece5cf"
+            },
+            {
+                "r": 181,
+                "g": 108,
+                "b": 67,
+                "hex": "#b56c43"
+            }
+        ],
+        "dominant_hex": "#14130d",
+        "saturation": 105.26364444444444,
+        "brightness": 162.13665185185187,
+        "vibe": "Standard",
+        "complexity": 11282.567427617889,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515742": {
+        "palette": [
+            {
+                "r": 50,
+                "g": 34,
+                "b": 22,
+                "hex": "#322216"
+            },
+            {
+                "r": 226,
+                "g": 116,
+                "b": 48,
+                "hex": "#e27430"
+            },
+            {
+                "r": 176,
+                "g": 191,
+                "b": 164,
+                "hex": "#b0bfa4"
+            }
+        ],
+        "dominant_hex": "#322216",
+        "saturation": 158.1562074074074,
+        "brightness": 147.36551111111112,
+        "vibe": "Standard",
+        "complexity": 5258.958609232593,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515744": {
+        "palette": [
+            {
+                "r": 21,
+                "g": 7,
+                "b": 9,
+                "hex": "#150709"
+            },
+            {
+                "r": 239,
+                "g": 219,
+                "b": 64,
+                "hex": "#efdb40"
+            },
+            {
+                "r": 131,
+                "g": 59,
+                "b": 52,
+                "hex": "#833b34"
+            }
+        ],
+        "dominant_hex": "#150709",
+        "saturation": 160.16474074074074,
+        "brightness": 81.4112,
+        "vibe": "Neon/Vibrant",
+        "complexity": 11192.250370085927,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515745": {
+        "palette": [
+            {
+                "r": 166,
+                "g": 129,
+                "b": 113,
+                "hex": "#a68171"
+            },
+            {
+                "r": 215,
+                "g": 212,
+                "b": 210,
+                "hex": "#d7d4d2"
+            },
+            {
+                "r": 61,
+                "g": 50,
+                "b": 45,
+                "hex": "#3d322d"
+            }
+        ],
+        "dominant_hex": "#a68171",
+        "saturation": 52.44645925925926,
+        "brightness": 173.88162962962963,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 4507.417360560988,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515746": {
+        "palette": [
+            {
+                "r": 86,
+                "g": 94,
+                "b": 113,
+                "hex": "#565e71"
+            },
+            {
+                "r": 157,
+                "g": 158,
+                "b": 184,
+                "hex": "#9d9eb8"
+            },
+            {
+                "r": 19,
+                "g": 20,
+                "b": 20,
+                "hex": "#131414"
+            }
+        ],
+        "dominant_hex": "#565e71",
+        "saturation": 79.0704,
+        "brightness": 92.2090962962963,
+        "vibe": "Standard",
+        "complexity": 4993.349831395555,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515749": {
+        "palette": [
+            {
+                "r": 5,
+                "g": 1,
+                "b": 2,
+                "hex": "#050102"
+            },
+            {
+                "r": 237,
+                "g": 233,
+                "b": 231,
+                "hex": "#ede9e7"
+            },
+            {
+                "r": 122,
+                "g": 80,
+                "b": 93,
+                "hex": "#7a505d"
+            }
+        ],
+        "dominant_hex": "#050102",
+        "saturation": 57.49952592592592,
+        "brightness": 46.14367407407408,
+        "vibe": "Noir/Dark",
+        "complexity": 6913.50251445904,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515751": {
+        "palette": [
+            {
+                "r": 216,
+                "g": 189,
+                "b": 163,
+                "hex": "#d8bda3"
+            },
+            {
+                "r": 60,
+                "g": 46,
+                "b": 43,
+                "hex": "#3c2e2b"
+            },
+            {
+                "r": 150,
+                "g": 120,
+                "b": 104,
+                "hex": "#967868"
+            }
+        ],
+        "dominant_hex": "#d8bda3",
+        "saturation": 69.6146074074074,
+        "brightness": 156.15146666666666,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 4839.278269865788,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515755": {
+        "palette": [
+            {
+                "r": 109,
+                "g": 139,
+                "b": 109,
+                "hex": "#6d8b6d"
+            },
+            {
+                "r": 48,
+                "g": 74,
+                "b": 45,
+                "hex": "#304a2d"
+            },
+            {
+                "r": 201,
+                "g": 217,
+                "b": 180,
+                "hex": "#c9d9b4"
+            }
+        ],
+        "dominant_hex": "#6d8b6d",
+        "saturation": 95.14296296296297,
+        "brightness": 133.2713185185185,
+        "vibe": "Standard",
+        "complexity": 4322.402956311879,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515757": {
+        "palette": [
+            {
+                "r": 215,
+                "g": 136,
+                "b": 97,
+                "hex": "#d78861"
+            },
+            {
+                "r": 250,
+                "g": 247,
+                "b": 241,
+                "hex": "#faf7f1"
+            },
+            {
+                "r": 93,
+                "g": 73,
+                "b": 71,
+                "hex": "#5d4947"
+            }
+        ],
+        "dominant_hex": "#d78861",
+        "saturation": 77.66317037037037,
+        "brightness": 213.21259259259259,
+        "vibe": "Standard",
+        "complexity": 4632.785733969821,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515758": {
+        "palette": [
+            {
+                "r": 19,
+                "g": 111,
+                "b": 179,
+                "hex": "#136fb3"
+            },
+            {
+                "r": 203,
+                "g": 183,
+                "b": 181,
+                "hex": "#cbb7b5"
+            },
+            {
+                "r": 120,
+                "g": 82,
+                "b": 95,
+                "hex": "#78525f"
+            }
+        ],
+        "dominant_hex": "#136fb3",
+        "saturation": 109.00337777777777,
+        "brightness": 185.19336296296296,
+        "vibe": "Standard",
+        "complexity": 5597.365478747654,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515761": {
+        "palette": [
+            {
+                "r": 222,
+                "g": 136,
+                "b": 88,
+                "hex": "#de8858"
+            },
+            {
+                "r": 88,
+                "g": 51,
+                "b": 54,
+                "hex": "#583336"
+            },
+            {
+                "r": 213,
+                "g": 206,
+                "b": 198,
+                "hex": "#d5cec6"
+            }
+        ],
+        "dominant_hex": "#de8858",
+        "saturation": 113.38432592592592,
+        "brightness": 195.6704,
+        "vibe": "Standard",
+        "complexity": 3793.1143834065297,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515762": {
+        "palette": [
+            {
+                "r": 141,
+                "g": 60,
+                "b": 41,
+                "hex": "#8d3c29"
+            },
+            {
+                "r": 31,
+                "g": 4,
+                "b": 1,
+                "hex": "#1f0401"
+            },
+            {
+                "r": 229,
+                "g": 223,
+                "b": 219,
+                "hex": "#e5dfdb"
+            }
+        ],
+        "dominant_hex": "#8d3c29",
+        "saturation": 220.8082962962963,
+        "brightness": 57.72622222222222,
+        "vibe": "Noir/Dark",
+        "complexity": 3234.3853787970365,
+        "visual_style": "Cinematic"
+    },
+    "515764": {
+        "palette": [
+            {
+                "r": 181,
+                "g": 183,
+                "b": 151,
+                "hex": "#b5b797"
+            },
+            {
+                "r": 21,
+                "g": 21,
+                "b": 20,
+                "hex": "#151514"
+            },
+            {
+                "r": 109,
+                "g": 94,
+                "b": 75,
+                "hex": "#6d5e4b"
+            }
+        ],
+        "dominant_hex": "#b5b797",
+        "saturation": 104.44524444444444,
+        "brightness": 110.1941037037037,
+        "vibe": "Standard",
+        "complexity": 5656.890018287846,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515766": {
+        "palette": [
+            {
+                "r": 49,
+                "g": 66,
+                "b": 69,
+                "hex": "#314245"
+            },
+            {
+                "r": 209,
+                "g": 225,
+                "b": 230,
+                "hex": "#d1e1e6"
+            },
+            {
+                "r": 111,
+                "g": 156,
+                "b": 169,
+                "hex": "#6f9ca9"
+            }
+        ],
+        "dominant_hex": "#314245",
+        "saturation": 70.5226962962963,
+        "brightness": 122.48545185185185,
+        "vibe": "Standard",
+        "complexity": 10829.62336319649,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515767": {
+        "palette": [
+            {
+                "r": 207,
+                "g": 222,
+                "b": 237,
+                "hex": "#cfdeed"
+            },
+            {
+                "r": 80,
+                "g": 63,
+                "b": 72,
+                "hex": "#503f48"
+            },
+            {
+                "r": 72,
+                "g": 132,
+                "b": 227,
+                "hex": "#4884e3"
+            }
+        ],
+        "dominant_hex": "#cfdeed",
+        "saturation": 104.08900740740741,
+        "brightness": 177.6613037037037,
+        "vibe": "Standard",
+        "complexity": 6056.099069560273,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515776": {
+        "palette": [
+            {
+                "r": 236,
+                "g": 180,
+                "b": 69,
+                "hex": "#ecb445"
+            },
+            {
+                "r": 72,
+                "g": 25,
+                "b": 10,
+                "hex": "#48190a"
+            },
+            {
+                "r": 232,
+                "g": 210,
+                "b": 154,
+                "hex": "#e8d29a"
+            }
+        ],
+        "dominant_hex": "#ecb445",
+        "saturation": 168.35078518518517,
+        "brightness": 198.3336888888889,
+        "vibe": "Neon/Vibrant",
+        "complexity": 4776.714032035995,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515777": {
+        "palette": [
+            {
+                "r": 102,
+                "g": 134,
+                "b": 164,
+                "hex": "#6686a4"
+            },
+            {
+                "r": 61,
+                "g": 59,
+                "b": 58,
+                "hex": "#3d3b3a"
+            },
+            {
+                "r": 225,
+                "g": 197,
+                "b": 176,
+                "hex": "#e1c5b0"
+            }
+        ],
+        "dominant_hex": "#6686a4",
+        "saturation": 94.52124444444445,
+        "brightness": 155.4764148148148,
+        "vibe": "Standard",
+        "complexity": 8208.637976016242,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515778": {
+        "palette": [
+            {
+                "r": 37,
+                "g": 10,
+                "b": 6,
+                "hex": "#250a06"
+            },
+            {
+                "r": 241,
+                "g": 227,
+                "b": 218,
+                "hex": "#f1e3da"
+            },
+            {
+                "r": 152,
+                "g": 91,
+                "b": 72,
+                "hex": "#985b48"
+            }
+        ],
+        "dominant_hex": "#250a06",
+        "saturation": 149.42337777777777,
+        "brightness": 120.48361481481481,
+        "vibe": "Standard",
+        "complexity": 3598.379288424472,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515781": {
+        "palette": [
+            {
+                "r": 89,
+                "g": 97,
+                "b": 98,
+                "hex": "#596162"
+            },
+            {
+                "r": 209,
+                "g": 212,
+                "b": 212,
+                "hex": "#d1d4d4"
+            },
+            {
+                "r": 10,
+                "g": 9,
+                "b": 10,
+                "hex": "#0a090a"
+            }
+        ],
+        "dominant_hex": "#596162",
+        "saturation": 52.55768888888889,
+        "brightness": 75.12924444444444,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 3328.1821247596163,
+        "visual_style": "Cinematic"
+    },
+    "515783": {
+        "palette": [
+            {
+                "r": 9,
+                "g": 17,
+                "b": 30,
+                "hex": "#09111e"
+            },
+            {
+                "r": 227,
+                "g": 223,
+                "b": 223,
+                "hex": "#e3dfdf"
+            },
+            {
+                "r": 140,
+                "g": 69,
+                "b": 95,
+                "hex": "#8c455f"
+            }
+        ],
+        "dominant_hex": "#09111e",
+        "saturation": 155.69727407407407,
+        "brightness": 82.89300740740741,
+        "vibe": "Standard",
+        "complexity": 3980.8521262845543,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515785": {
+        "palette": [
+            {
+                "r": 242,
+                "g": 231,
+                "b": 211,
+                "hex": "#f2e7d3"
+            },
+            {
+                "r": 11,
+                "g": 16,
+                "b": 11,
+                "hex": "#0b100b"
+            },
+            {
+                "r": 190,
+                "g": 122,
+                "b": 93,
+                "hex": "#be7a5d"
+            }
+        ],
+        "dominant_hex": "#f2e7d3",
+        "saturation": 84.62231111111112,
+        "brightness": 161.35205925925925,
+        "vibe": "Standard",
+        "complexity": 4509.9051484224965,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515786": {
+        "palette": [
+            {
+                "r": 50,
+                "g": 54,
+                "b": 40,
+                "hex": "#323628"
+            },
+            {
+                "r": 240,
+                "g": 238,
+                "b": 232,
+                "hex": "#f0eee8"
+            },
+            {
+                "r": 167,
+                "g": 145,
+                "b": 117,
+                "hex": "#a79175"
+            }
+        ],
+        "dominant_hex": "#323628",
+        "saturation": 26.71345185185185,
+        "brightness": 205.86788148148148,
+        "vibe": "Pastel/Soft",
+        "complexity": 3488.0039985347603,
+        "visual_style": "Cinematic"
+    },
+    "515787": {
+        "palette": [
+            {
+                "r": 37,
+                "g": 35,
+                "b": 36,
+                "hex": "#252324"
+            },
+            {
+                "r": 217,
+                "g": 215,
+                "b": 190,
+                "hex": "#d9d7be"
+            },
+            {
+                "r": 58,
+                "g": 166,
+                "b": 197,
+                "hex": "#3aa6c5"
+            }
+        ],
+        "dominant_hex": "#252324",
+        "saturation": 118.07051851851851,
+        "brightness": 191.1389925925926,
+        "vibe": "Standard",
+        "complexity": 8281.322900529163,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515788": {
+        "palette": [
+            {
+                "r": 212,
+                "g": 209,
+                "b": 170,
+                "hex": "#d4d1aa"
+            },
+            {
+                "r": 45,
+                "g": 88,
+                "b": 148,
+                "hex": "#2d5894"
+            },
+            {
+                "r": 108,
+                "g": 43,
+                "b": 31,
+                "hex": "#6c2b1f"
+            }
+        ],
+        "dominant_hex": "#d4d1aa",
+        "saturation": 154.54426666666666,
+        "brightness": 151.4028148148148,
+        "vibe": "Standard",
+        "complexity": 3468.46361824834,
+        "visual_style": "Cinematic"
+    },
+    "515789": {
+        "palette": [
+            {
+                "r": 38,
+                "g": 59,
+                "b": 116,
+                "hex": "#263b74"
+            },
+            {
+                "r": 12,
+                "g": 8,
+                "b": 19,
+                "hex": "#0c0813"
+            },
+            {
+                "r": 135,
+                "g": 163,
+                "b": 197,
+                "hex": "#87a3c5"
+            }
+        ],
+        "dominant_hex": "#263b74",
+        "saturation": 162.1398814814815,
+        "brightness": 112.24251851851852,
+        "vibe": "Neon/Vibrant",
+        "complexity": 2332.9136293127026,
+        "visual_style": "Cinematic"
+    },
+    "515790": {
+        "palette": [
+            {
+                "r": 220,
+                "g": 9,
+                "b": 7,
+                "hex": "#dc0907"
+            },
+            {
+                "r": 250,
+                "g": 249,
+                "b": 248,
+                "hex": "#faf9f8"
+            },
+            {
+                "r": 6,
+                "g": 2,
+                "b": 2,
+                "hex": "#060202"
+            }
+        ],
+        "dominant_hex": "#dc0907",
+        "saturation": 86.16402962962962,
+        "brightness": 206.9155851851852,
+        "vibe": "Standard",
+        "complexity": 4422.814074066173,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515791": {
+        "palette": [
+            {
+                "r": 246,
+                "g": 180,
+                "b": 41,
+                "hex": "#f6b429"
+            },
+            {
+                "r": 21,
+                "g": 10,
+                "b": 20,
+                "hex": "#150a14"
+            },
+            {
+                "r": 132,
+                "g": 118,
+                "b": 155,
+                "hex": "#84769b"
+            }
+        ],
+        "dominant_hex": "#f6b429",
+        "saturation": 172.02094814814814,
+        "brightness": 87.47742222222222,
+        "vibe": "Neon/Vibrant",
+        "complexity": 3882.734606616406,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515792": {
+        "palette": [
+            {
+                "r": 12,
+                "g": 1,
+                "b": 1,
+                "hex": "#0c0101"
+            },
+            {
+                "r": 247,
+                "g": 246,
+                "b": 245,
+                "hex": "#f7f6f5"
+            },
+            {
+                "r": 141,
+                "g": 2,
+                "b": 2,
+                "hex": "#8d0202"
+            }
+        ],
+        "dominant_hex": "#0c0101",
+        "saturation": 161.7442074074074,
+        "brightness": 80.81828148148148,
+        "vibe": "Neon/Vibrant",
+        "complexity": 4011.7545627180248,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515793": {
+        "palette": [
+            {
+                "r": 173,
+                "g": 108,
+                "b": 91,
+                "hex": "#ad6c5b"
+            },
+            {
+                "r": 211,
+                "g": 199,
+                "b": 189,
+                "hex": "#d3c7bd"
+            },
+            {
+                "r": 31,
+                "g": 20,
+                "b": 19,
+                "hex": "#1f1413"
+            }
+        ],
+        "dominant_hex": "#ad6c5b",
+        "saturation": 60.93872592592592,
+        "brightness": 191.79374814814815,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 6837.73696247221,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515794": {
+        "palette": [
+            {
+                "r": 3,
+                "g": 1,
+                "b": 1,
+                "hex": "#030101"
+            },
+            {
+                "r": 179,
+                "g": 138,
+                "b": 110,
+                "hex": "#b38a6e"
+            },
+            {
+                "r": 113,
+                "g": 39,
+                "b": 31,
+                "hex": "#71271f"
+            }
+        ],
+        "dominant_hex": "#030101",
+        "saturation": 70.73964444444445,
+        "brightness": 27.975674074074075,
+        "vibe": "Noir/Dark",
+        "complexity": 1244.5308288491633,
+        "visual_style": "Cinematic"
+    },
+    "515795": {
+        "palette": [
+            {
+                "r": 13,
+                "g": 9,
+                "b": 28,
+                "hex": "#0d091c"
+            },
+            {
+                "r": 221,
+                "g": 231,
+                "b": 247,
+                "hex": "#dde7f7"
+            },
+            {
+                "r": 123,
+                "g": 57,
+                "b": 32,
+                "hex": "#7b3920"
+            }
+        ],
+        "dominant_hex": "#0d091c",
+        "saturation": 147.84773333333334,
+        "brightness": 87.88275555555556,
+        "vibe": "Standard",
+        "complexity": 2045.9187116325925,
+        "visual_style": "Cinematic"
+    },
+    "515796": {
+        "palette": [
+            {
+                "r": 198,
+                "g": 200,
+                "b": 192,
+                "hex": "#c6c8c0"
+            },
+            {
+                "r": 172,
+                "g": 78,
+                "b": 60,
+                "hex": "#ac4e3c"
+            },
+            {
+                "r": 57,
+                "g": 32,
+                "b": 25,
+                "hex": "#392019"
+            }
+        ],
+        "dominant_hex": "#c6c8c0",
+        "saturation": 125.29712592592593,
+        "brightness": 153.9298962962963,
+        "vibe": "Standard",
+        "complexity": 3647.9454204918516,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515798": {
+        "palette": [
+            {
+                "r": 9,
+                "g": 5,
+                "b": 5,
+                "hex": "#090505"
+            },
+            {
+                "r": 175,
+                "g": 111,
+                "b": 56,
+                "hex": "#af6f38"
+            },
+            {
+                "r": 105,
+                "g": 49,
+                "b": 37,
+                "hex": "#693125"
+            }
+        ],
+        "dominant_hex": "#090505",
+        "saturation": 135.8840888888889,
+        "brightness": 53.705925925925925,
+        "vibe": "Noir/Dark",
+        "complexity": 1945.6446997034843,
+        "visual_style": "Cinematic"
+    },
+    "515800": {
+        "palette": [
+            {
+                "r": 113,
+                "g": 117,
+                "b": 137,
+                "hex": "#717589"
+            },
+            {
+                "r": 39,
+                "g": 41,
+                "b": 63,
+                "hex": "#27293f"
+            },
+            {
+                "r": 199,
+                "g": 193,
+                "b": 168,
+                "hex": "#c7c1a8"
+            }
+        ],
+        "dominant_hex": "#717589",
+        "saturation": 83.89244444444445,
+        "brightness": 143.75351111111112,
+        "vibe": "Standard",
+        "complexity": 7683.889212491851,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515801": {
+        "palette": [
+            {
+                "r": 131,
+                "g": 45,
+                "b": 83,
+                "hex": "#832d53"
+            },
+            {
+                "r": 171,
+                "g": 175,
+                "b": 176,
+                "hex": "#abafb0"
+            },
+            {
+                "r": 24,
+                "g": 24,
+                "b": 34,
+                "hex": "#181822"
+            }
+        ],
+        "dominant_hex": "#832d53",
+        "saturation": 146.1864888888889,
+        "brightness": 107.97478518518518,
+        "vibe": "Standard",
+        "complexity": 6749.102308718792,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515803": {
+        "palette": [
+            {
+                "r": 29,
+                "g": 15,
+                "b": 27,
+                "hex": "#1d0f1b"
+            },
+            {
+                "r": 223,
+                "g": 204,
+                "b": 184,
+                "hex": "#dfccb8"
+            },
+            {
+                "r": 51,
+                "g": 84,
+                "b": 147,
+                "hex": "#335493"
+            }
+        ],
+        "dominant_hex": "#1d0f1b",
+        "saturation": 172.44133333333335,
+        "brightness": 90.62998518518519,
+        "vibe": "Neon/Vibrant",
+        "complexity": 10460.316283600769,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515804": {
+        "palette": [
+            {
+                "r": 128,
+                "g": 53,
+                "b": 36,
+                "hex": "#803524"
+            },
+            {
+                "r": 2,
+                "g": 1,
+                "b": 1,
+                "hex": "#020101"
+            },
+            {
+                "r": 200,
+                "g": 160,
+                "b": 122,
+                "hex": "#c8a07a"
+            }
+        ],
+        "dominant_hex": "#803524",
+        "saturation": 67.19034074074074,
+        "brightness": 33.10094814814815,
+        "vibe": "Noir/Dark",
+        "complexity": 2461.998577777778,
+        "visual_style": "Cinematic"
+    },
+    "515805": {
+        "palette": [
+            {
+                "r": 74,
+                "g": 114,
+                "b": 171,
+                "hex": "#4a72ab"
+            },
+            {
+                "r": 157,
+                "g": 77,
+                "b": 54,
+                "hex": "#9d4d36"
+            },
+            {
+                "r": 213,
+                "g": 214,
+                "b": 215,
+                "hex": "#d5d6d7"
+            }
+        ],
+        "dominant_hex": "#4a72ab",
+        "saturation": 90.71134814814815,
+        "brightness": 188.22017777777776,
+        "vibe": "Standard",
+        "complexity": 3581.0009457505626,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515808": {
+        "palette": [
+            {
+                "r": 52,
+                "g": 89,
+                "b": 149,
+                "hex": "#345995"
+            },
+            {
+                "r": 9,
+                "g": 10,
+                "b": 25,
+                "hex": "#090a19"
+            },
+            {
+                "r": 194,
+                "g": 208,
+                "b": 229,
+                "hex": "#c2d0e5"
+            }
+        ],
+        "dominant_hex": "#345995",
+        "saturation": 139.30554074074075,
+        "brightness": 96.50788148148148,
+        "vibe": "Standard",
+        "complexity": 4443.874067791715,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515810": {
+        "palette": [
+            {
+                "r": 205,
+                "g": 149,
+                "b": 125,
+                "hex": "#cd957d"
+            },
+            {
+                "r": 24,
+                "g": 31,
+                "b": 34,
+                "hex": "#181f22"
+            },
+            {
+                "r": 39,
+                "g": 114,
+                "b": 184,
+                "hex": "#2772b8"
+            }
+        ],
+        "dominant_hex": "#cd957d",
+        "saturation": 166.28503703703703,
+        "brightness": 140.41410370370372,
+        "vibe": "Neon/Vibrant",
+        "complexity": 3968.13064198321,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515811": {
+        "palette": [
+            {
+                "r": 188,
+                "g": 119,
+                "b": 79,
+                "hex": "#bc774f"
+            },
+            {
+                "r": 22,
+                "g": 173,
+                "b": 226,
+                "hex": "#16ade2"
+            },
+            {
+                "r": 22,
+                "g": 27,
+                "b": 23,
+                "hex": "#161b17"
+            }
+        ],
+        "dominant_hex": "#bc774f",
+        "saturation": 192.19493333333332,
+        "brightness": 177.7893925925926,
+        "vibe": "Neon/Vibrant",
+        "complexity": 5799.317598524224,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515814": {
+        "palette": [
+            {
+                "r": 69,
+                "g": 49,
+                "b": 93,
+                "hex": "#45315d"
+            },
+            {
+                "r": 224,
+                "g": 215,
+                "b": 216,
+                "hex": "#e0d7d8"
+            },
+            {
+                "r": 145,
+                "g": 104,
+                "b": 152,
+                "hex": "#916898"
+            }
+        ],
+        "dominant_hex": "#45315d",
+        "saturation": 72.58974814814815,
+        "brightness": 167.87789629629629,
+        "vibe": "Standard",
+        "complexity": 4413.976650044225,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515815": {
+        "palette": [
+            {
+                "r": 18,
+                "g": 16,
+                "b": 11,
+                "hex": "#12100b"
+            },
+            {
+                "r": 145,
+                "g": 72,
+                "b": 54,
+                "hex": "#914836"
+            },
+            {
+                "r": 209,
+                "g": 206,
+                "b": 202,
+                "hex": "#d1ceca"
+            }
+        ],
+        "dominant_hex": "#12100b",
+        "saturation": 103.72231111111111,
+        "brightness": 60.06103703703704,
+        "vibe": "Standard",
+        "complexity": 3507.2844693807406,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515816": {
+        "palette": [
+            {
+                "r": 29,
+                "g": 29,
+                "b": 36,
+                "hex": "#1d1d24"
+            },
+            {
+                "r": 216,
+                "g": 156,
+                "b": 126,
+                "hex": "#d89c7e"
+            },
+            {
+                "r": 172,
+                "g": 66,
+                "b": 57,
+                "hex": "#ac4239"
+            }
+        ],
+        "dominant_hex": "#1d1d24",
+        "saturation": 113.82002962962963,
+        "brightness": 96.01801481481482,
+        "vibe": "Standard",
+        "complexity": 970.0958077155556,
+        "visual_style": "Minimalist"
+    },
+    "515818": {
+        "palette": [
+            {
+                "r": 143,
+                "g": 79,
+                "b": 74,
+                "hex": "#8f4f4a"
+            },
+            {
+                "r": 205,
+                "g": 187,
+                "b": 145,
+                "hex": "#cdbb91"
+            },
+            {
+                "r": 39,
+                "g": 38,
+                "b": 46,
+                "hex": "#27262e"
+            }
+        ],
+        "dominant_hex": "#8f4f4a",
+        "saturation": 128.1699851851852,
+        "brightness": 121.80379259259259,
+        "vibe": "Standard",
+        "complexity": 10864.30035921295,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515819": {
+        "palette": [
+            {
+                "r": 104,
+                "g": 69,
+                "b": 61,
+                "hex": "#68453d"
+            },
+            {
+                "r": 7,
+                "g": 5,
+                "b": 6,
+                "hex": "#070506"
+            },
+            {
+                "r": 241,
+                "g": 224,
+                "b": 200,
+                "hex": "#f1e0c8"
+            }
+        ],
+        "dominant_hex": "#68453d",
+        "saturation": 72.58355555555555,
+        "brightness": 42.16228148148148,
+        "vibe": "Noir/Dark",
+        "complexity": 2361.5027824057065,
+        "visual_style": "Cinematic"
+    },
+    "515824": {
+        "palette": [
+            {
+                "r": 52,
+                "g": 11,
+                "b": 19,
+                "hex": "#340b13"
+            },
+            {
+                "r": 247,
+                "g": 216,
+                "b": 197,
+                "hex": "#f7d8c5"
+            },
+            {
+                "r": 175,
+                "g": 111,
+                "b": 88,
+                "hex": "#af6f58"
+            }
+        ],
+        "dominant_hex": "#340b13",
+        "saturation": 168.35783703703703,
+        "brightness": 72.96897777777778,
+        "vibe": "Neon/Vibrant",
+        "complexity": 3031.2759265808504,
+        "visual_style": "Cinematic"
+    },
+    "515825": {
+        "palette": [
+            {
+                "r": 23,
+                "g": 21,
+                "b": 34,
+                "hex": "#171522"
+            },
+            {
+                "r": 248,
+                "g": 249,
+                "b": 250,
+                "hex": "#f8f9fa"
+            },
+            {
+                "r": 146,
+                "g": 108,
+                "b": 123,
+                "hex": "#926c7b"
+            }
+        ],
+        "dominant_hex": "#171522",
+        "saturation": 46.17908148148148,
+        "brightness": 194.76725925925925,
+        "vibe": "Pastel/Soft",
+        "complexity": 7205.47411109048,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515826": {
+        "palette": [
+            {
+                "r": 136,
+                "g": 112,
+                "b": 119,
+                "hex": "#887077"
+            },
+            {
+                "r": 16,
+                "g": 14,
+                "b": 17,
+                "hex": "#100e11"
+            },
+            {
+                "r": 204,
+                "g": 204,
+                "b": 214,
+                "hex": "#ccccd6"
+            }
+        ],
+        "dominant_hex": "#887077",
+        "saturation": 67.55496296296296,
+        "brightness": 134.97937777777778,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 4666.769140344801,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515829": {
+        "palette": [
+            {
+                "r": 6,
+                "g": 4,
+                "b": 3,
+                "hex": "#060403"
+            },
+            {
+                "r": 223,
+                "g": 160,
+                "b": 98,
+                "hex": "#dfa062"
+            },
+            {
+                "r": 151,
+                "g": 72,
+                "b": 31,
+                "hex": "#97481f"
+            }
+        ],
+        "dominant_hex": "#060403",
+        "saturation": 114.3770074074074,
+        "brightness": 50.00062222222222,
+        "vibe": "Noir/Dark",
+        "complexity": 3934.0722370229905,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515831": {
+        "palette": [
+            {
+                "r": 188,
+                "g": 18,
+                "b": 20,
+                "hex": "#bc1214"
+            },
+            {
+                "r": 21,
+                "g": 25,
+                "b": 37,
+                "hex": "#151925"
+            },
+            {
+                "r": 129,
+                "g": 132,
+                "b": 151,
+                "hex": "#818497"
+            }
+        ],
+        "dominant_hex": "#bc1214",
+        "saturation": 135.40038518518517,
+        "brightness": 116.02805925925927,
+        "vibe": "Standard",
+        "complexity": 4174.380837385131,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515832": {
+        "palette": [
+            {
+                "r": 75,
+                "g": 36,
+                "b": 59,
+                "hex": "#4b243b"
+            },
+            {
+                "r": 242,
+                "g": 234,
+                "b": 246,
+                "hex": "#f2eaf6"
+            },
+            {
+                "r": 174,
+                "g": 128,
+                "b": 155,
+                "hex": "#ae809b"
+            }
+        ],
+        "dominant_hex": "#4b243b",
+        "saturation": 81.03961481481481,
+        "brightness": 175.14091851851853,
+        "vibe": "Standard",
+        "complexity": 3717.8610094143214,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515834": {
+        "palette": [
+            {
+                "r": 11,
+                "g": 19,
+                "b": 26,
+                "hex": "#0b131a"
+            },
+            {
+                "r": 148,
+                "g": 170,
+                "b": 189,
+                "hex": "#94aabd"
+            },
+            {
+                "r": 59,
+                "g": 83,
+                "b": 107,
+                "hex": "#3b536b"
+            }
+        ],
+        "dominant_hex": "#0b131a",
+        "saturation": 110.5437037037037,
+        "brightness": 92.55748148148149,
+        "vibe": "Standard",
+        "complexity": 6808.487236740741,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515835": {
+        "palette": [
+            {
+                "r": 14,
+                "g": 10,
+                "b": 11,
+                "hex": "#0e0a0b"
+            },
+            {
+                "r": 38,
+                "g": 64,
+                "b": 99,
+                "hex": "#264063"
+            },
+            {
+                "r": 162,
+                "g": 156,
+                "b": 152,
+                "hex": "#a29c98"
+            }
+        ],
+        "dominant_hex": "#0e0a0b",
+        "saturation": 149.29164444444444,
+        "brightness": 63.718577777777774,
+        "vibe": "Standard",
+        "complexity": 1634.5040591328395,
+        "visual_style": "Cinematic"
+    },
+    "515836": {
+        "palette": [
+            {
+                "r": 208,
+                "g": 90,
+                "b": 50,
+                "hex": "#d05a32"
+            },
+            {
+                "r": 46,
+                "g": 20,
+                "b": 45,
+                "hex": "#2e142d"
+            },
+            {
+                "r": 214,
+                "g": 167,
+                "b": 169,
+                "hex": "#d6a7a9"
+            }
+        ],
+        "dominant_hex": "#d05a32",
+        "saturation": 170.87312592592593,
+        "brightness": 137.46047407407409,
+        "vibe": "Neon/Vibrant",
+        "complexity": 7222.056721229081,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515837": {
+        "palette": [
+            {
+                "r": 179,
+                "g": 131,
+                "b": 105,
+                "hex": "#b38369"
+            },
+            {
+                "r": 219,
+                "g": 213,
+                "b": 201,
+                "hex": "#dbd5c9"
+            },
+            {
+                "r": 82,
+                "g": 44,
+                "b": 39,
+                "hex": "#522c27"
+            }
+        ],
+        "dominant_hex": "#b38369",
+        "saturation": 103.80634074074074,
+        "brightness": 161.15114074074074,
+        "vibe": "Standard",
+        "complexity": 6992.763510778381,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515838": {
+        "palette": [
+            {
+                "r": 243,
+                "g": 234,
+                "b": 217,
+                "hex": "#f3ead9"
+            },
+            {
+                "r": 41,
+                "g": 19,
+                "b": 20,
+                "hex": "#291314"
+            },
+            {
+                "r": 154,
+                "g": 65,
+                "b": 52,
+                "hex": "#9a4134"
+            }
+        ],
+        "dominant_hex": "#f3ead9",
+        "saturation": 91.32743703703704,
+        "brightness": 173.6981925925926,
+        "vibe": "Standard",
+        "complexity": 5302.93063475358,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515839": {
+        "palette": [
+            {
+                "r": 253,
+                "g": 252,
+                "b": 252,
+                "hex": "#fdfcfc"
+            },
+            {
+                "r": 122,
+                "g": 33,
+                "b": 45,
+                "hex": "#7a212d"
+            },
+            {
+                "r": 32,
+                "g": 16,
+                "b": 20,
+                "hex": "#201014"
+            }
+        ],
+        "dominant_hex": "#fdfcfc",
+        "saturation": 98.62980740740741,
+        "brightness": 151.90945185185186,
+        "vibe": "Standard",
+        "complexity": 4184.135733420247,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515840": {
+        "palette": [
+            {
+                "r": 221,
+                "g": 212,
+                "b": 203,
+                "hex": "#ddd4cb"
+            },
+            {
+                "r": 130,
+                "g": 115,
+                "b": 96,
+                "hex": "#827360"
+            },
+            {
+                "r": 60,
+                "g": 46,
+                "b": 34,
+                "hex": "#3c2e22"
+            }
+        ],
+        "dominant_hex": "#ddd4cb",
+        "saturation": 62.706637037037034,
+        "brightness": 145.81964444444444,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 7158.871446119944,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515841": {
+        "palette": [
+            {
+                "r": 39,
+                "g": 55,
+                "b": 52,
+                "hex": "#273734"
+            },
+            {
+                "r": 10,
+                "g": 10,
+                "b": 14,
+                "hex": "#0a0a0e"
+            },
+            {
+                "r": 96,
+                "g": 112,
+                "b": 100,
+                "hex": "#607064"
+            }
+        ],
+        "dominant_hex": "#273734",
+        "saturation": 102.21318518518518,
+        "brightness": 36.4752,
+        "vibe": "Noir/Dark",
+        "complexity": 2692.14667765904,
+        "visual_style": "Cinematic"
+    },
+    "515844": {
+        "palette": [
+            {
+                "r": 124,
+                "g": 85,
+                "b": 71,
+                "hex": "#7c5547"
+            },
+            {
+                "r": 3,
+                "g": 1,
+                "b": 2,
+                "hex": "#030102"
+            },
+            {
+                "r": 231,
+                "g": 218,
+                "b": 212,
+                "hex": "#e7dad4"
+            }
+        ],
+        "dominant_hex": "#7c5547",
+        "saturation": 47.51531851851852,
+        "brightness": 33.87798518518518,
+        "vibe": "Noir/Dark",
+        "complexity": 4349.149274074074,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515845": {
+        "palette": [
+            {
+                "r": 77,
+                "g": 135,
+                "b": 98,
+                "hex": "#4d8762"
+            },
+            {
+                "r": 17,
+                "g": 34,
+                "b": 35,
+                "hex": "#112223"
+            },
+            {
+                "r": 186,
+                "g": 212,
+                "b": 205,
+                "hex": "#bad4cd"
+            }
+        ],
+        "dominant_hex": "#4d8762",
+        "saturation": 120.60222222222222,
+        "brightness": 108.39442962962963,
+        "vibe": "Standard",
+        "complexity": 5440.465688835336,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515846": {
+        "palette": [
+            {
+                "r": 100,
+                "g": 70,
+                "b": 58,
+                "hex": "#64463a"
+            },
+            {
+                "r": 211,
+                "g": 138,
+                "b": 116,
+                "hex": "#d38a74"
+            },
+            {
+                "r": 4,
+                "g": 4,
+                "b": 3,
+                "hex": "#040403"
+            }
+        ],
+        "dominant_hex": "#64463a",
+        "saturation": 50.55167407407407,
+        "brightness": 59.01917037037037,
+        "vibe": "Noir/Dark",
+        "complexity": 6013.639918179205,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515847": {
+        "palette": [
+            {
+                "r": 120,
+                "g": 111,
+                "b": 108,
+                "hex": "#786f6c"
+            },
+            {
+                "r": 233,
+                "g": 238,
+                "b": 234,
+                "hex": "#e9eeea"
+            },
+            {
+                "r": 46,
+                "g": 42,
+                "b": 43,
+                "hex": "#2e2a2b"
+            }
+        ],
+        "dominant_hex": "#786f6c",
+        "saturation": 44.08444444444444,
+        "brightness": 131.4024,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 10711.373062106775,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515848": {
+        "palette": [
+            {
+                "r": 8,
+                "g": 10,
+                "b": 17,
+                "hex": "#080a11"
+            },
+            {
+                "r": 182,
+                "g": 173,
+                "b": 170,
+                "hex": "#b6adaa"
+            },
+            {
+                "r": 87,
+                "g": 72,
+                "b": 76,
+                "hex": "#57484c"
+            }
+        ],
+        "dominant_hex": "#080a11",
+        "saturation": 145.67051851851852,
+        "brightness": 50.93365925925926,
+        "vibe": "Noir/Dark",
+        "complexity": 2568.0604305066663,
+        "visual_style": "Cinematic"
+    },
+    "515851": {
+        "palette": [
+            {
+                "r": 12,
+                "g": 11,
+                "b": 12,
+                "hex": "#0c0b0c"
+            },
+            {
+                "r": 203,
+                "g": 196,
+                "b": 198,
+                "hex": "#cbc4c6"
+            },
+            {
+                "r": 166,
+                "g": 74,
+                "b": 75,
+                "hex": "#a64a4b"
+            }
+        ],
+        "dominant_hex": "#0c0b0c",
+        "saturation": 37.459496296296294,
+        "brightness": 52.21979259259259,
+        "vibe": "Noir/Dark",
+        "complexity": 7380.981625188257,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515853": {
+        "palette": [
+            {
+                "r": 16,
+                "g": 37,
+                "b": 55,
+                "hex": "#102537"
+            },
+            {
+                "r": 98,
+                "g": 148,
+                "b": 169,
+                "hex": "#6294a9"
+            },
+            {
+                "r": 192,
+                "g": 72,
+                "b": 34,
+                "hex": "#c04822"
+            }
+        ],
+        "dominant_hex": "#102537",
+        "saturation": 169.16743703703705,
+        "brightness": 86.77037037037037,
+        "vibe": "Neon/Vibrant",
+        "complexity": 3664.048997817065,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515854": {
+        "palette": [
+            {
+                "r": 211,
+                "g": 222,
+                "b": 225,
+                "hex": "#d3dee1"
+            },
+            {
+                "r": 156,
+                "g": 168,
+                "b": 176,
+                "hex": "#9ca8b0"
+            },
+            {
+                "r": 81,
+                "g": 93,
+                "b": 101,
+                "hex": "#515d65"
+            }
+        ],
+        "dominant_hex": "#d3dee1",
+        "saturation": 27.077155555555557,
+        "brightness": 190.1245925925926,
+        "vibe": "Pastel/Soft",
+        "complexity": 5473.041699247407,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515855": {
+        "palette": [
+            {
+                "r": 130,
+                "g": 115,
+                "b": 72,
+                "hex": "#827348"
+            },
+            {
+                "r": 205,
+                "g": 192,
+                "b": 155,
+                "hex": "#cdc09b"
+            },
+            {
+                "r": 46,
+                "g": 42,
+                "b": 17,
+                "hex": "#2e2a11"
+            }
+        ],
+        "dominant_hex": "#827348",
+        "saturation": 119.65167407407408,
+        "brightness": 127.19146666666667,
+        "vibe": "Standard",
+        "complexity": 4986.882242617065,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515856": {
+        "palette": [
+            {
+                "r": 182,
+                "g": 185,
+                "b": 177,
+                "hex": "#b6b9b1"
+            },
+            {
+                "r": 31,
+                "g": 48,
+                "b": 62,
+                "hex": "#1f303e"
+            },
+            {
+                "r": 112,
+                "g": 132,
+                "b": 139,
+                "hex": "#70848b"
+            }
+        ],
+        "dominant_hex": "#b6b9b1",
+        "saturation": 59.82242962962963,
+        "brightness": 139.04382222222222,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 629.8985404128395,
+        "visual_style": "Minimalist"
+    },
+    "515857": {
+        "palette": [
+            {
+                "r": 127,
+                "g": 49,
+                "b": 38,
+                "hex": "#7f3126"
+            },
+            {
+                "r": 27,
+                "g": 11,
+                "b": 7,
+                "hex": "#1b0b07"
+            },
+            {
+                "r": 229,
+                "g": 180,
+                "b": 62,
+                "hex": "#e5b43e"
+            }
+        ],
+        "dominant_hex": "#7f3126",
+        "saturation": 187.8970962962963,
+        "brightness": 81.60743703703703,
+        "vibe": "Neon/Vibrant",
+        "complexity": 6652.803080801096,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515858": {
+        "palette": [
+            {
+                "r": 176,
+                "g": 209,
+                "b": 234,
+                "hex": "#b0d1ea"
+            },
+            {
+                "r": 30,
+                "g": 33,
+                "b": 54,
+                "hex": "#1e2136"
+            },
+            {
+                "r": 97,
+                "g": 135,
+                "b": 178,
+                "hex": "#6187b2"
+            }
+        ],
+        "dominant_hex": "#b0d1ea",
+        "saturation": 113.55869629629629,
+        "brightness": 156.66868148148149,
+        "vibe": "Standard",
+        "complexity": 2479.407211969492,
+        "visual_style": "Cinematic"
+    },
+    "515859": {
+        "palette": [
+            {
+                "r": 178,
+                "g": 79,
+                "b": 51,
+                "hex": "#b24f33"
+            },
+            {
+                "r": 241,
+                "g": 189,
+                "b": 117,
+                "hex": "#f1bd75"
+            },
+            {
+                "r": 97,
+                "g": 31,
+                "b": 26,
+                "hex": "#611f1a"
+            }
+        ],
+        "dominant_hex": "#b24f33",
+        "saturation": 171.73134814814816,
+        "brightness": 164.91549629629628,
+        "vibe": "Neon/Vibrant",
+        "complexity": 3860.161605728395,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515860": {
+        "palette": [
+            {
+                "r": 201,
+                "g": 62,
+                "b": 21,
+                "hex": "#c93e15"
+            },
+            {
+                "r": 31,
+                "g": 25,
+                "b": 28,
+                "hex": "#1f191c"
+            },
+            {
+                "r": 70,
+                "g": 154,
+                "b": 163,
+                "hex": "#469aa3"
+            }
+        ],
+        "dominant_hex": "#c93e15",
+        "saturation": 161.21733333333333,
+        "brightness": 108.35214814814815,
+        "vibe": "Neon/Vibrant",
+        "complexity": 4066.0807226328675,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515861": {
+        "palette": [
+            {
+                "r": 15,
+                "g": 14,
+                "b": 11,
+                "hex": "#0f0e0b"
+            },
+            {
+                "r": 208,
+                "g": 41,
+                "b": 22,
+                "hex": "#d02916"
+            },
+            {
+                "r": 109,
+                "g": 41,
+                "b": 31,
+                "hex": "#6d291f"
+            }
+        ],
+        "dominant_hex": "#0f0e0b",
+        "saturation": 133.24186666666665,
+        "brightness": 84.24500740740741,
+        "vibe": "Standard",
+        "complexity": 842.4116722559122,
+        "visual_style": "Minimalist"
+    },
+    "515945": {
+        "palette": [
+            {
+                "r": 138,
+                "g": 110,
+                "b": 80,
+                "hex": "#8a6e50"
+            },
+            {
+                "r": 205,
+                "g": 183,
+                "b": 148,
+                "hex": "#cdb794"
+            },
+            {
+                "r": 50,
+                "g": 41,
+                "b": 29,
+                "hex": "#32291d"
+            }
+        ],
+        "dominant_hex": "#8a6e50",
+        "saturation": 96.18761481481482,
+        "brightness": 117.21105185185185,
+        "vibe": "Standard",
+        "complexity": 5046.697163321591,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515949": {
+        "palette": [
+            {
+                "r": 14,
+                "g": 44,
+                "b": 192,
+                "hex": "#0e2cc0"
+            },
+            {
+                "r": 133,
+                "g": 147,
+                "b": 197,
+                "hex": "#8593c5"
+            },
+            {
+                "r": 33,
+                "g": 44,
+                "b": 90,
+                "hex": "#212c5a"
+            }
+        ],
+        "dominant_hex": "#0e2cc0",
+        "saturation": 177.70983703703703,
+        "brightness": 165.39875555555557,
+        "vibe": "Neon/Vibrant",
+        "complexity": 4296.91265536,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515950": {
+        "palette": [
+            {
+                "r": 183,
+                "g": 178,
+                "b": 145,
+                "hex": "#b7b291"
+            },
+            {
+                "r": 39,
+                "g": 39,
+                "b": 32,
+                "hex": "#272720"
+            },
+            {
+                "r": 119,
+                "g": 58,
+                "b": 29,
+                "hex": "#773a1d"
+            }
+        ],
+        "dominant_hex": "#b7b291",
+        "saturation": 134.2229037037037,
+        "brightness": 101.06533333333333,
+        "vibe": "Standard",
+        "complexity": 4869.672068779369,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515953": {
+        "palette": [
+            {
+                "r": 127,
+                "g": 137,
+                "b": 122,
+                "hex": "#7f897a"
+            },
+            {
+                "r": 31,
+                "g": 21,
+                "b": 23,
+                "hex": "#1f1517"
+            },
+            {
+                "r": 221,
+                "g": 223,
+                "b": 193,
+                "hex": "#dddfc1"
+            }
+        ],
+        "dominant_hex": "#7f897a",
+        "saturation": 107.22936296296297,
+        "brightness": 102.86968888888889,
+        "vibe": "Standard",
+        "complexity": 9528.770761671112,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515954": {
+        "palette": [
+            {
+                "r": 25,
+                "g": 19,
+                "b": 21,
+                "hex": "#191315"
+            },
+            {
+                "r": 186,
+                "g": 179,
+                "b": 177,
+                "hex": "#bab3b1"
+            },
+            {
+                "r": 52,
+                "g": 40,
+                "b": 43,
+                "hex": "#34282b"
+            }
+        ],
+        "dominant_hex": "#191315",
+        "saturation": 58.79567407407407,
+        "brightness": 39.4565037037037,
+        "vibe": "Noir/Dark",
+        "complexity": 1855.6058957511107,
+        "visual_style": "Cinematic"
+    },
+    "515956": {
+        "palette": [
+            {
+                "r": 24,
+                "g": 26,
+                "b": 22,
+                "hex": "#181a16"
+            },
+            {
+                "r": 207,
+                "g": 166,
+                "b": 91,
+                "hex": "#cfa65b"
+            },
+            {
+                "r": 96,
+                "g": 89,
+                "b": 75,
+                "hex": "#60594b"
+            }
+        ],
+        "dominant_hex": "#181a16",
+        "saturation": 78.8290962962963,
+        "brightness": 85.33656296296296,
+        "vibe": "Standard",
+        "complexity": 4551.887678087023,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515957": {
+        "palette": [
+            {
+                "r": 31,
+                "g": 20,
+                "b": 15,
+                "hex": "#1f140f"
+            },
+            {
+                "r": 183,
+                "g": 142,
+                "b": 109,
+                "hex": "#b78e6d"
+            },
+            {
+                "r": 82,
+                "g": 64,
+                "b": 52,
+                "hex": "#524034"
+            }
+        ],
+        "dominant_hex": "#1f140f",
+        "saturation": 108.6045037037037,
+        "brightness": 73.56794074074074,
+        "vibe": "Standard",
+        "complexity": 6377.881274121482,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515958": {
+        "palette": [
+            {
+                "r": 212,
+                "g": 178,
+                "b": 146,
+                "hex": "#d4b292"
+            },
+            {
+                "r": 35,
+                "g": 22,
+                "b": 21,
+                "hex": "#231615"
+            },
+            {
+                "r": 5,
+                "g": 188,
+                "b": 182,
+                "hex": "#05bcb6"
+            }
+        ],
+        "dominant_hex": "#d4b292",
+        "saturation": 103.38743703703703,
+        "brightness": 94.57677037037037,
+        "vibe": "Standard",
+        "complexity": 5094.735372290809,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515960": {
+        "palette": [
+            {
+                "r": 123,
+                "g": 88,
+                "b": 43,
+                "hex": "#7b582b"
+            },
+            {
+                "r": 205,
+                "g": 193,
+                "b": 120,
+                "hex": "#cdc178"
+            },
+            {
+                "r": 33,
+                "g": 21,
+                "b": 12,
+                "hex": "#21150c"
+            }
+        ],
+        "dominant_hex": "#7b582b",
+        "saturation": 138.56936296296297,
+        "brightness": 108.97911111111111,
+        "vibe": "Standard",
+        "complexity": 7646.920345197037,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515962": {
+        "palette": [
+            {
+                "r": 35,
+                "g": 34,
+                "b": 33,
+                "hex": "#232221"
+            },
+            {
+                "r": 184,
+                "g": 196,
+                "b": 136,
+                "hex": "#b8c488"
+            },
+            {
+                "r": 117,
+                "g": 122,
+                "b": 107,
+                "hex": "#757a6b"
+            }
+        ],
+        "dominant_hex": "#232221",
+        "saturation": 66.52189629629629,
+        "brightness": 123.23407407407407,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 3157.5766827052953,
+        "visual_style": "Cinematic"
+    },
+    "515963": {
+        "palette": [
+            {
+                "r": 147,
+                "g": 113,
+                "b": 98,
+                "hex": "#937162"
+            },
+            {
+                "r": 163,
+                "g": 184,
+                "b": 203,
+                "hex": "#a3b8cb"
+            },
+            {
+                "r": 66,
+                "g": 58,
+                "b": 53,
+                "hex": "#423a35"
+            }
+        ],
+        "dominant_hex": "#937162",
+        "saturation": 86.70820740740741,
+        "brightness": 146.43182222222222,
+        "vibe": "Standard",
+        "complexity": 6277.906985757147,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515964": {
+        "palette": [
+            {
+                "r": 167,
+                "g": 89,
+                "b": 53,
+                "hex": "#a75935"
+            },
+            {
+                "r": 58,
+                "g": 35,
+                "b": 23,
+                "hex": "#3a2317"
+            },
+            {
+                "r": 233,
+                "g": 214,
+                "b": 196,
+                "hex": "#e9d6c4"
+            }
+        ],
+        "dominant_hex": "#a75935",
+        "saturation": 132.56373333333335,
+        "brightness": 121.92308148148147,
+        "vibe": "Standard",
+        "complexity": 5150.662661092784,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515965": {
+        "palette": [
+            {
+                "r": 239,
+                "g": 237,
+                "b": 230,
+                "hex": "#efede6"
+            },
+            {
+                "r": 19,
+                "g": 49,
+                "b": 52,
+                "hex": "#133134"
+            },
+            {
+                "r": 124,
+                "g": 118,
+                "b": 99,
+                "hex": "#7c7663"
+            }
+        ],
+        "dominant_hex": "#efede6",
+        "saturation": 142.67582222222222,
+        "brightness": 104.86311111111111,
+        "vibe": "Standard",
+        "complexity": 8122.456558783209,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515966": {
+        "palette": [
+            {
+                "r": 187,
+                "g": 193,
+                "b": 174,
+                "hex": "#bbc1ae"
+            },
+            {
+                "r": 32,
+                "g": 31,
+                "b": 33,
+                "hex": "#201f21"
+            },
+            {
+                "r": 107,
+                "g": 99,
+                "b": 90,
+                "hex": "#6b635a"
+            }
+        ],
+        "dominant_hex": "#bbc1ae",
+        "saturation": 44.147881481481484,
+        "brightness": 96.7309037037037,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 2462.656511972785,
+        "visual_style": "Cinematic"
+    },
+    "515967": {
+        "palette": [
+            {
+                "r": 246,
+                "g": 191,
+                "b": 15,
+                "hex": "#f6bf0f"
+            },
+            {
+                "r": 166,
+                "g": 145,
+                "b": 110,
+                "hex": "#a6916e"
+            },
+            {
+                "r": 57,
+                "g": 40,
+                "b": 31,
+                "hex": "#39281f"
+            }
+        ],
+        "dominant_hex": "#f6bf0f",
+        "saturation": 200.74865185185186,
+        "brightness": 196.32642962962964,
+        "vibe": "Neon/Vibrant",
+        "complexity": 3070.941065331358,
+        "visual_style": "Cinematic"
+    },
+    "515968": {
+        "palette": [
+            {
+                "r": 133,
+                "g": 117,
+                "b": 89,
+                "hex": "#857559"
+            },
+            {
+                "r": 25,
+                "g": 26,
+                "b": 28,
+                "hex": "#191a1c"
+            },
+            {
+                "r": 253,
+                "g": 244,
+                "b": 219,
+                "hex": "#fdf4db"
+            }
+        ],
+        "dominant_hex": "#857559",
+        "saturation": 69.38779259259259,
+        "brightness": 115.7818962962963,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 3135.647486617284,
+        "visual_style": "Cinematic"
+    },
+    "515969": {
+        "palette": [
+            {
+                "r": 192,
+                "g": 85,
+                "b": 13,
+                "hex": "#c0550d"
+            },
+            {
+                "r": 36,
+                "g": 15,
+                "b": 7,
+                "hex": "#240f07"
+            },
+            {
+                "r": 225,
+                "g": 220,
+                "b": 217,
+                "hex": "#e1dcd9"
+            }
+        ],
+        "dominant_hex": "#c0550d",
+        "saturation": 209.4173037037037,
+        "brightness": 66.85943703703704,
+        "vibe": "Neon/Vibrant",
+        "complexity": 2073.844707626667,
+        "visual_style": "Cinematic"
+    },
+    "515970": {
+        "palette": [
+            {
+                "r": 13,
+                "g": 23,
+                "b": 37,
+                "hex": "#0d1725"
+            },
+            {
+                "r": 176,
+                "g": 200,
+                "b": 216,
+                "hex": "#b0c8d8"
+            },
+            {
+                "r": 67,
+                "g": 103,
+                "b": 132,
+                "hex": "#436784"
+            }
+        ],
+        "dominant_hex": "#0d1725",
+        "saturation": 141.78891851851853,
+        "brightness": 84.77659259259259,
+        "vibe": "Standard",
+        "complexity": 4516.6850095802465,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515971": {
+        "palette": [
+            {
+                "r": 64,
+                "g": 14,
+                "b": 12,
+                "hex": "#400e0c"
+            },
+            {
+                "r": 239,
+                "g": 181,
+                "b": 51,
+                "hex": "#efb533"
+            },
+            {
+                "r": 151,
+                "g": 38,
+                "b": 23,
+                "hex": "#972617"
+            }
+        ],
+        "dominant_hex": "#400e0c",
+        "saturation": 208.2341925925926,
+        "brightness": 112.10586666666667,
+        "vibe": "Neon/Vibrant",
+        "complexity": 4671.6031849876545,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515972": {
+        "palette": [
+            {
+                "r": 244,
+                "g": 229,
+                "b": 185,
+                "hex": "#f4e5b9"
+            },
+            {
+                "r": 56,
+                "g": 33,
+                "b": 10,
+                "hex": "#38210a"
+            },
+            {
+                "r": 169,
+                "g": 119,
+                "b": 51,
+                "hex": "#a97733"
+            }
+        ],
+        "dominant_hex": "#f4e5b9",
+        "saturation": 160.75691851851852,
+        "brightness": 136.5432,
+        "vibe": "Neon/Vibrant",
+        "complexity": 4228.620527614596,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515973": {
+        "palette": [
+            {
+                "r": 54,
+                "g": 54,
+                "b": 38,
+                "hex": "#363626"
+            },
+            {
+                "r": 178,
+                "g": 205,
+                "b": 196,
+                "hex": "#b2cdc4"
+            },
+            {
+                "r": 171,
+                "g": 140,
+                "b": 97,
+                "hex": "#ab8c61"
+            }
+        ],
+        "dominant_hex": "#363626",
+        "saturation": 85.45893333333333,
+        "brightness": 149.11508148148147,
+        "vibe": "Standard",
+        "complexity": 3902.550413123951,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515974": {
+        "palette": [
+            {
+                "r": 166,
+                "g": 60,
+                "b": 70,
+                "hex": "#a63c46"
+            },
+            {
+                "r": 42,
+                "g": 32,
+                "b": 44,
+                "hex": "#2a202c"
+            },
+            {
+                "r": 53,
+                "g": 113,
+                "b": 162,
+                "hex": "#3571a2"
+            }
+        ],
+        "dominant_hex": "#a63c46",
+        "saturation": 144.49454814814814,
+        "brightness": 102.12761481481482,
+        "vibe": "Standard",
+        "complexity": 2448.2412111056237,
+        "visual_style": "Cinematic"
+    },
+    "515975": {
+        "palette": [
+            {
+                "r": 55,
+                "g": 39,
+                "b": 44,
+                "hex": "#37272c"
+            },
+            {
+                "r": 158,
+                "g": 107,
+                "b": 91,
+                "hex": "#9e6b5b"
+            },
+            {
+                "r": 238,
+                "g": 208,
+                "b": 164,
+                "hex": "#eed0a4"
+            }
+        ],
+        "dominant_hex": "#37272c",
+        "saturation": 106.40554074074075,
+        "brightness": 134.8760888888889,
+        "vibe": "Standard",
+        "complexity": 7548.040052323731,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515976": {
+        "palette": [
+            {
+                "r": 91,
+                "g": 79,
+                "b": 70,
+                "hex": "#5b4f46"
+            },
+            {
+                "r": 165,
+                "g": 171,
+                "b": 174,
+                "hex": "#a5abae"
+            },
+            {
+                "r": 16,
+                "g": 15,
+                "b": 15,
+                "hex": "#100f0f"
+            }
+        ],
+        "dominant_hex": "#5b4f46",
+        "saturation": 59.367674074074074,
+        "brightness": 62.92447407407408,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 4240.215865327847,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515977": {
+        "palette": [
+            {
+                "r": 48,
+                "g": 20,
+                "b": 12,
+                "hex": "#30140c"
+            },
+            {
+                "r": 140,
+                "g": 86,
+                "b": 47,
+                "hex": "#8c562f"
+            },
+            {
+                "r": 238,
+                "g": 206,
+                "b": 165,
+                "hex": "#eecea5"
+            }
+        ],
+        "dominant_hex": "#30140c",
+        "saturation": 179.1696,
+        "brightness": 61.03285925925926,
+        "vibe": "Neon/Vibrant",
+        "complexity": 2986.12189958321,
+        "visual_style": "Cinematic"
+    },
+    "515978": {
+        "palette": [
+            {
+                "r": 55,
+                "g": 191,
+                "b": 216,
+                "hex": "#37bfd8"
+            },
+            {
+                "r": 133,
+                "g": 86,
+                "b": 73,
+                "hex": "#855649"
+            },
+            {
+                "r": 27,
+                "g": 28,
+                "b": 24,
+                "hex": "#1b1c18"
+            }
+        ],
+        "dominant_hex": "#37bfd8",
+        "saturation": 140.67546666666667,
+        "brightness": 111.50968888888889,
+        "vibe": "Standard",
+        "complexity": 15371.233254162085,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515980": {
+        "palette": [
+            {
+                "r": 13,
+                "g": 14,
+                "b": 16,
+                "hex": "#0d0e10"
+            },
+            {
+                "r": 158,
+                "g": 167,
+                "b": 173,
+                "hex": "#9ea7ad"
+            },
+            {
+                "r": 91,
+                "g": 65,
+                "b": 68,
+                "hex": "#5b4144"
+            }
+        ],
+        "dominant_hex": "#0d0e10",
+        "saturation": 72.36702222222222,
+        "brightness": 53.30005925925926,
+        "vibe": "Noir/Dark",
+        "complexity": 4144.96091718321,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515981": {
+        "palette": [
+            {
+                "r": 88,
+                "g": 62,
+                "b": 55,
+                "hex": "#583e37"
+            },
+            {
+                "r": 27,
+                "g": 18,
+                "b": 15,
+                "hex": "#1b120f"
+            },
+            {
+                "r": 175,
+                "g": 114,
+                "b": 89,
+                "hex": "#af7259"
+            }
+        ],
+        "dominant_hex": "#583e37",
+        "saturation": 118.40145185185185,
+        "brightness": 70.51226666666666,
+        "vibe": "Standard",
+        "complexity": 2734.1623999288886,
+        "visual_style": "Cinematic"
+    },
+    "515982": {
+        "palette": [
+            {
+                "r": 156,
+                "g": 96,
+                "b": 68,
+                "hex": "#9c6044"
+            },
+            {
+                "r": 22,
+                "g": 23,
+                "b": 12,
+                "hex": "#16170c"
+            },
+            {
+                "r": 65,
+                "g": 64,
+                "b": 38,
+                "hex": "#414026"
+            }
+        ],
+        "dominant_hex": "#9c6044",
+        "saturation": 132.2064,
+        "brightness": 61.04974814814815,
+        "vibe": "Standard",
+        "complexity": 3914.118751714678,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515983": {
+        "palette": [
+            {
+                "r": 125,
+                "g": 96,
+                "b": 61,
+                "hex": "#7d603d"
+            },
+            {
+                "r": 205,
+                "g": 172,
+                "b": 133,
+                "hex": "#cdac85"
+            },
+            {
+                "r": 25,
+                "g": 20,
+                "b": 11,
+                "hex": "#19140b"
+            }
+        ],
+        "dominant_hex": "#7d603d",
+        "saturation": 108.78317037037037,
+        "brightness": 115.26355555555556,
+        "vibe": "Standard",
+        "complexity": 3493.4661840452122,
+        "visual_style": "Cinematic"
+    },
+    "515984": {
+        "palette": [
+            {
+                "r": 48,
+                "g": 26,
+                "b": 21,
+                "hex": "#301a15"
+            },
+            {
+                "r": 215,
+                "g": 204,
+                "b": 198,
+                "hex": "#d7ccc6"
+            },
+            {
+                "r": 100,
+                "g": 69,
+                "b": 53,
+                "hex": "#644535"
+            }
+        ],
+        "dominant_hex": "#301a15",
+        "saturation": 116.31567407407407,
+        "brightness": 89.3050074074074,
+        "vibe": "Standard",
+        "complexity": 3850.7952917254324,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515985": {
+        "palette": [
+            {
+                "r": 130,
+                "g": 80,
+                "b": 23,
+                "hex": "#825017"
+            },
+            {
+                "r": 29,
+                "g": 18,
+                "b": 8,
+                "hex": "#1d1208"
+            },
+            {
+                "r": 212,
+                "g": 182,
+                "b": 135,
+                "hex": "#d4b687"
+            }
+        ],
+        "dominant_hex": "#825017",
+        "saturation": 169.87585185185185,
+        "brightness": 68.08933333333333,
+        "vibe": "Neon/Vibrant",
+        "complexity": 2013.8358342022498,
+        "visual_style": "Cinematic"
+    },
+    "515986": {
+        "palette": [
+            {
+                "r": 196,
+                "g": 201,
+                "b": 215,
+                "hex": "#c4c9d7"
+            },
+            {
+                "r": 37,
+                "g": 19,
+                "b": 62,
+                "hex": "#25133e"
+            },
+            {
+                "r": 75,
+                "g": 100,
+                "b": 141,
+                "hex": "#4b648d"
+            }
+        ],
+        "dominant_hex": "#c4c9d7",
+        "saturation": 112.58817777777777,
+        "brightness": 153.87706666666668,
+        "vibe": "Standard",
+        "complexity": 8703.358958034347,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515987": {
+        "palette": [
+            {
+                "r": 235,
+                "g": 205,
+                "b": 153,
+                "hex": "#ebcd99"
+            },
+            {
+                "r": 24,
+                "g": 49,
+                "b": 48,
+                "hex": "#183130"
+            },
+            {
+                "r": 150,
+                "g": 102,
+                "b": 40,
+                "hex": "#966628"
+            }
+        ],
+        "dominant_hex": "#ebcd99",
+        "saturation": 161.3832888888889,
+        "brightness": 114.22737777777778,
+        "vibe": "Neon/Vibrant",
+        "complexity": 1447.6972061752538,
+        "visual_style": "Cinematic"
+    },
+    "515988": {
+        "palette": [
+            {
+                "r": 145,
+                "g": 107,
+                "b": 84,
+                "hex": "#916b54"
+            },
+            {
+                "r": 32,
+                "g": 30,
+                "b": 22,
+                "hex": "#201e16"
+            },
+            {
+                "r": 221,
+                "g": 193,
+                "b": 159,
+                "hex": "#ddc19f"
+            }
+        ],
+        "dominant_hex": "#916b54",
+        "saturation": 101.44367407407407,
+        "brightness": 139.64965925925927,
+        "vibe": "Standard",
+        "complexity": 6547.147920560988,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515991": {
+        "palette": [
+            {
+                "r": 44,
+                "g": 48,
+                "b": 134,
+                "hex": "#2c3086"
+            },
+            {
+                "r": 206,
+                "g": 168,
+                "b": 221,
+                "hex": "#cea8dd"
+            },
+            {
+                "r": 125,
+                "g": 126,
+                "b": 214,
+                "hex": "#7d7ed6"
+            }
+        ],
+        "dominant_hex": "#2c3086",
+        "saturation": 137.98628148148148,
+        "brightness": 191.5693037037037,
+        "vibe": "Standard",
+        "complexity": 6674.896356521262,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515993": {
+        "palette": [
+            {
+                "r": 136,
+                "g": 87,
+                "b": 64,
+                "hex": "#885740"
+            },
+            {
+                "r": 35,
+                "g": 28,
+                "b": 28,
+                "hex": "#231c1c"
+            },
+            {
+                "r": 236,
+                "g": 180,
+                "b": 51,
+                "hex": "#ecb433"
+            }
+        ],
+        "dominant_hex": "#885740",
+        "saturation": 120.07478518518519,
+        "brightness": 106.83813333333333,
+        "vibe": "Standard",
+        "complexity": 6579.958654617284,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515994": {
+        "palette": [
+            {
+                "r": 64,
+                "g": 102,
+                "b": 144,
+                "hex": "#406690"
+            },
+            {
+                "r": 160,
+                "g": 186,
+                "b": 205,
+                "hex": "#a0bacd"
+            },
+            {
+                "r": 17,
+                "g": 32,
+                "b": 59,
+                "hex": "#11203b"
+            }
+        ],
+        "dominant_hex": "#406690",
+        "saturation": 135.744,
+        "brightness": 131.6944,
+        "vibe": "Standard",
+        "complexity": 6656.660301734101,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515995": {
+        "palette": [
+            {
+                "r": 172,
+                "g": 90,
+                "b": 74,
+                "hex": "#ac5a4a"
+            },
+            {
+                "r": 39,
+                "g": 29,
+                "b": 31,
+                "hex": "#271d1f"
+            },
+            {
+                "r": 242,
+                "g": 236,
+                "b": 228,
+                "hex": "#f2ece4"
+            }
+        ],
+        "dominant_hex": "#ac5a4a",
+        "saturation": 95.7002962962963,
+        "brightness": 109.48933333333333,
+        "vibe": "Standard",
+        "complexity": 1947.9936730785184,
+        "visual_style": "Cinematic"
+    },
+    "515996": {
+        "palette": [
+            {
+                "r": 35,
+                "g": 20,
+                "b": 11,
+                "hex": "#23140b"
+            },
+            {
+                "r": 137,
+                "g": 60,
+                "b": 28,
+                "hex": "#893c1c"
+            },
+            {
+                "r": 227,
+                "g": 169,
+                "b": 112,
+                "hex": "#e3a970"
+            }
+        ],
+        "dominant_hex": "#23140b",
+        "saturation": 189.17125925925927,
+        "brightness": 90.12005925925926,
+        "vibe": "Neon/Vibrant",
+        "complexity": 3737.985426959451,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "515998": {
+        "palette": [
+            {
+                "r": 5,
+                "g": 6,
+                "b": 8,
+                "hex": "#050608"
+            },
+            {
+                "r": 141,
+                "g": 149,
+                "b": 151,
+                "hex": "#8d9597"
+            },
+            {
+                "r": 60,
+                "g": 69,
+                "b": 73,
+                "hex": "#3c4549"
+            }
+        ],
+        "dominant_hex": "#050608",
+        "saturation": 71.34874074074074,
+        "brightness": 35.88761481481482,
+        "vibe": "Noir/Dark",
+        "complexity": 4291.858345546447,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516001": {
+        "palette": [
+            {
+                "r": 209,
+                "g": 201,
+                "b": 189,
+                "hex": "#d1c9bd"
+            },
+            {
+                "r": 53,
+                "g": 31,
+                "b": 43,
+                "hex": "#351f2b"
+            },
+            {
+                "r": 168,
+                "g": 102,
+                "b": 93,
+                "hex": "#a8665d"
+            }
+        ],
+        "dominant_hex": "#d1c9bd",
+        "saturation": 88.9802962962963,
+        "brightness": 107.32811851851852,
+        "vibe": "Standard",
+        "complexity": 2215.9606328888885,
+        "visual_style": "Cinematic"
+    },
+    "516005": {
+        "palette": [
+            {
+                "r": 96,
+                "g": 88,
+                "b": 71,
+                "hex": "#605847"
+            },
+            {
+                "r": 13,
+                "g": 12,
+                "b": 9,
+                "hex": "#0d0c09"
+            },
+            {
+                "r": 161,
+                "g": 157,
+                "b": 136,
+                "hex": "#a19d88"
+            }
+        ],
+        "dominant_hex": "#605847",
+        "saturation": 74.0245037037037,
+        "brightness": 85.72,
+        "vibe": "Standard",
+        "complexity": 5152.375254233196,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516006": {
+        "palette": [
+            {
+                "r": 6,
+                "g": 14,
+                "b": 16,
+                "hex": "#060e10"
+            },
+            {
+                "r": 204,
+                "g": 199,
+                "b": 190,
+                "hex": "#ccc7be"
+            },
+            {
+                "r": 108,
+                "g": 92,
+                "b": 73,
+                "hex": "#6c5c49"
+            }
+        ],
+        "dominant_hex": "#060e10",
+        "saturation": 169.8262814814815,
+        "brightness": 52.6978962962963,
+        "vibe": "Noir/Dark",
+        "complexity": 13070.708559138764,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516008": {
+        "palette": [
+            {
+                "r": 62,
+                "g": 84,
+                "b": 114,
+                "hex": "#3e5472"
+            },
+            {
+                "r": 219,
+                "g": 223,
+                "b": 216,
+                "hex": "#dbdfd8"
+            },
+            {
+                "r": 17,
+                "g": 19,
+                "b": 22,
+                "hex": "#111316"
+            }
+        ],
+        "dominant_hex": "#3e5472",
+        "saturation": 123.56515555555555,
+        "brightness": 56.98385185185185,
+        "vibe": "Noir/Dark",
+        "complexity": 2510.503268371139,
+        "visual_style": "Cinematic"
+    },
+    "516011": {
+        "palette": [
+            {
+                "r": 233,
+                "g": 228,
+                "b": 226,
+                "hex": "#e9e4e2"
+            },
+            {
+                "r": 42,
+                "g": 27,
+                "b": 50,
+                "hex": "#2a1b32"
+            },
+            {
+                "r": 154,
+                "g": 96,
+                "b": 80,
+                "hex": "#9a6050"
+            }
+        ],
+        "dominant_hex": "#e9e4e2",
+        "saturation": 68.0050074074074,
+        "brightness": 182.34927407407406,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 11807.576234178547,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516013": {
+        "palette": [
+            {
+                "r": 7,
+                "g": 5,
+                "b": 4,
+                "hex": "#070504"
+            },
+            {
+                "r": 126,
+                "g": 85,
+                "b": 72,
+                "hex": "#7e5548"
+            },
+            {
+                "r": 220,
+                "g": 188,
+                "b": 175,
+                "hex": "#dcbcaf"
+            }
+        ],
+        "dominant_hex": "#070504",
+        "saturation": 57.44488888888889,
+        "brightness": 71.69842962962963,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 4995.60642118321,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516019": {
+        "palette": [
+            {
+                "r": 164,
+                "g": 91,
+                "b": 47,
+                "hex": "#a45b2f"
+            },
+            {
+                "r": 36,
+                "g": 26,
+                "b": 21,
+                "hex": "#241a15"
+            },
+            {
+                "r": 219,
+                "g": 202,
+                "b": 196,
+                "hex": "#dbcac4"
+            }
+        ],
+        "dominant_hex": "#a45b2f",
+        "saturation": 117.91780740740741,
+        "brightness": 91.21908148148148,
+        "vibe": "Standard",
+        "complexity": 4212.796792398135,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516022": {
+        "palette": [
+            {
+                "r": 51,
+                "g": 134,
+                "b": 212,
+                "hex": "#3386d4"
+            },
+            {
+                "r": 96,
+                "g": 42,
+                "b": 39,
+                "hex": "#602a27"
+            },
+            {
+                "r": 224,
+                "g": 199,
+                "b": 164,
+                "hex": "#e0c7a4"
+            }
+        ],
+        "dominant_hex": "#3386d4",
+        "saturation": 160.69848888888887,
+        "brightness": 161.00912592592593,
+        "vibe": "Neon/Vibrant",
+        "complexity": 19141.51931790925,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516023": {
+        "palette": [
+            {
+                "r": 26,
+                "g": 28,
+                "b": 31,
+                "hex": "#1a1c1f"
+            },
+            {
+                "r": 142,
+                "g": 142,
+                "b": 143,
+                "hex": "#8e8e8f"
+            },
+            {
+                "r": 68,
+                "g": 70,
+                "b": 73,
+                "hex": "#444649"
+            }
+        ],
+        "dominant_hex": "#1a1c1f",
+        "saturation": 42.10112592592593,
+        "brightness": 52.80524444444445,
+        "vibe": "Noir/Dark",
+        "complexity": 3886.9670199036486,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516024": {
+        "palette": [
+            {
+                "r": 94,
+                "g": 79,
+                "b": 57,
+                "hex": "#5e4f39"
+            },
+            {
+                "r": 36,
+                "g": 31,
+                "b": 18,
+                "hex": "#241f12"
+            },
+            {
+                "r": 205,
+                "g": 191,
+                "b": 170,
+                "hex": "#cdbfaa"
+            }
+        ],
+        "dominant_hex": "#5e4f39",
+        "saturation": 120.39662222222222,
+        "brightness": 53.41602962962963,
+        "vibe": "Noir/Dark",
+        "complexity": 2971.9458809995062,
+        "visual_style": "Cinematic"
+    },
+    "516025": {
+        "palette": [
+            {
+                "r": 111,
+                "g": 41,
+                "b": 42,
+                "hex": "#6f292a"
+            },
+            {
+                "r": 15,
+                "g": 10,
+                "b": 12,
+                "hex": "#0f0a0c"
+            },
+            {
+                "r": 161,
+                "g": 120,
+                "b": 122,
+                "hex": "#a1787a"
+            }
+        ],
+        "dominant_hex": "#6f292a",
+        "saturation": 88.94417777777778,
+        "brightness": 68.52957037037037,
+        "vibe": "Standard",
+        "complexity": 3749.3066619970373,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516034": {
+        "palette": [
+            {
+                "r": 116,
+                "g": 131,
+                "b": 135,
+                "hex": "#748387"
+            },
+            {
+                "r": 167,
+                "g": 9,
+                "b": 10,
+                "hex": "#a7090a"
+            },
+            {
+                "r": 34,
+                "g": 45,
+                "b": 58,
+                "hex": "#222d3a"
+            }
+        ],
+        "dominant_hex": "#748387",
+        "saturation": 146.3629925925926,
+        "brightness": 105.26097777777778,
+        "vibe": "Standard",
+        "complexity": 2760.9404980113036,
+        "visual_style": "Cinematic"
+    },
+    "516035": {
+        "palette": [
+            {
+                "r": 159,
+                "g": 155,
+                "b": 154,
+                "hex": "#9f9b9a"
+            },
+            {
+                "r": 25,
+                "g": 19,
+                "b": 19,
+                "hex": "#191313"
+            },
+            {
+                "r": 150,
+                "g": 5,
+                "b": 5,
+                "hex": "#960505"
+            }
+        ],
+        "dominant_hex": "#9f9b9a",
+        "saturation": 72.42797037037037,
+        "brightness": 61.45991111111111,
+        "vibe": "Standard",
+        "complexity": 3882.970539895747,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516036": {
+        "palette": [
+            {
+                "r": 225,
+                "g": 203,
+                "b": 162,
+                "hex": "#e1cba2"
+            },
+            {
+                "r": 61,
+                "g": 28,
+                "b": 15,
+                "hex": "#3d1c0f"
+            },
+            {
+                "r": 158,
+                "g": 107,
+                "b": 66,
+                "hex": "#9e6b42"
+            }
+        ],
+        "dominant_hex": "#e1cba2",
+        "saturation": 136.10574814814814,
+        "brightness": 145.73736296296298,
+        "vibe": "Standard",
+        "complexity": 6384.098783801591,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516037": {
+        "palette": [
+            {
+                "r": 50,
+                "g": 26,
+                "b": 9,
+                "hex": "#321a09"
+            },
+            {
+                "r": 240,
+                "g": 201,
+                "b": 45,
+                "hex": "#f0c92d"
+            },
+            {
+                "r": 243,
+                "g": 242,
+                "b": 240,
+                "hex": "#f3f2f0"
+            }
+        ],
+        "dominant_hex": "#321a09",
+        "saturation": 194.6451851851852,
+        "brightness": 196.492,
+        "vibe": "Neon/Vibrant",
+        "complexity": 7010.838223693608,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516038": {
+        "palette": [
+            {
+                "r": 143,
+                "g": 148,
+                "b": 148,
+                "hex": "#8f9494"
+            },
+            {
+                "r": 21,
+                "g": 13,
+                "b": 18,
+                "hex": "#150d12"
+            },
+            {
+                "r": 84,
+                "g": 66,
+                "b": 73,
+                "hex": "#544249"
+            }
+        ],
+        "dominant_hex": "#8f9494",
+        "saturation": 148.38515555555554,
+        "brightness": 66.66302222222222,
+        "vibe": "Standard",
+        "complexity": 2637.4756483941837,
+        "visual_style": "Cinematic"
+    },
+    "516039": {
+        "palette": [
+            {
+                "r": 217,
+                "g": 190,
+                "b": 124,
+                "hex": "#d9be7c"
+            },
+            {
+                "r": 68,
+                "g": 49,
+                "b": 32,
+                "hex": "#443120"
+            },
+            {
+                "r": 159,
+                "g": 110,
+                "b": 61,
+                "hex": "#9f6e3d"
+            }
+        ],
+        "dominant_hex": "#d9be7c",
+        "saturation": 159.34740740740742,
+        "brightness": 140.95795555555554,
+        "vibe": "Standard",
+        "complexity": 4082.544967726529,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516040": {
+        "palette": [
+            {
+                "r": 23,
+                "g": 36,
+                "b": 80,
+                "hex": "#172450"
+            },
+            {
+                "r": 239,
+                "g": 237,
+                "b": 238,
+                "hex": "#efedee"
+            },
+            {
+                "r": 146,
+                "g": 100,
+                "b": 140,
+                "hex": "#92648c"
+            }
+        ],
+        "dominant_hex": "#172450",
+        "saturation": 126.99069629629629,
+        "brightness": 143.04112592592594,
+        "vibe": "Standard",
+        "complexity": 4980.393193722908,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516041": {
+        "palette": [
+            {
+                "r": 246,
+                "g": 241,
+                "b": 235,
+                "hex": "#f6f1eb"
+            },
+            {
+                "r": 35,
+                "g": 43,
+                "b": 51,
+                "hex": "#232b33"
+            },
+            {
+                "r": 192,
+                "g": 144,
+                "b": 114,
+                "hex": "#c09072"
+            }
+        ],
+        "dominant_hex": "#f6f1eb",
+        "saturation": 68.5074962962963,
+        "brightness": 199.87176296296298,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 8891.131909303485,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "516042": {
+        "palette": [
+            {
+                "r": 56,
+                "g": 57,
+                "b": 64,
+                "hex": "#383940"
+            },
+            {
+                "r": 236,
+                "g": 239,
+                "b": 239,
+                "hex": "#ecefef"
+            },
+            {
+                "r": 215,
+                "g": 141,
+                "b": 82,
+                "hex": "#d78d52"
+            }
+        ],
+        "dominant_hex": "#383940",
+        "saturation": 89.68118518518519,
+        "brightness": 188.96334814814816,
+        "vibe": "Standard",
+        "complexity": 2555.366652871111,
+        "visual_style": "Cinematic"
+    },
+    "516045": {
+        "palette": [
+            {
+                "r": 65,
+                "g": 112,
+                "b": 165,
+                "hex": "#4170a5"
+            },
+            {
+                "r": 112,
+                "g": 63,
+                "b": 57,
+                "hex": "#703f39"
+            },
+            {
+                "r": 215,
+                "g": 154,
+                "b": 118,
+                "hex": "#d79a76"
+            }
+        ],
+        "dominant_hex": "#4170a5",
+        "saturation": 136.48118518518518,
+        "brightness": 176.15256296296297,
+        "vibe": "Standard",
+        "complexity": 5907.130601283951,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1102982": {
+        "palette": [
+            {
+                "r": 142,
+                "g": 87,
+                "b": 216,
+                "hex": "#8e57d8"
+            },
+            {
+                "r": 74,
+                "g": 40,
+                "b": 118,
+                "hex": "#4a2876"
+            },
+            {
+                "r": 196,
+                "g": 183,
+                "b": 105,
+                "hex": "#c4b769"
+            }
+        ],
+        "dominant_hex": "#8e57d8",
+        "saturation": 152.91345185185185,
+        "brightness": 189.87422222222222,
+        "vibe": "Standard",
+        "complexity": 5741.779636028752,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1102989": {
+        "palette": [
+            {
+                "r": 240,
+                "g": 233,
+                "b": 228,
+                "hex": "#f0e9e4"
+            },
+            {
+                "r": 33,
+                "g": 26,
+                "b": 24,
+                "hex": "#211a18"
+            },
+            {
+                "r": 190,
+                "g": 129,
+                "b": 130,
+                "hex": "#be8182"
+            }
+        ],
+        "dominant_hex": "#f0e9e4",
+        "saturation": 40.91724444444444,
+        "brightness": 185.96725925925927,
+        "vibe": "Pastel/Soft",
+        "complexity": 16941.514156057285,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1102992": {
+        "palette": [
+            {
+                "r": 67,
+                "g": 42,
+                "b": 27,
+                "hex": "#432a1b"
+            },
+            {
+                "r": 171,
+                "g": 167,
+                "b": 109,
+                "hex": "#aba76d"
+            },
+            {
+                "r": 167,
+                "g": 94,
+                "b": 77,
+                "hex": "#a75e4d"
+            }
+        ],
+        "dominant_hex": "#432a1b",
+        "saturation": 128.22011851851852,
+        "brightness": 147.24287407407408,
+        "vibe": "Standard",
+        "complexity": 1178.6961835061727,
+        "visual_style": "Cinematic"
+    },
+    "1102993": {
+        "palette": [
+            {
+                "r": 114,
+                "g": 99,
+                "b": 71,
+                "hex": "#726347"
+            },
+            {
+                "r": 196,
+                "g": 172,
+                "b": 138,
+                "hex": "#c4ac8a"
+            },
+            {
+                "r": 39,
+                "g": 38,
+                "b": 21,
+                "hex": "#272615"
+            }
+        ],
+        "dominant_hex": "#726347",
+        "saturation": 107.51828148148148,
+        "brightness": 96.16379259259259,
+        "vibe": "Standard",
+        "complexity": 17349.2725026941,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1102995": {
+        "palette": [
+            {
+                "r": 196,
+                "g": 190,
+                "b": 184,
+                "hex": "#c4beb8"
+            },
+            {
+                "r": 61,
+                "g": 35,
+                "b": 33,
+                "hex": "#3d2321"
+            },
+            {
+                "r": 193,
+                "g": 102,
+                "b": 73,
+                "hex": "#c16649"
+            }
+        ],
+        "dominant_hex": "#c4beb8",
+        "saturation": 147.20293333333333,
+        "brightness": 155.98847407407408,
+        "vibe": "Standard",
+        "complexity": 11310.004532868916,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1102998": {
+        "palette": [
+            {
+                "r": 194,
+                "g": 153,
+                "b": 109,
+                "hex": "#c2996d"
+            },
+            {
+                "r": 241,
+                "g": 232,
+                "b": 215,
+                "hex": "#f1e8d7"
+            },
+            {
+                "r": 93,
+                "g": 41,
+                "b": 28,
+                "hex": "#5d291c"
+            }
+        ],
+        "dominant_hex": "#c2996d",
+        "saturation": 87.01345185185185,
+        "brightness": 196.7592,
+        "vibe": "Standard",
+        "complexity": 11862.993096740522,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1102999": {
+        "palette": [
+            {
+                "r": 138,
+                "g": 125,
+                "b": 119,
+                "hex": "#8a7d77"
+            },
+            {
+                "r": 209,
+                "g": 204,
+                "b": 186,
+                "hex": "#d1ccba"
+            },
+            {
+                "r": 41,
+                "g": 43,
+                "b": 49,
+                "hex": "#292b31"
+            }
+        ],
+        "dominant_hex": "#8a7d77",
+        "saturation": 99.86868148148149,
+        "brightness": 155.54776296296296,
+        "vibe": "Standard",
+        "complexity": 13589.151354307598,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103006": {
+        "palette": [
+            {
+                "r": 136,
+                "g": 50,
+                "b": 43,
+                "hex": "#88322b"
+            },
+            {
+                "r": 233,
+                "g": 220,
+                "b": 181,
+                "hex": "#e9dcb5"
+            },
+            {
+                "r": 211,
+                "g": 151,
+                "b": 94,
+                "hex": "#d3975e"
+            }
+        ],
+        "dominant_hex": "#88322b",
+        "saturation": 137.24962962962962,
+        "brightness": 191.29641481481482,
+        "vibe": "Standard",
+        "complexity": 4650.151064437641,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103007": {
+        "palette": [
+            {
+                "r": 207,
+                "g": 128,
+                "b": 55,
+                "hex": "#cf8037"
+            },
+            {
+                "r": 83,
+                "g": 36,
+                "b": 44,
+                "hex": "#53242c"
+            },
+            {
+                "r": 186,
+                "g": 189,
+                "b": 169,
+                "hex": "#babda9"
+            }
+        ],
+        "dominant_hex": "#cf8037",
+        "saturation": 132.53478518518517,
+        "brightness": 169.63422222222223,
+        "vibe": "Standard",
+        "complexity": 3396.664859829904,
+        "visual_style": "Cinematic"
+    },
+    "1103008": {
+        "palette": [
+            {
+                "r": 169,
+                "g": 134,
+                "b": 100,
+                "hex": "#a98664"
+            },
+            {
+                "r": 221,
+                "g": 195,
+                "b": 150,
+                "hex": "#ddc396"
+            },
+            {
+                "r": 73,
+                "g": 49,
+                "b": 36,
+                "hex": "#493124"
+            }
+        ],
+        "dominant_hex": "#a98664",
+        "saturation": 106.35288888888888,
+        "brightness": 155.98106666666666,
+        "vibe": "Standard",
+        "complexity": 8114.711710629575,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103009": {
+        "palette": [
+            {
+                "r": 8,
+                "g": 35,
+                "b": 53,
+                "hex": "#082335"
+            },
+            {
+                "r": 138,
+                "g": 167,
+                "b": 179,
+                "hex": "#8aa7b3"
+            },
+            {
+                "r": 66,
+                "g": 96,
+                "b": 113,
+                "hex": "#426071"
+            }
+        ],
+        "dominant_hex": "#082335",
+        "saturation": 157.08562962962964,
+        "brightness": 103.36912592592593,
+        "vibe": "Standard",
+        "complexity": 3580.9912665406864,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103010": {
+        "palette": [
+            {
+                "r": 229,
+                "g": 223,
+                "b": 195,
+                "hex": "#e5dfc3"
+            },
+            {
+                "r": 87,
+                "g": 48,
+                "b": 15,
+                "hex": "#57300f"
+            },
+            {
+                "r": 169,
+                "g": 131,
+                "b": 88,
+                "hex": "#a98358"
+            }
+        ],
+        "dominant_hex": "#e5dfc3",
+        "saturation": 139.39638518518518,
+        "brightness": 150.50195555555555,
+        "vibe": "Standard",
+        "complexity": 16770.81928778184,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103011": {
+        "palette": [
+            {
+                "r": 182,
+                "g": 129,
+                "b": 173,
+                "hex": "#b681ad"
+            },
+            {
+                "r": 17,
+                "g": 5,
+                "b": 33,
+                "hex": "#110521"
+            },
+            {
+                "r": 79,
+                "g": 32,
+                "b": 120,
+                "hex": "#4f2078"
+            }
+        ],
+        "dominant_hex": "#b681ad",
+        "saturation": 171.3148148148148,
+        "brightness": 103.468,
+        "vibe": "Neon/Vibrant",
+        "complexity": 9843.11264615945,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103013": {
+        "palette": [
+            {
+                "r": 200,
+                "g": 157,
+                "b": 169,
+                "hex": "#c89da9"
+            },
+            {
+                "r": 69,
+                "g": 44,
+                "b": 111,
+                "hex": "#452c6f"
+            },
+            {
+                "r": 231,
+                "g": 134,
+                "b": 30,
+                "hex": "#e7861e"
+            }
+        ],
+        "dominant_hex": "#c89da9",
+        "saturation": 185.68376296296296,
+        "brightness": 185.3165925925926,
+        "vibe": "Neon/Vibrant",
+        "complexity": 8292.419423780522,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103014": {
+        "palette": [
+            {
+                "r": 28,
+                "g": 28,
+                "b": 28,
+                "hex": "#1c1c1c"
+            },
+            {
+                "r": 247,
+                "g": 247,
+                "b": 247,
+                "hex": "#f7f7f7"
+            },
+            {
+                "r": 121,
+                "g": 121,
+                "b": 121,
+                "hex": "#797979"
+            }
+        ],
+        "dominant_hex": "#1c1c1c",
+        "saturation": 0.0,
+        "brightness": 122.45045925925926,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 5560.113022971962,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103015": {
+        "palette": [
+            {
+                "r": 212,
+                "g": 181,
+                "b": 147,
+                "hex": "#d4b593"
+            },
+            {
+                "r": 63,
+                "g": 30,
+                "b": 25,
+                "hex": "#3f1e19"
+            },
+            {
+                "r": 157,
+                "g": 103,
+                "b": 68,
+                "hex": "#9d6744"
+            }
+        ],
+        "dominant_hex": "#d4b593",
+        "saturation": 132.5334814814815,
+        "brightness": 140.19964444444443,
+        "vibe": "Standard",
+        "complexity": 4479.798661377229,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103016": {
+        "palette": [
+            {
+                "r": 119,
+                "g": 99,
+                "b": 63,
+                "hex": "#77633f"
+            },
+            {
+                "r": 53,
+                "g": 32,
+                "b": 20,
+                "hex": "#352014"
+            },
+            {
+                "r": 200,
+                "g": 205,
+                "b": 183,
+                "hex": "#c8cdb7"
+            }
+        ],
+        "dominant_hex": "#77633f",
+        "saturation": 106.88687407407407,
+        "brightness": 115.6391111111111,
+        "vibe": "Standard",
+        "complexity": 6021.9628664142665,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103017": {
+        "palette": [
+            {
+                "r": 57,
+                "g": 41,
+                "b": 30,
+                "hex": "#39291e"
+            },
+            {
+                "r": 246,
+                "g": 214,
+                "b": 119,
+                "hex": "#f6d677"
+            },
+            {
+                "r": 162,
+                "g": 105,
+                "b": 57,
+                "hex": "#a26939"
+            }
+        ],
+        "dominant_hex": "#39291e",
+        "saturation": 139.56802962962962,
+        "brightness": 203.41534814814815,
+        "vibe": "Standard",
+        "complexity": 5923.265771400604,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103019": {
+        "palette": [
+            {
+                "r": 136,
+                "g": 130,
+                "b": 109,
+                "hex": "#88826d"
+            },
+            {
+                "r": 60,
+                "g": 53,
+                "b": 44,
+                "hex": "#3c352c"
+            },
+            {
+                "r": 212,
+                "g": 210,
+                "b": 180,
+                "hex": "#d4d2b4"
+            }
+        ],
+        "dominant_hex": "#88826d",
+        "saturation": 101.62192592592592,
+        "brightness": 139.35312592592592,
+        "vibe": "Standard",
+        "complexity": 7763.649244886913,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103020": {
+        "palette": [
+            {
+                "r": 34,
+                "g": 36,
+                "b": 40,
+                "hex": "#222428"
+            },
+            {
+                "r": 177,
+                "g": 209,
+                "b": 225,
+                "hex": "#b1d1e1"
+            },
+            {
+                "r": 127,
+                "g": 123,
+                "b": 126,
+                "hex": "#7f7b7e"
+            }
+        ],
+        "dominant_hex": "#222428",
+        "saturation": 59.96302222222222,
+        "brightness": 154.66204444444443,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 4214.10704952889,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103021": {
+        "palette": [
+            {
+                "r": 51,
+                "g": 37,
+                "b": 33,
+                "hex": "#332521"
+            },
+            {
+                "r": 124,
+                "g": 92,
+                "b": 81,
+                "hex": "#7c5c51"
+            },
+            {
+                "r": 223,
+                "g": 161,
+                "b": 49,
+                "hex": "#dfa131"
+            }
+        ],
+        "dominant_hex": "#332521",
+        "saturation": 142.54082962962963,
+        "brightness": 140.86317037037037,
+        "vibe": "Standard",
+        "complexity": 3865.7867795665297,
+        "visual_style": "Action-Packed/Complex"
+    },
+    "1103023": {
+        "palette": [
+            {
+                "r": 117,
+                "g": 100,
+                "b": 100,
+                "hex": "#756464"
+            },
+            {
+                "r": 217,
+                "g": 194,
+                "b": 168,
+                "hex": "#d9c2a8"
+            },
+            {
+                "r": 50,
+                "g": 44,
+                "b": 54,
+                "hex": "#322c36"
+            }
+        ],
+        "dominant_hex": "#756464",
+        "saturation": 63.49629629629629,
+        "brightness": 101.736,
+        "vibe": "Desaturated/Gritty",
+        "complexity": 4875.7509546921265,
+        "visual_style": "Action-Packed/Complex"
+    }
+}

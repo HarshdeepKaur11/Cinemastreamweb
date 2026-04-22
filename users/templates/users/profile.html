@@ -1,0 +1,461 @@
+{% load static movie_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings - CinemaStream</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/security.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+</head>
+
+<body class="bg-dark text-white static-sidebar">
+
+    {% include 'core/includes/navbar.html' %}
+
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar();"></div>
+    {% include 'core/includes/sidebar.html' %}
+
+    <main class="main-content-wrapper" id="main-content">
+        <div class="container py-md-4 py-2 mt-md-5 mt-2 pt-md-3 pt-0"> 
+            {% if messages %}
+            <div class="alert-container-floating">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if request.GET.setup %}
+            
+            <div class="row mb-4 animate-fade-in shadow-2xl">
+                <div class="col-12">
+                    <div class="setup-prompt-card p-4 rounded-4 shadow-lg border border-primary border-opacity-25">
+                        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="icon-circle bg-primary bg-opacity-20 text-primary d-none d-md-flex">
+                                    <i class="bi bi-magic fs-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold gradient-text mb-1">Fill your profile</h4>
+                                    <p class="text-white-50 mb-1">Select genres to unlock better AI-powered movie matches!</p>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-3">
+                                <button type="button" class="btn btn-outline-light rounded-pill px-4 border-white-10 hover-lift" onclick="handleSkip()">Skip for now</button>
+                                <button type="button" class="btn btn-glow px-4" onclick="document.querySelector('form').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                function handleSkip() {
+                    const checkboxes = document.querySelectorAll('.genre-item:checked');
+                    if (checkboxes.length === 0) {
+                        document.querySelector('form').scrollIntoView({behavior: 'smooth'});
+                    } else {
+                        window.location.href = "{% url 'dashboard:user_dashboard' %}";
+                    }
+                }
+            </script>
+            {% endif %}
+
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="profile-header-card p-4 p-md-5 shadow">
+                        
+                        <div class="row align-items-center mb-5 pb-5 border-bottom border-white-10 gy-4">
+                            <div class="col-md-auto text-center mb-md-0">
+                                <div class="profile-avatar-wrapper">
+                                    <img src="{% if user.profile_pic %}{{ user.profile_pic.url }}{% else %}https://ui-avatars.com/api/?name={{ user.username }}{% endif %}"
+                                        class="profile-avatar shadow" alt="Profile">
+                                </div>
+                            </div>
+                            <div class="col-md text-center text-md-start ms-md-4">
+                                 <h1 class="fw-bold mb-2 gradient-text">{{ user.username }}</h1>
+                                <p class="text-white-50 mb-0">Member since {{ user.created_at|date:"M Y" }}</p>
+                                {% if user.bio %}
+                                <p class="text-white-50 small mt-3 italic opacity-75" style="max-width: 600px;">{{ user.bio }}</p>
+                                {% endif %}
+                                <div
+                                    class="mt-5 mb-4 mb-md-0 d-flex flex-wrap justify-content-center justify-content-md-start gap-2">
+                                    <div
+                                        class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-3 py-2 rounded-pill">
+                                        <i class="bi bi-envelope me-2"></i>{{ user.email }}</div>
+                                    <div
+                                        class="badge badge-active px-3 py-2 rounded-pill shadow-sm">
+                                        <i class="bi bi-check-circle me-2"></i>Active Account</div>
+                                </div>
+                                <div class="mt-4 d-flex flex-wrap justify-content-center justify-content-md-start gap-3 profile-action-buttons-container">
+                                    {% if user.is_staff %}
+                                    <a href="{% url 'admin_panel:index' %}"
+                                        class="btn btn-outline-warning rounded-pill px-4 py-2"><i
+                                            class="bi bi-shield-lock me-2"></i>Admin Dashboard</a>
+                                    {% endif %}
+                                    <a href="{% url 'users:edit_profile' %}" class="btn btn-glow px-4 py-2">Edit Profile</a>
+                                    <a href="{% url 'users:logout' %}"
+                                        class="btn btn-outline-danger rounded-pill px-4 py-2"><i
+                                            class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                                </div>
+                        </div>
+
+                        
+                        <div class="row g-5">
+                            
+                            <div class="col-12">
+                                <section class="mb-5">
+                                    <h5 class="mb-4 text-primary fw-bold"><i class="bi bi-person-badge me-2"></i>
+                                        Account Details</h5>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="profile-info-box p-3 rounded-4">
+                                                <label
+                                                    class="x-small text-white-50 fw-bold text-uppercase d-block mb-1">Gmail
+                                                    Address</label>
+                                                <span class="fw-medium text-white">{{ user.email }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="profile-info-box p-3 rounded-4">
+                                                <label
+                                                    class="x-small text-white-50 fw-bold text-uppercase d-block mb-1">Account Status</label>
+                                                <span class="fw-medium text-success"><i
+                                                        class="bi bi-shield-check me-1"></i>Verified & Active</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="mt-4 p-4 rounded-4 bg-glass-card border-white-10 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="icon-circle-small bg-primary bg-opacity-10 text-primary">
+                                                <i class="bi bi-shield-lock-fill fs-4"></i>
+                                            </div>
+                                            <div>
+                                                <p class="fw-bold mb-0 text-white fs-5">Password Security</p>
+                                                 <p class="small text-white-50 mb-0">Last updated: {% if user.password_last_updated %}{{ user.password_last_updated|date:"d M, Y" }}{% else %}Never{% endif %}</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-3">
+                                            {% if not user.is_admin and user.email != 'harschx31@gmail.com' %}
+                                            <a href="{% url 'users:forgot_password' %}" class="small text-info text-decoration-none me-2">Forgot Password?</a>
+                                            {% endif %}
+                                            <a href="{% url 'users:change_password' %}"
+                                                class="btn btn-glow px-5 py-2 fw-bold fs-6">Update Password</a>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            
+                            <div class="col-12">
+                                <section>
+                                    <h5 class="mb-4 text-warning fw-bold"><i class="bi bi-stars me-2"></i> Content
+                                        Preferences</h5>
+                                    <form method="POST" action="{% url 'users:profile' %}">
+                                        {% csrf_token %}
+                                        <div class="mb-4">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <label class="small fw-bold m-0">Favorite Genres</label>
+                                                <div class="ms-auto d-flex align-items-center gap-2">
+                                                    <div class="d-flex gap-2 pe-3 border-end border-white-10">
+                                                        <button type="button"
+                                                            class="btn x-small-btn btn-outline-secondary rounded-pill px-3 py-0"
+                                                            onclick="selectAllGenres()">All</button>
+                                                        <button type="button"
+                                                            class="btn x-small-btn btn-outline-danger rounded-pill px-3 py-0"
+                                                            onclick="clearAllGenres()">Clear</button>
+                                                    </div>
+                                                    <span id="genre-count" class="badge bg-primary bg-opacity-10 text-primary rounded-pill x-small"></span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                                {% for genre in genres %}
+                                                <input type="checkbox" name="genres" value="{{ genre.genre_id }}"
+                                                    class="btn-check genre-item" id="g{{ genre.genre_id }}" {% if genre.genre_id in preferred_genre_ids %}checked{% endif %}>
+                                                <label class="genre-chip btn rounded-pill py-1 px-3 x-small"
+                                                    for="g{{ genre.genre_id }}">{{ genre.genre_name }}</label>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 mt-4">
+                                            <label class="small fw-bold mb-3 d-block">Preferred Languages</label>
+                                            <div class="d-flex flex-wrap gap-2">
+                                                <input type="checkbox" name="languages" value="English"
+                                                    class="btn-check lang-item" id="langen" {% if 'English' in preferred_languages %}checked{% endif %}>
+                                                <label class="genre-chip btn rounded-pill py-1 px-3 x-small"
+                                                    for="langen">English</label>
+                                                <input type="checkbox" name="languages" value="Hindi"
+                                                    class="btn-check lang-item" id="langhi" {% if 'Hindi' in preferred_languages %}checked{% endif %}>
+                                                <label class="genre-chip btn rounded-pill py-1 px-3 x-small"
+                                                    for="langhi">Hindi</label>
+                                                <input type="checkbox" name="languages" value="Punjabi"
+                                                    class="btn-check lang-item" id="langpa" {% if 'Punjabi' in preferred_languages %}checked{% endif %}>
+                                                <label class="genre-chip btn rounded-pill py-1 px-3 x-small"
+                                                    for="langpa">Punjabi</label>
+                                                <input type="checkbox" name="languages" value="Japanese"
+                                                    class="btn-check lang-item" id="langjp" {% if 'Japanese' in preferred_languages %}checked{% endif %}>
+                                                <label class="genre-chip btn rounded-pill py-1 px-3 x-small"
+                                                    for="langjp">Japanese</label>
+                                                <input type="checkbox" name="languages" value="Korean"
+                                                    class="btn-check lang-item" id="langkr" {% if 'Korean' in preferred_languages %}checked{% endif %}>
+                                                <label class="genre-chip btn rounded-pill py-1 px-3 x-small"
+                                                    for="langkr">Korean</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 mt-4">
+                                            <label class="small fw-bold mb-3 d-block">Preferred Movie Duration</label>
+                                            <div class="d-flex flex-wrap gap-2">
+                                                <input type="radio" name="duration_preference" value="short"
+                                                    class="btn-check" id="dur_short" {% if duration_preference == 'short' %}checked{% endif %}>
+                                                <label class="genre-chip btn rounded-pill py-1 px-3 x-small"
+                                                    for="dur_short">Under 90 Mins</label>
+
+                                                <input type="radio" name="duration_preference" value="medium"
+                                                    class="btn-check" id="dur_med" {% if duration_preference == 'medium' %}checked{% endif %}>
+                                                <label class="genre-chip btn rounded-pill py-1 px-3 x-small"
+                                                    for="dur_med">90 - 120 Mins</label>
+
+                                                <input type="radio" name="duration_preference" value="long"
+                                                    class="btn-check" id="dur_long" {% if duration_preference == 'long' %}checked{% endif %}>
+                                                <label class="genre-chip btn rounded-pill py-1 px-3 x-small"
+                                                    for="dur_long">120 - 150 Mins</label>
+
+                                                <input type="radio" name="duration_preference" value="epic"
+                                                    class="btn-check" id="dur_epic" {% if duration_preference == 'epic' %}checked{% endif %}>
+                                                <label class="genre-chip btn rounded-pill py-1 px-3 x-small"
+                                                    for="dur_epic">Over 150 Mins</label>
+
+                                                <input type="radio" name="duration_preference" value="any"
+                                                    class="btn-check" id="dur_any" {% if duration_preference == 'any' or not duration_preference %}checked{% endif %}>
+                                                <label class="genre-chip btn rounded-pill py-1 px-3 x-small"
+                                                    for="dur_any">Any Duration</label>
+                                            </div>
+                                        </div>
+                                        <div class="mt-5 text-end">
+                                            <button type="submit" class="btn btn-glow px-5 py-2">Save
+                                                Preferences</button>
+                                        </div>
+                                    </form>
+                                </section>
+                            </div>
+                        </div>
+
+                        
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="m-0 text-primary fw-bold text-uppercase tracking-wider">
+                                   My Ratings & Reviews
+                                </h5>
+                                {% if user_ratings %}
+                                <a href="{% url 'dashboard:delete_all_reviews' %}" 
+                                   class="btn btn-sm btn-outline-danger rounded-pill px-3 text-xsmall" 
+                                   onclick="return confirm('CRITICAL: This will delete ALL your ratings and reviews. This cannot be undone. Proceed?')">
+                                    <i class="bi bi-trash3 me-1"></i> Delete All
+                                </a>
+                                {% endif %}
+                            </div>
+                            {% if user_ratings %}
+                            <div class="profile-ratings-scroll-container custom-scrollbar pe-2" style="max-height: 250px; overflow-y: auto; overflow-x: hidden;">
+                                <div class="row g-3">
+                                    {% for r in user_ratings %}
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div
+                                        class="rating-card p-3 rounded-4 bg-black border border-white-10 h-100 position-relative hover-lift">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <img src="{{ r.movie.poster_url }}"
+                                                class="rounded me-3 shadow-sm rating-poster-sm" alt="Poster">
+                                            <div>
+                                                <div class="fw-bold small text-white rating-movie-title">{{ r.movie.title }}</div>
+                                                <div class="star-rating-gold">
+                                                    {% for i in "12345" %}
+                                                    <i
+                                                        class="bi bi-star{% if forloop.counter > r.score %}{% else %}-fill{% endif %}"></i>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% if r.review %}
+                                        <p class="x-small text-white mb-4 lh-sm">{{ r.review|truncatechars:80 }}</p>
+                                        {% endif %}
+
+                                        <div class="position-absolute bottom-0 end-0 p-3 d-flex gap-2">
+                                            <a href="{% url 'dashboard:moviedetails' r.movie.movie_id %}"
+                                                class="btn btn-outline-primary border-0 btn-action-circle"
+                                                title="Edit Rating">
+                                                <i class="bi bi-pencil-square small"></i>
+                                            </a>
+                                            <a href="{% url 'dashboard:delete_review' r.movie.movie_id %}"
+                                                class="btn btn-outline-danger border-0 btn-action-circle"
+                                                title="Delete" onclick="return confirm('Delete this review?')">
+                                                <i class="bi bi-trash small"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                </div>
+                            </div>
+                            {% else %}
+                            <div
+                                class="text-center py-4 bg-black bg-opacity-5 rounded-4 border border-white-10 border-dashed">
+                                <p class="text-white-50 small mb-0">You haven't rated any movies yet.</p>
+                                <a href="{% url 'dashboard:user_dashboard' %}"
+                                    class="text-primary small text-decoration-none mt-2 d-inline-block">Explore
+                                    Movies</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% if not current_user.is_admin and current_user.email != 'harschx31@gmail.com' and current_user.username != 'AdminAccount001' %}
+                <div class="row pt-2 mt-3 mb-4">
+                    <div class="col-12">
+                        <div class="profile-header-card p-3 p-md-4 shadow border border-danger border-opacity-25 rounded-4">
+                            <h6 class="mb-3 text-danger fw-bold text-uppercase tracking-wider"><i
+                                    class="bi bi-person-slash me-2"></i> Account Management</h6>
+                            <div
+                                class="p-3 rounded-4 bg-black border border-danger border-opacity-10 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                                <div>
+                                    <h6 class="fw-bold mb-1 x-small text-white">Delete Account</h6>
+                                    <p class="text-white-50 x-small mb-0" style="max-width: 400px;">This action is
+                                        permanent. All history and preferences will be cleared.</p>
+                                </div>
+                                <form method="POST" action="{% url 'users:delete_account' %}"
+                                    onsubmit="return confirm('CRITICAL: This will permanently delete your account. Proceed?')">
+                                    {% csrf_token %}
+                                    <button type="submit"
+                                        class="btn btn-sm btn-outline-danger px-4 py-2 rounded-pill fw-bold text-nowrap">Delete Permanently</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+    {% include 'core/includes/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            updateGenreCount();
+        });
+
+        
+
+        const checkboxes = document.querySelectorAll('.genre-item');
+        const countBadge = document.getElementById('genre-count');
+
+        checkboxes.forEach(box => {
+            box.addEventListener('change', () => {
+                updateGenreCount();
+                savePreferencesLive();
+            });
+        });
+
+        document.querySelectorAll('.lang-item').forEach(box => {
+            box.addEventListener('change', () => {
+                savePreferencesLive();
+            });
+        });
+
+        document.querySelectorAll('input[name="duration_preference"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                savePreferencesLive();
+            });
+        });
+
+        function savePreferencesLive() {
+            const genresCount = document.querySelectorAll('.genre-item:checked').length;
+            if (genresCount === 0) {
+                 showPreferenceError("Please select at least one genre to save your preferences!");
+                 return;
+            }
+
+            const formData = new FormData();
+            formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+            document.querySelectorAll('.genre-item:checked').forEach(box => {
+                formData.append('genres', box.value);
+            });
+
+            document.querySelectorAll('.lang-item:checked').forEach(box => {
+                formData.append('languages', box.value);
+            });
+
+            const duration = document.querySelector('input[name="duration_preference"]:checked')?.value;
+            if (duration) formData.append('duration_preference', duration);
+
+            fetch("{% url 'users:select_genres' %}", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) return response.json().then(e => { throw e });
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Auto-saved:", data.message);
+                })
+                .catch(error => {
+                    console.error("Save error:", error);
+                    if(error.message) showPreferenceError(error.message);
+                });
+        }
+
+        function showPreferenceError(msg) {
+             
+             const alertDiv = document.createElement('div');
+             alertDiv.className = "alert alert-danger alert-dismissible fade show rounded-4 shadow-sm floating-error-alert animate-fade-in";
+             alertDiv.innerHTML = `${msg} <button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+             document.body.appendChild(alertDiv);
+             setTimeout(() => { alertDiv.classList.remove('show'); setTimeout(() => alertDiv.remove(), 400); }, 3000);
+        }
+
+        function clearAllGenres() {
+            document.querySelectorAll('.genre-item').forEach(box => {
+                box.checked = false;
+            });
+            updateGenreCount();
+            savePreferencesLive();
+        }
+
+        function selectAllGenres() {
+            document.querySelectorAll('.genre-item').forEach(box => {
+                box.checked = true;
+            });
+            updateGenreCount();
+            savePreferencesLive();
+        }
+
+        function updateGenreCount() {
+            const count = document.querySelectorAll('.genre-item:checked').length;
+            const countBadge = document.getElementById('genre-count');
+            if (countBadge) {
+                countBadge.innerText = count > 0 ? `${count} Selected` : '';
+            }
+        }
+    </script>
+</body>
+
+</html>

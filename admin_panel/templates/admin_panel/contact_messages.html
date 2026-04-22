@@ -1,0 +1,217 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load static %}
+
+{% block title %}User Inquiries | Admin Panel{% endblock %}
+
+{% block extra_css %}
+<style>
+    
+    :root {
+        --glass-bg: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(255, 255, 255, 0.4);
+        --success-vibrant: #10b981;
+        --danger-vibrant: #ef4444;
+        --warning-vibrant: #f59e0b;
+        --indigo-vibrant: #6366f1;
+    }
+
+    .table-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border) !important;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        border-radius: 24px !important;
+    }
+
+    .table-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    }
+
+    .bg-inprogress-own-soft { border: 2.5px solid var(--success-vibrant) !important; background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%) !important; }
+    .bg-inprogress-other-soft { border: 2.5px solid var(--danger-vibrant) !important; background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%) !important; }
+    .bg-completed-soft { border: 1.5px solid var(--indigo-vibrant) !important; opacity: 0.85; }
+
+    .status-badge-pro {
+        font-size: 0.7rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.06em;
+        padding: 0.6rem 1.2rem !important;
+        border-radius: 50px !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .message-text-bubble {
+        background: rgba(0, 0, 0, 0.02);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 18px;
+        padding: 1.2rem;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #374151;
+    }
+
+    .header-gradient-text {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    
+    @media (max-width: 576px) {
+        .table-card { padding: 1.5rem !important; border-radius: 20px !important; }
+        .h3 { font-size: 1.5rem !important; }
+        .btn-sm-mobile { padding: 0.5rem 1rem !important; font-size: 0.8rem !important; }
+    }
+
+    .animate-pulse-slow { animation: pulse-custom 3s infinite; }
+    @keyframes pulse-custom {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.8; transform: scale(0.98); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="mb-5 d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3">
+    <div>
+        <h1 class="h3 fw-800 mb-1 header-gradient-text">Customer Support</h1>
+        <p class="text-secondary small mb-0 fw-500">Real-time collaboration across administration team</p>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+        <a href="{% url 'admin_panel:clear_all_messages' %}" class="btn btn-danger btn-sm rounded-pill px-4 fw-700 shadow-sm border-0 btn-sm-mobile" onclick="return confirm('WARNING: This will permanently delete ALL customer inquiries. Proceed?')">
+            <i class="bi bi-trash3-fill me-1"></i>Clear All
+        </a>
+        <a href="{% url 'admin_panel:admin_dashboard' %}" class="btn btn-outline-secondary btn-sm rounded-pill px-3 border-2 fw-600 btn-sm-mobile">
+            <i class="bi bi-arrow-left me-1"></i>Dashboard
+        </a>
+    </div>
+</div>
+
+{% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-4 border-0 shadow-sm mb-4">
+                <i class="bi {% if message.tags == 'success' %}bi-check-circle-fill{% else %}bi-exclamation-triangle-fill{% endif %} me-2"></i>
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div class="row g-4">
+    {% for msg in messages_list %}
+    <div class="col-md-6 col-lg-4">
+        <div class="table-card p-4 h-100 d-flex flex-column shadow-sm border-0 position-relative 
+            {% if msg.current_status.status == 'Completed' %}bg-completed-soft 
+            {% elif msg.current_status.status == 'In Progress' and msg.current_status.admin_id == current_user.user_id %}bg-inprogress-own-soft
+            {% elif msg.current_status.status == 'In Progress' %}bg-inprogress-other-soft{% endif %}">
+            
+            
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="status-indicator">
+                    {% if msg.current_status.status == 'Pending' %}
+                        <span class="badge bg-warning text-dark status-badge-pro animate-pulse-slow">
+                            <i class="bi bi-clock-history me-2"></i>PENDING
+                        </span>
+                    {% elif msg.current_status.status == 'In Progress' %}
+                        {% if msg.current_status.admin_id == current_user.user_id %}
+                            <span class="badge bg-success text-white status-badge-pro">
+                                <i class="bi bi-patch-check-fill me-2"></i>I'M ON IT
+                            </span>
+                        {% else %}
+                            <span class="badge bg-danger text-white status-badge-pro">
+                                <i class="bi bi-lock-fill me-2"></i>PICKED: {{ msg.current_status.admin_name|upper }}
+                            </span>
+                        {% endif %}
+                    {% else %}
+                        <span class="badge bg-indigo text-white status-badge-pro">
+                            <i class="bi bi-shield-check me-2"></i>RESOLVED
+                        </span>
+                    {% endif %}
+                </div>
+                <div class="d-flex gap-2">
+                    <a href="{% url 'admin_panel:delete_contact_message' msg.id %}" class="btn-delete-pro" style="padding: 8px; font-size: 0.9rem;" onclick="return confirm('Delete this inquiry?')">
+                        <i class="bi bi-trash-fill text-white opacity-50 hover-opacity-100"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <div class="bg-indigo-soft text-indigo rounded-pill px-2 py-1" style="font-size: 0.65rem; font-weight: 800; letter-spacing: 0.05em;">{{ msg.subject|upper }}</div>
+                    {% if not msg.user %}
+                        <div class="bg-secondary-soft text-secondary rounded-pill px-2 py-1" style="font-size: 0.65rem; font-weight: 800;">ORPHANED</div>
+                    {% endif %}
+                </div>
+                <h5 class="fw-800 text-dark mb-1">{{ msg.name }}</h5>
+                <p class="text-secondary small mb-0 fw-500"><i class="bi bi-envelope-at me-1"></i>{{ msg.email }}</p>
+            </div>
+            
+            <div class="message-text-bubble mb-4 flex-grow-1">
+                <div class="text-secondary extra-small fw-800 text-uppercase mb-2 tracking-widest opacity-50">Inquiry Details</div>
+                <p class="mb-0 fw-500">{{ msg.message }}</p>
+            </div>
+            
+            
+            <div class="action-footer mt-auto">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="small text-secondary fw-700 opacity-75"><i class="bi bi-calendar3 me-2"></i>{{ msg.created_at|date:"M d, Y" }}</div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    {% if msg.current_status.status == 'Pending' %}
+                        <a href="{% url 'admin_panel:update_message_status' msg.id 'In Progress' %}" class="btn btn-dark text-white rounded-pill fw-800 py-3 shadow-sm border-0 transition-3d">
+                            TAKE OWNERSHIP
+                        </a>
+                    {% elif msg.current_status.status == 'In Progress' %}
+                        {% if msg.current_status.admin_id == current_user.user_id %}
+                            <a href="{% url 'admin_panel:update_message_status' msg.id 'Completed' %}" class="btn btn-success text-white rounded-pill fw-800 py-3 shadow-sm border-0">
+                                MARK AS RESOLVED
+                            </a>
+                        {% else %}
+                            <div class="p-3 rounded-pill bg-light text-secondary text-center small fw-800 border border-light opacity-75">
+                                <i class="bi bi-shield-lock me-2"></i>LOCKED BY {{ msg.current_status.admin_name }}
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="p-3 rounded-pill bg-indigo-soft text-indigo text-center small fw-800 border border-indigo animate-bounce-subtle">
+                            <i class="bi bi-check-circle-fill me-2"></i>RESOLUTION SENT
+                        </div>
+                    {% endif %}
+                    
+                    <a href="mailto:{{ msg.email }}?subject=Re: {{ msg.subject }}" class="btn btn-link text-indigo text-decoration-none small fw-800 mt-2">
+                        <i class="bi bi-send-fill me-2"></i>Open Mail Client
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <div class="bg-light d-inline-flex align-items-center justify-content-center rounded-circle mb-4" style="width: 100px; height: 100px;">
+            <i class="bi bi-inbox text-secondary" style="font-size: 3rem;"></i>
+        </div>
+        <h4 class="fw-800 text-dark">No inquiries found</h4>
+        <p class="text-secondary">Your support inbox is completely clear.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 4000);
+    });
+</script>
+{% endblock %}

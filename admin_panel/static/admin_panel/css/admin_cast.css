@@ -1,0 +1,28 @@
+
+.tracking-wider { letter-spacing: 0.1em; }
+.x-small { font-size: 0.62rem; }
+.small { font-size: 0.78rem !important; }
+.fw-800 { font-weight: 800; }
+.text-dark { color: #1e293b !important; }
+
+.log-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.02); border-radius: 10px; }
+.log-container::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 10px; }
+
+.custom-header-height { height: 110px !important; display: flex; align-items: center; }
+.custom-card-height { height: 600px !important; }
+.table-responsive { overflow-y: auto !important; overflow-x: hidden !important; }
+.log-container { scrollbar-width: thin; -ms-overflow-style: auto; }
+.log-container::-webkit-scrollbar { display: block; width: 6px; }
+
+@media (max-width: 768px) {
+    .custom-header-height { 
+        height: auto !important; 
+        margin-bottom: 1.5rem !important; 
+        flex-direction: column; 
+        align-items: flex-start !important; 
+        gap: 1rem; 
+    }
+    .custom-card-height { height: 450px !important; margin-bottom: 2rem; }
+    .h3 { font-size: 1.25rem; }
+    .btn-sm { width: 100%; text-align: center; }
+}

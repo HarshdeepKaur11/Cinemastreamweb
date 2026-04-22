@@ -1,0 +1,52 @@
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 20px;
+}
+
+.setting-box {
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.3s ease;
+}
+
+.setting-box:hover {
+    background: rgba(255, 255, 255, 0.04) !important;
+    transform: translateY(-2px);
+}
+
+.auth-input {
+    font-weight: 500;
+}
+
+.adult-toggle {
+    width: 3rem;
+    height: 1.5rem;
+}
+
+.btn-save-settings {
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+    box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4);
+    border: none;
+}
+
+.btn-save-settings:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 117, 252, 0.6);
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed !important;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, #fff, #bbb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
