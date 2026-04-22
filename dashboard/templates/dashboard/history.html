@@ -1,0 +1,109 @@
+{% load static movie_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch History | Cinemastream</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/history.css' %}">
+</head>
+
+<body class="bg-dark text-white">
+
+    {% include 'core/includes/navbar.html' %}
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar();"></div>
+    {% include 'core/includes/sidebar.html' %}
+
+    <main class="main-content-wrapper" id="main-content" style="margin-left: 0; width: 100%;">
+        <div class="container-fluid px-4 px-md-5 pt-5 pb-5">
+                <div class="d-flex justify-content-between align-items-center mb-4 pt-2">
+                    <div>
+                        <h2 class="fw-bold mb-1">Watch History</h2>
+                        <p class="text-white-50 mb-0">You've watched {{ history.count }} titles recently.</p>
+                    </div>
+                    <div class="d-flex gap-2 align-items-center">
+                        <form action="{% url 'dashboard:clear_all_history' %}" method="POST" onsubmit="return confirm('Are you sure you want to clear your entire history?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-2 py-1" style="font-size: 0.65rem;">Clear All</button>
+                        </form>
+                        <a href="{% url 'dashboard:user_dashboard' %}" class="btn btn-outline-light btn-sm rounded-pill px-3 py-1">Back</a>
+                    </div>
+                </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show bg-dark border-secondary text-white small rounded-3 mb-4">
+                    {{ message }}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            {% if history %}
+            <div class="history-grid">
+                {% for record in history %}
+                <div class="history-card shadow-lg">
+                    <a href="{% url 'dashboard:moviedetails' record.movie.movie_id %}">
+                        <img src="{{ record.movie.poster_url }}" class="history-img" alt="{{ record.movie.title }}">
+                    </a>
+                    <div class="history-info">
+                        <div class="history-date">{{ record.watched_at|date:"F d, Y" }}</div>
+                        <div class="history-title">{{ record.movie.title }}</div>
+                        {% if record.progress > 0 %}
+                        <div class="d-flex justify-content-between align-items-center mb-1" style="font-size: 0.65rem; opacity: 0.8;">
+                            <span class="text-white-50">{{ record.progress|floatformat:0 }}% watched</span>
+                        </div>
+                        <div class="progress mt-2 mb-1" style="height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px;">
+                            <div class="progress-bar bg-danger" role="progressbar" style="--progress: {{ record.progress }}%; width: var(--progress);"></div>
+                        </div>
+                        {% endif %}
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="{% url 'dashboard:delete_history' record.history_id %}" class="position-absolute top-0 end-0 m-2 z-3 btn btn-sm btn-danger rounded-circle border-0 p-0 d-flex align-items-center justify-content-center" style="width: 25px; height: 25px; background: rgba(220, 53, 69, 0.7);" onclick="return confirm('Remove from history?');">
+                                <i class="bi bi-trash small"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-clock-history fs-1 text-white-50 mb-3 opacity-25"></i>
+                <p class="text-white-50">Your watch history is empty. Start exploring!</p>
+                <a href="{% url 'dashboard:user_dashboard' %}" class="btn btn-primary rounded-pill px-4 mt-3">Discover Movies</a>
+            </div>
+            {% endif %}
+    </main>
+    {% include 'core/includes/footer.html' %}
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function toggleSidebar() {
+            document.body.classList.toggle('sidebar-active');
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('sidebarOverlay').classList.toggle('active');
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const alerts = document.querySelectorAll('.alert');
+                alerts.forEach(function(alert) {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                });
+            }, 5000);
+        });
+    </script>
+
+</body>
+
+</html>

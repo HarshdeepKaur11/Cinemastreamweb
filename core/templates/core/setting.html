@@ -1,0 +1,120 @@
+{% load static movie_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - CinemaStream</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/setting.css' %}">
+</head>
+
+<body class="bg-dark text-white static-sidebar">
+
+    {% include 'core/includes/navbar.html' %}
+      <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar();"></div>
+    {% include 'core/includes/sidebar.html' %}
+
+    <main class="main-content-wrapper" id="main-content">
+        <div class="container-fluid py-md-5 py-3 px-3 px-md-5 mt-md-5 mt-2 pt-md-5 pt-2"> 
+            <div class="row pt-2 mt-2 justify-content-center">
+                <div class="col-12 col-xl-11">
+                    {% if messages %}
+                        <div class="alert-container-floating">
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    <div class="glass-card shadow-lg p-4 p-md-5 w-100">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 gap-1">
+                            <div>
+                                <h2 class="fw-bold mb-0 gradient-text">App Settings</h2>
+                                <p class="text-white-50 mb-0 small mt-2">Manage your playback and discovery preferences</p>
+                            </div>
+
+                        </div>
+                        
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row g-4 g-md-5">
+                                <div class="col-12 mt-2">
+                                    <div class="row g-5">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="setting-box p-4 rounded-4 border border-white-10 h-100">
+                                                <div class="fw-bold mb-3 d-flex align-items-center"><i class="bi bi-play-circle text-primary me-2"></i> Streaming Quality</div>
+                                                <select class="form-select auth-input w-100 bg-light text-dark border-white-10 py-2">
+                                                    <option value="auto">Auto</option>
+                                                    <option value="4k">4K Ultra HD</option>
+                                                    <option value="1080p">1080p Full HD</option>
+                                                    <option value="720p">720p HD</option>
+                                                </select>
+                                                <p class="x-small text-white-50 mt-3 mb-0" style="font-size: 0.75rem;">Default streaming resolution.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="col-md-6">
+                                            <div class="setting-box p-4 rounded-4 border border-white-10 h-100">
+                                                <div class="fw-bold mb-3 d-flex align-items-center"><i class="bi bi-shield-exclamation text-danger me-2"></i> Adult Content Filter</div>
+                                                <div class="d-flex align-items-center justify-content-between py-2">
+                                                    <span class="text-white-75 small">Filter explicit &amp; mature content from recommendations</span>
+                                                    <div class="form-check form-switch ms-3 mb-0">
+                                                        <input class="form-check-input adult-toggle" type="checkbox" role="switch"
+                                                               id="adultFilterToggle" name="adult_content_filter" value="on"
+                                                               {% if current_user.adult_content_filter or current_user.age < 18 %}checked{% endif %}
+                                                               {% if current_user.age < 18 %}disabled{% endif %}
+                                                               class="form-check-input adult-toggle {% if current_user.age < 18 %}cursor-not-allowed{% else %}cursor-pointer{% endif %}">
+                                                        <label class="form-check-label visually-hidden" for="adultFilterToggle">Adult Filter</label>
+                                                    </div>
+                                                </div>
+                                                <p class="text-white-50 mt-3 mb-0 x-small">
+                                                    <i class="bi bi-info-circle me-1"></i>
+                                                    When <strong>enabled</strong>, adult/explicit movies are hidden from your feed and recommendations.
+                                                    {% if current_user.age < 18 %}<br><span class="text-warning"><i class="bi bi-lock-fill"></i> Locked permanently for users under 18.</span>{% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+ 
+                                
+                                <div class="col-12 mt-4 mt-md-5 text-end">
+                                    <hr class="border-white-10 mb-4 opacity-10">
+                                    <div class="d-flex justify-content-end gap-3 align-items-center">
+                                        <button type="reset" class="btn btn-outline-light rounded-pill px-4">Discard</button>
+                                        <button type="submit" class="btn btn-save-settings text-white rounded-pill px-5 py-2 fw-bold">Save Changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </main>
+    {% include 'core/includes/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            document.body.classList.toggle('sidebar-active');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('active');
+            if (overlay) overlay.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

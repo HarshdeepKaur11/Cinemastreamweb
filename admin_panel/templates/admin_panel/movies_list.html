@@ -1,0 +1,236 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load static %}
+
+{% block title %}Manage Library | Cinemastream Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin_panel/css/admin_movies.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="d-flex flex-wrap justify-content-between align-items-center mb-5 gap-3">
+    <div>
+        <h4 class="fw-800 mb-1">Library Management</h4>
+        <p class="text-secondary small mb-0">Manage movies, metadata and media assets</p>
+    </div>
+    <div class="d-flex gap-2">
+        <form class="d-flex gap-2" method="GET" action="{% url 'admin_panel:movies_list' %}">
+            <input type="text" name="q" class="form-control form-control-sm rounded-pill px-3 shadow-sm border-0" style="width: 150px;" placeholder="Search..." value="{{ request.GET.q }}">
+            <select name="genre" class="form-select form-select-sm rounded-pill px-3 shadow-sm border-0" style="width: auto; min-width: 120px;">
+                <option value="">All Genres</option>
+                {% for g in genres %}<option value="{{ g.genre_id }}" {% if request.GET.genre == g.genre_id|stringformat:"i" %}selected{% endif %}>{{ g.genre_name }} ({{ g.movie_count }})</option>{% endfor %}
+            </select>
+            <input type="number" name="year" class="form-control form-control-sm rounded-pill px-3 shadow-sm border-0" style="width: 80px;" placeholder="Year" value="{{ request.GET.year }}">
+            <select name="sort" class="form-select form-select-sm rounded-pill px-3 shadow-sm border-0" onchange="this.form.submit()" style="width: auto; min-width: 145px;">
+                <option value="-movie_id" {% if current_sort == '-movie_id' %}selected{% endif %}>Newest</option>
+                <option value="movie_id" {% if current_sort == 'movie_id' %}selected{% endif %}>Oldest</option>
+                <option value="title" {% if current_sort == 'title' %}selected{% endif %}>Title A-Z</option>
+                <option value="-title" {% if current_sort == '-title' %}selected{% endif %}>Title Z-A</option>
+            </select>
+            <button type="submit" class="btn btn-sm btn-dark rounded-pill shadow-sm px-3 fw-600"><i class="bi bi-search me-1"></i> Go</button>
+            <a href="{% url 'admin_panel:movies_list' %}" class="btn btn-sm btn-light rounded-pill shadow-sm" title="Clear"><i class="bi bi-arrow-clockwise"></i></a>
+            
+            <button class="btn btn-sm btn-primary rounded-pill px-3 fw-600 shadow-sm d-md-none flex-grow-1" style="min-width: 130px;" data-bs-toggle="modal" data-bs-target="#addMovieModal">
+                <i class="bi bi-plus-lg me-2"></i> Add New Content
+            </button>
+        </form>
+        
+        <div class="d-none d-md-block">
+            <button class="btn btn-sm btn-primary rounded-pill px-3 fw-600 shadow-sm" data-bs-toggle="modal" data-bs-target="#addMovieModal">
+                <i class="bi bi-plus-lg me-2"></i> Add New
+            </button>
+        </div>
+    </div>
+</header>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-4 border-0 shadow-sm mb-4">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="table-card p-0 overflow-hidden">
+    <div class="table-responsive">
+        <table class="table align-middle m-0">
+            <thead class="bg-light">
+                <tr>
+                    <th class="d-none-mobile">No.</th>
+                    <th>Poster</th>
+                    <th class="d-none-mobile">Backdrop</th>
+                    <th>Name/Meta</th>
+                    <th class="d-none-mobile">Runtime</th>
+                    <th class="d-none-mobile">Language</th>
+                    <th class="text-end pe-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies %}
+                <tr>
+                    <td class="ps-4 text-secondary small fw-600 d-none-mobile">{{ forloop.counter }}</td>
+                    <td>
+                        <img src="{{ movie.poster_url }}" class="movie-poster shadow-sm border" onerror="this.src='https://placehold.co/400x600?text=No+Poster'">
+                    </td>
+                    <td class="d-none-mobile">
+                        <img src="{{ movie.backdrop_url }}" class="movie-poster shadow-sm border" style="width: 140px; aspect-ratio: 16/9;" onerror="this.src='https://placehold.co/1920x1080?text=No+Backdrop'">
+                    </td>
+                    <td>
+                        <div class="fw-700 text-dark" style="font-size: 0.85rem;">{{ movie.title }}</div>
+                        <div class="small text-secondary fw-500">{{ movie.release_year }}</div>
+                    </td>
+                    <td class="text-secondary fw-500 d-none-mobile">{{ movie.duration_formatted }}</td>
+                    <td class="d-none-mobile"><span class="badge bg-light text-dark border px-3 py-2 rounded-pill fw-500">{{ movie.language }}</span></td>
+                    <td class="text-end pe-4">
+                        <div class="d-flex justify-content-end gap-2">
+                            <button class="btn btn-sm btn-light border-0 btn-action-icon" data-bs-toggle="modal" data-bs-target="#editMovie{{ movie.movie_id }}" title="Edit Movie">
+                                <i class="bi bi-pencil text-primary small"></i>
+                            </button>
+                            <a href="{% url 'admin_panel:delete_movie' movie.movie_id %}" class="btn-delete-pro btn-action-icon" onclick="return confirm('Remove movie?')">
+                                <i class="bi bi-trash-fill small"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center py-5 text-secondary">No movies found matching your criteria.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="addMovieModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded-4 border-0 shadow-lg">
+            <form action="{% url 'admin_panel:add_movie' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-header border-0"><h5 class="fw-800 text-indigo mb-0">Register Content</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body p-4 pt-0">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="small fw-700 text-secondary mb-1">Title</label>
+                            <input type="text" name="title" class="form-control rounded-3" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="small fw-700 text-secondary mb-1">Description</label>
+                            <textarea name="description" class="form-control rounded-3" rows="3"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small fw-700 text-secondary mb-1">Year</label>
+                            <input type="number" name="release_year" class="form-control rounded-3" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small fw-700 text-secondary mb-1">Duration</label>
+                            <input type="number" name="duration" class="form-control rounded-3" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small fw-700 text-secondary mb-1">Lang</label>
+                            <input type="text" name="language" class="form-control rounded-3" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="small fw-700 text-secondary mb-1">Genre</label>
+                            <select name="genre_id" class="form-select rounded-3">
+                                {% for g in genres %}<option value="{{ g.genre_id }}">{{ g.genre_name }}</option>{% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small fw-700 text-secondary mb-1">Trailer URL</label>
+                            <input type="url" name="trailer_url" class="form-control rounded-3" placeholder="https://youtube.com/...">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small fw-700 text-secondary mb-1">Age Rating</label>
+                            <select name="content_rating" class="form-select rounded-3">
+                                <option value="U">U (Unrestricted)</option>
+                                <option value="UA" selected>UA (Parental Guidance)</option>
+                                <option value="A">A (Adults Only)</option>
+                                <option value="18+">18+ (Mature)</option>
+                                <option value="PG-13">PG-13</option>
+                                <option value="R">R (Restricted)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small fw-700 text-secondary mb-1">Local Poster File</label>
+                            <input type="file" name="poster" class="form-control rounded-3">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small fw-700 text-secondary mb-1">Local Backdrop File</label>
+                            <input type="file" name="backdrop" class="form-control rounded-3">
+                        </div>
+                        <div class="col-6">
+                            <label class="small fw-700 text-secondary mb-1">External Poster URL</label>
+                            <input type="url" name="poster_url_external" class="form-control rounded-3" placeholder="https://...">
+                        </div>
+                        <div class="col-6">
+                            <label class="small fw-700 text-secondary mb-1">External Backdrop URL</label>
+                            <input type="url" name="backdrop_url_external" class="form-control rounded-3" placeholder="https://...">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill fw-800 shadow">Commit Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% for movie in movies %}
+<div class="modal fade" id="editMovie{{ movie.movie_id }}" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded-4 border-0 shadow">
+            <form action="{% url 'admin_panel:edit_movie' movie.movie_id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-header border-0 pb-0 px-4 pt-4 d-flex justify-content-between">
+                    <h5 class="fw-800 text-indigo mb-0">Modify Entity</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="p-4 pt-2">
+                    <p class="small text-secondary">Editing record: {{ movie.title }}</p>
+                    <div class="row g-3">
+                        <div class="col-12"><label class="small fw-700 text-secondary mb-1">Title</label><input type="text" name="title" class="form-control rounded-3" value="{{ movie.title }}" required></div>
+                        <div class="col-12"><label class="small fw-700 text-secondary mb-1">Description</label><textarea name="description" class="form-control rounded-3" rows="3">{{ movie.description }}</textarea></div>
+                        <div class="col-md-4"><label class="small fw-700 text-secondary mb-1">Year</label><input type="number" name="release_year" class="form-control rounded-3" value="{{ movie.release_year }}" required></div>
+                        <div class="col-md-4"><label class="small fw-700 text-secondary mb-1">Duration</label><input type="number" name="duration" class="form-control rounded-3" value="{{ movie.duration }}" required></div>
+                        <div class="col-md-4"><label class="small fw-700 text-secondary mb-1">Lang</label><input type="text" name="language" class="form-control rounded-3" value="{{ movie.language }}" required></div>
+                        <div class="col-12">
+                            <label class="small fw-700 text-secondary mb-1">Genre</label>
+                            <select name="genre_id" class="form-select rounded-3">
+                                {% with current_genre=movie.movie_genres.first %}
+                                    {% for g in genres %}
+                                        <option value="{{ g.genre_id }}" {% if g.genre_id == current_genre.genre_id %}selected{% endif %}>{{ g.genre_name }}</option>
+                                    {% endfor %}
+                                {% endwith %}
+                            </select>
+                        </div>
+                        <div class="col-md-8"><label class="small fw-700 text-secondary mb-1">Trailer URL</label><input type="url" name="trailer_url" class="form-control rounded-3" value="{{ movie.trailer_url }}"></div>
+                        <div class="col-md-4"><label class="small fw-700 text-secondary mb-1">Age Rating</label>
+                            <select name="content_rating" class="form-select rounded-3">
+                                <option value="U" {% if movie.content_rating == 'U' %}selected{% endif %}>U</option>
+                                <option value="UA" {% if movie.content_rating == 'UA' or not movie.content_rating %}selected{% endif %}>UA</option>
+                                <option value="A" {% if movie.content_rating == 'A' %}selected{% endif %}>A</option>
+                                <option value="18+" {% if movie.content_rating == '18+' %}selected{% endif %}>18+</option>
+                                <option value="PG-13" {% if movie.content_rating == 'PG-13' %}selected{% endif %}>PG-13</option>
+                                <option value="R" {% if movie.content_rating == 'R' %}selected{% endif %}>R</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-6"><label class="small fw-700 text-secondary mb-1">Local Poster</label><input type="file" name="poster" class="form-control rounded-3"></div>
+                        <div class="col-md-6"><label class="small fw-700 text-secondary mb-1">Local Backdrop</label><input type="file" name="backdrop" class="form-control rounded-3"></div>
+                        
+                        <div class="col-md-6"><label class="small fw-700 text-secondary mb-1">External Poster URL</label><input type="url" name="poster_url_external" class="form-control rounded-3" value="{{ movie.poster_url_external }}"></div>
+                        <div class="col-md-6"><label class="small fw-700 text-secondary mb-1">External Backdrop URL</label><input type="url" name="backdrop_url_external" class="form-control rounded-3" value="{{ movie.backdrop_url_external }}"></div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill fw-800 shadow">Keep Modifications</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,130 @@
+
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.badge-subtle {
+    font-size: 0.65rem;
+    padding: 0.4rem 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.table-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.05);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.nav-tabs-custom {
+    border-bottom: 2px solid #f1f5f9;
+    gap: 20px;
+}
+
+.nav-tabs-custom .nav-link {
+    border: none;
+    color: #64748b;
+    font-weight: 600;
+    padding: 12px 20px; 
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-tabs-custom .nav-link.active {
+    color: #000000 !important;
+    background: transparent;
+}
+
+.nav-tabs-custom .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #4f46e5;
+    border-radius: 2px;
+}
+
+.btn-action-icon {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-action-icon:hover {
+    background: #f1f5f9;
+    transform: translateY(-2px);
+}
+
+.user-mobile-card {
+    display: none;
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .table-responsive {
+        display: none;
+    }
+    
+    .user-mobile-card {
+        display: block;
+    }
+    
+    .header-actions {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+    
+    .search-form {
+        width: 100% !important;
+    }
+    
+    .search-form .input-group {
+        width: 100% !important;
+    }
+    
+    .nav-tabs-custom {
+        display: flex;
+        justify-content: space-around;
+        gap: 0;
+    }
+}
+
+.bg-indigo-subtle {
+    background-color: #4f46e5;
+}
+
+.btn-outline-indigo {
+    color: #4f46e5;
+    border-color: #4f46e5;
+}
+
+.btn-outline-indigo:hover {
+    background-color: #4f46e5;
+    color: white;
+}
+
+.form-select, .form-control, select option, .form-check-label {
+    color: #000000 !important;
+}
+
+.form-select:focus, .form-control:focus {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}

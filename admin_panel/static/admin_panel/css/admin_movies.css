@@ -1,0 +1,25 @@
+
+.movie-poster { 
+    width: 60px; 
+    height: 90px; 
+    object-fit: cover; 
+    border-radius: 10px; 
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.movie-poster:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    z-index: 5;
+}
+
+.modal-content {
+    border: none;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.text-indigo {
+    color: var(--primary-indigo) !important;
+}

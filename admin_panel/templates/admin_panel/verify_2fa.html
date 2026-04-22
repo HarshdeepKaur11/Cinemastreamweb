@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Verification - Cinemastream</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'users/css/auth.css' %}">
+    <style>
+        body {
+            background: #050505 !important;
+        }
+        body::before {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container min-vh-100 d-flex flex-column justify-content-center align-items-center">
+        <div class="card p-4 auth-card text-center">
+            <div class="mb-4">
+                <h2 class="fw-bold gradient-text">Admin 2FA Verification</h2>
+                <p class="text-white-50">Enter the 4-digit security code sent to <strong class="text-white">{{ admin_email }}</strong></p>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} mb-3 py-2 small rounded-3">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST" id="otpForm">
+                {% csrf_token %}
+                <div class="form-group mb-2">
+                    <input type="text" name="otp" id="otpInput" class="form-control auth-input text-center fs-2 letter-spacing-3" 
+                           placeholder="0000" maxlength="4" pattern="\d{4}" title="Please enter 4 digits" required autofocus autocomplete="off">
+                </div>
+                
+                <div class="mb-4">
+                    <div id="timerContainer">
+                        <span id="timerText" class="small text-white-50">Code expires in: <b id="timer" class="text-primary">30s</b></span>
+                    </div>
+                    <div id="resendContainer" class="d-none">
+                        <span class="small text-danger d-block mb-2">Code expired!</span>
+                        <a href="{% url 'admin_panel:admin_resend_2fa' %}" class="btn btn-outline-info btn-sm rounded-pill px-4">Resend Admin Code</a>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn btn-glow w-100 rounded-pill fw-bold py-2">Verify and Enter</button>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="small text-white-50">Need another account? <a href="{% url 'admin_panel:admin_login' %}" class="text-info text-decoration-none">Back to Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft = 30;
+        const timerDisplay = document.getElementById('timer');
+        const timerContainer = document.getElementById('timerContainer');
+        const resendContainer = document.getElementById('resendContainer');
+        const submitBtn = document.getElementById('submitBtn');
+        const otpInput = document.getElementById('otpInput');
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            if (timerDisplay) timerDisplay.textContent = timeLeft + 's';
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                if (timerContainer) timerContainer.classList.add('d-none');
+                if (resendContainer) resendContainer.classList.remove('d-none');
+                if (submitBtn) {
+                   submitBtn.disabled = true;
+                   submitBtn.classList.remove('btn-glow');
+                   submitBtn.classList.add('btn-secondary');
+                }
+                if (otpInput) {
+                    otpInput.disabled = true;
+                    otpInput.value = '';
+                    otpInput.placeholder = 'Expired';
+                }
+            }
+        }, 1000);
+    </script>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const alerts = document.querySelectorAll('.alert');
+                alerts.forEach(function(alert) {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                });
+            }, 2000);
+        });
+    </script>
+
+</body>
+</html>

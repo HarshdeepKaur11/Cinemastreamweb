@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center | Cinemastream</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'users/css/auth_extras.css' %}">
+</head>
+<body class="bg-dark text-white">
+
+            <nav class="navbar navbar-dark px-4 border-bottom border-white-10">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-outline-light me-3 border-0" onclick="toggleSidebar();">
+                    <i class="bi bi-list fs-3"></i>
+                </button>
+                <a class="navbar-brand" href="{% url 'core:index' %}">🎬 <span>Cinemastream</span></a>
+            </div>
+            <form action="{% url 'core:search' %}" method="GET"
+                class="search-group search-glow d-flex align-items-center flex-grow-1 mx-3 mx-lg-5"
+                style="max-width: 600px; transition: all 0.3s ease; position: relative;">
+                <input type="text" name="q" id="movieSearch"
+                    class="form-control bg-transparent border-0 text-white px-4 py-2 w-100"
+                    placeholder="Search movies..." style="font-size: 0.9rem; outline: none; box-shadow: none;">
+                <button type="button" id="clearSearch" class="btn btn-link text-white-50 p-0 me-2"
+                    style="display: none;"><i class="bi bi-x-circle"></i></button>
+                <button type="submit" class="btn btn-link text-white-50 pe-3"><i class="bi bi-search"></i></button>
+            </form>
+            <div class="ms-auto d-flex align-items-center gap-1 gap-md-2">
+                <a class="nav-btn-pill d-flex align-items-center gap-1 gap-md-2" href="{% url 'dashboard:user_dashboard' %}">
+                    <i class="bi bi-house-door"></i> <span class="d-none d-sm-inline">Home</span>
+                </a>
+                <a class="nav-btn-pill d-flex align-items-center gap-1 gap-md-2" href="{% url 'core:contact' %}">
+                    <i class="bi bi-envelope"></i> <span class="d-none d-sm-inline">Contact</span>
+                </a>
+                {% if current_user %}
+                <a href="{% url 'users:profile' %}" class="profile-nav-wrapper ms-2" title="Profile">
+                    <img src="{% if current_user.profile_pic %}{{ current_user.profile_pic.url }}{% else %}https://ui-avatars.com/api/?name={{ current_user.username }}{% endif %}"
+                        width="40" height="40" class="rounded-circle border-glow avatar-nav" style="object-fit: cover;">
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold">How can we <span class="text-primary">help?</span></h1>
+            <p class="text-secondary">Search our knowledge base or browse frequently asked questions below.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item mb-3 rounded overflow-hidden">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+                                How does the AI recommendation work?
+                            </button>
+                        </h2>
+                        <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Our AI analyzes your watch history, liked genres, and even the time of day you watch to suggest movies that match your current mood.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item mb-3 rounded overflow-hidden">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+                                Can I use Cinemastream on multiple devices?
+                            </button>
+                        </h2>
+                        <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes! Depending on your subscription plan, you can stream on up to 4 devices simultaneously.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help-card p-4 text-center mt-5">
+                    <h5>Still stuck?</h5>
+                    <p class="text-secondary small">If you can't find your answer, our support team is ready to help.</p>
+                    <a href="{% url 'core:contact' %}" class="btn btn-primary rounded-pill px-4">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'core/includes/footer.html' %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

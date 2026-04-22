@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cinemastream | FAQ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/faq.css' %}">
+</head>
+
+<body class="text-white faq-page">
+
+    {% include 'core/includes/navbar.html' with hide_search=True %}
+
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar();"></div>
+    {% include 'core/includes/sidebar.html' %}
+
+    <main class="main-content-wrapper" id="main-content">
+        <header class="faq-hero text-center">
+            <div class="container">
+                <span class="badge rounded-pill bg-primary border-0 mb-3 px-3 py-2 opacity-75 help-center-badge">HELP CENTER</span>
+                <h1 class="display-4 fw-bold mb-3">System <span class="gradient-text">Intelligence</span></h1>
+                <p class="text-white-50 mx-auto" style="max-width: 600px;">
+                    Everything you need to know about navigating the future of cinematic discovery.
+                </p>
+            </div>
+        </header>
+
+        <div class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="faq-card shadow-lg">
+                            <div class="accordion accordion-flush" id="faqAccordion">
+                                
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqAI">
+                                            <i class="bi bi-cpu me-3 text-primary"></i> How does the match engine work?
+                                        </button>
+                                    </h2>
+                                    <div id="faqAI" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body text-white-50">
+                                            Our AI analyzes your viewing history, genre preferences, and poster aesthetics to calculate a unique 'Match %' for every title. We use a hybrid of collaborative and content-based filtering to ensure high accuracy.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqWatchlist">
+                                            <i class="bi bi-plus-circle me-3 text-primary"></i> Adding to Watchlist?
+                                        </button>
+                                    </h2>
+                                    <div id="faqWatchlist" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body text-white-50">
+                                            Simply hover over any movie card and click the '+' icon. The movie will be saved to your Vault instantly. You can access your saved titles at any time from the 'History & Vault' section of your portal.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqContentRating">
+                                            <i class="bi bi-shield-lock me-3 text-primary"></i> Content Safety (Age Ratings)?
+                                        </button>
+                                    </h2>
+                                    <div id="faqContentRating" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body text-white-50">
+                                            Our system enforces strict age-gated filters. You'll only see 18+ content if your profile reflects legal eligibility. You can manage these filters in your 'Security' and 'Settings' menus to ensure a safe viewing environment for your household.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqLanguages">
+                                            <i class="bi bi-translate me-3 text-primary"></i> Personalized Languages?
+                                        </button>
+                                    </h2>
+                                    <div id="faqLanguages" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body text-white-50">
+                                            The AI prioritizes movies in genres & languages you've selected in your profile. Whether you're into Hindi blockbusters, Punjabi classics, or Hollywood hits, Cinemastream adapts its discovery algorithm to your linguistic soul.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSearch">
+                                            <i class="bi bi-search me-3 text-primary"></i> How do I search for specific actors?
+                                        </button>
+                                    </h2>
+                                    <div id="faqSearch" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body text-white-50">
+                                            Our search bar is globally indexed across movie titles, genres, actors, and directors. Simply type a name or category to find all relevant movies in our database.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqAccount">
+                                            <i class="bi bi-fingerprint me-3 text-primary"></i> Account Security & 2FA?
+                                        </button>
+                                    </h2>
+                                    <div id="faqAccount" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body text-white-50">
+                                            Every login is protected by a mandatory 4-digit verification code sent to your registered email. This ensures that even if your password is compromised, your viewing history and profile remain secure.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 text-center">
+                            <p class="text-white-50 mb-4">Still have unanswered questions?</p>
+                            <a href="{% url 'core:contact' %}" class="btn btn-outline-primary rounded-pill px-5 py-2 fw-bold contact-btn">
+                                Contact Support Team
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include 'core/includes/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

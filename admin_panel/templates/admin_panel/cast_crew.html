@@ -1,0 +1,237 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load static %}
+
+{% block title %}Cast & Crew | Cinemastream Admin{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    
+    <div class="col-lg-6">
+        <header class="d-flex flex-wrap justify-content-between align-items-center mb-4 custom-header-height gap-2">
+            <div>
+                <h1 class="h3 fw-800 mb-1">Cast & Crew</h1>
+                <p class="text-secondary small mb-0">
+                    Manage actors and directors &bull; 
+                    <span class="text-dark fw-700">{{ total_actors }} Active Actors</span> &bull; 
+                    <span class="text-dark fw-700">{{ total_directors }} Active Directors</span>
+                </p>
+            </div>
+            <div class="d-flex gap-2">
+                <form class="d-flex gap-1" method="GET" action="{% url 'admin_panel:cast_crew_list' %}">
+                    <input type="text" name="q" class="form-control form-control-sm rounded-pill px-3 shadow-sm border-0" style="width: 140px;" placeholder="Search..." value="{{ query|default:'' }}">
+                    <button type="submit" class="btn btn-sm btn-dark rounded-pill shadow-sm px-2"><i class="bi bi-search"></i></button>
+                    {% if query %}
+                    <a href="{% url 'admin_panel:cast_crew_list' %}" class="btn btn-sm btn-light rounded-pill shadow-sm px-2"><i class="bi bi-x-lg"></i></a>
+                    {% endif %}
+                </form>
+                <button class="btn btn-sm btn-primary rounded-pill px-3 fw-600 shadow-sm" data-bs-toggle="modal" data-bs-target="#addPersonModal">
+                    <i class="bi bi-person-plus"></i> Add 
+                </button>
+            </div>
+        </header>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show rounded-4 border-0 shadow-sm mb-4">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="table-card p-0 shadow-lg border-0 bg-white d-flex flex-column custom-card-height">
+
+            <div class="table-responsive flex-grow-1 overflow-auto log-container" style="overflow-x: hidden !important;">
+                <table class="table align-middle m-0 text-dark" style="table-layout: fixed;">
+                    <thead class="bg-light">
+                        <tr class="text-secondary text-uppercase x-small fw-800 tracking-wider">
+                            <th class="ps-4 py-3" style="width: 50%;">Profile</th>
+                            <th class="py-3" style="width: 25%;">Role</th>
+                            <th class="text-end pe-4 py-3" style="width: 25%;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in persons %}
+                        <tr>
+                            <td class="ps-4">
+                                <div class="d-flex align-items-center py-1">
+                                    <img src="{{ p.photo_url }}" width="45" height="45" class="rounded-circle me-3 border shadow-sm" style="object-fit:cover; flex-shrink: 0;" onerror="this.src='https://ui-avatars.com/api/?name={{ p.name|urlencode }}&background=4f46e5&color=fff&size=100'">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <div class="fw-700 text-dark small text-truncate">{{ p.name }}</div>
+                                        <div class="mt-1 d-flex flex-wrap gap-1">
+                                            {% for cast in p.movie_casts.all|slice:":3" %}
+                                            <span class="badge bg-light text-dark border fw-500 x-small" style="font-size: 0.55rem;">{{ cast.movie.title|truncatechars:20 }}</span>
+                                            {% endfor %}
+                                            {% if p.movie_count > 3 %}
+                                            <span class="badge bg-light text-secondary border fw-500 x-small" style="font-size: 0.55rem;">+{{ p.movie_count|add:"-3" }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-10 px-2 py-1 rounded-pill fw-600 x-small" style="font-size: 0.6rem;">{{ p.role|default:"UNKNOWN"|upper }}</span>
+                                    <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-10 px-2 py-1 rounded-pill fw-600 x-small ms-1" style="font-size: 0.6rem;" title="Total Movies/Relations">
+                                        <i class="bi bi-film me-1"></i>{{ p.movie_count|default:0 }}
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="text-end pe-4">
+                                <div class="d-flex justify-content-end gap-2">
+                                    <button class="btn btn-sm btn-light rounded-circle border-0 d-flex align-items-center justify-content-center btn-action-icon" data-bs-toggle="modal" data-bs-target="#editPersonModal{{ p.person_id }}" title="Edit Person">
+                                        <i class="bi bi-pencil text-primary small"></i>
+                                    </button>
+                                    <a href="{% url 'admin_panel:delete_person' p.person_id %}" class="btn-delete-pro btn-action-icon" onclick="return confirm('Prune person record?')">
+                                        <i class="bi bi-trash-fill small"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="3" class="text-center py-5 text-secondary small">No records found.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            
+            {% if page_obj.has_other_pages %}
+            <div class="p-3 bg-light border-top d-flex justify-content-between align-items-center rounded-bottom-4">
+                <span class="x-small text-secondary fw-700">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+                <nav>
+                    <ul class="pagination pagination-sm m-0">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item"><a class="page-link text-primary rounded-start-pill" href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a class="page-link text-muted rounded-start-pill">Prev</a></li>
+                        {% endif %}
+                        
+                        {% if page_obj.has_next %}
+                            <li class="page-item"><a class="page-link text-primary rounded-end-pill" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a class="page-link text-muted rounded-end-pill">Next</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    
+    <div class="col-lg-6">
+        <header class="d-flex justify-content-between align-items-center mb-4 custom-header-height">
+            <div>
+                <h1 class="h3 fw-800 mb-1">Relations</h1>
+                <p class="text-secondary small mb-0">Link talent to media assets</p>
+            </div>
+            <button class="btn btn-sm btn-dark rounded-pill px-4 fw-600 shadow-sm" data-bs-toggle="modal" data-bs-target="#assignCastModal">
+                <i class="bi bi-link-45deg me-2"></i> Assign
+            </button>
+        </header>
+
+        <div class="table-card p-0 shadow-lg border-0 bg-white d-flex flex-column custom-card-height">
+
+            <div class="table-responsive flex-grow-1 overflow-auto log-container" style="overflow-x: hidden !important;">
+                <table class="table align-middle m-0 text-dark" style="table-layout: fixed;">
+                    <thead class="bg-light">
+                        <tr class="text-secondary text-uppercase x-small fw-800 tracking-wider">
+                            <th class="ps-4 py-3" style="width: 45%;">Movie & Persona</th>
+                            <th class="py-3" style="width: 35%;">Talent Profile</th>
+                            <th class="text-end pe-4 py-3" style="width: 20%;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cast in cast_list %}
+                        <tr>
+                             <td class="ps-4">
+                                <div class="fw-700 small text-dark text-truncate">{{ cast.movie.title }}</div>
+                                <div class="x-small text-secondary italic text-truncate">Portrayed as: <span class="text-dark fw-600">{{ cast.character_name|default:"Production" }}</span></div>
+                            </td>
+                            <td>
+                                <div class="text-truncate">
+                                    <div class="small fw-700 text-dark text-truncate">{{ cast.person.name }}</div>
+                                    <span class="x-small text-primary fw-600 text-uppercase">{{ cast.person.role }}</span>
+                                </div>
+                            </td>
+                            <td class="text-end pe-4">
+                                <a href="{% url 'admin_panel:delete_cast' cast.id %}" class="btn-delete-pro btn-action-icon" onclick="return confirm('Sever this relation?')">
+                                    <i class="bi bi-trash-fill small"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="3" class="text-center py-5 text-secondary small">No links established yet.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addPersonModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-4 border-0 shadow-lg">
+            <form action="{% url 'admin_panel:add_person' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-header border-0 pb-0 px-4 pt-4"><h5 class="fw-800 text-primary mb-0">New Talent Profile</h5></div>
+                <div class="modal-body p-4 text-dark">
+                    <div class="mb-3"><label class="small fw-700 text-secondary mb-1">Full Name</label><input type="text" name="name" class="form-control rounded-3" placeholder="e.g. Christopher Nolan" required></div>
+                    <div class="mb-3"><label class="small fw-700 text-secondary mb-1">Professional Role</label><select name="role" class="form-select rounded-3"><option value="actor">Actor</option><option value="director">Director</option></select></div>
+                    <div class="mb-0"><label class="small fw-700 text-secondary mb-1">Headshot</label><input type="file" name="photo" class="form-control rounded-3"></div>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0"><button type="submit" class="btn btn-sm btn-primary w-100 py-2 rounded-pill fw-800 shadow">Archive Record</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% for p in persons %}
+<div class="modal fade" id="editPersonModal{{ p.person_id }}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-4 border-0 shadow-lg">
+            <form action="{% url 'admin_panel:edit_person' p.person_id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-header border-0 pb-0 px-4 pt-4"><h5 class="fw-800 text-primary mb-0">Modify Talent Profile</h5></div>
+                <div class="modal-body p-4 text-dark">
+                    <div class="mb-3"><label class="small fw-700 text-secondary mb-1">Full Name</label><input type="text" name="name" class="form-control rounded-3" value="{{ p.name }}" required></div>
+                    <div class="mb-3"><label class="small fw-700 text-secondary mb-1">Professional Role</label>
+                        <select name="role" class="form-select rounded-3">
+                            <option value="actor" {% if p.role == 'actor' %}selected{% endif %}>Actor</option>
+                            <option value="director" {% if p.role == 'director' %}selected{% endif %}>Director</option>
+                        </select>
+                    </div>
+                    <div class="mb-0"><label class="small fw-700 text-secondary mb-1">New Headshot (optional)</label><input type="file" name="photo" class="form-control rounded-3"></div>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0"><button type="submit" class="btn btn-sm btn-primary w-100 py-2 rounded-pill fw-800 shadow">Update Registry</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<div class="modal fade" id="assignCastModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-4 border-0 shadow-lg">
+            <form action="{% url 'admin_panel:assign_cast' %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-header border-0 pb-0 px-4 pt-4"><h5 class="fw-800 text-primary mb-0">Establish Link</h5></div>
+                <div class="modal-body p-4 text-dark">
+                    <div class="mb-3"><label class="small fw-700 text-secondary mb-1">Media Asset</label><select name="movie_id" class="form-select rounded-3">{% for m in movies %}<option value="{{ m.movie_id }}">{{ m.title }}</option>{% endfor %}</select></div>
+                    <div class="mb-3"><label class="small fw-700 text-secondary mb-1">Talent</label><select name="person_id" class="form-select rounded-3">{% for p in persons_for_assign %}<option value="{{ p.person_id }}">{{ p.name }} ({{ p.role|title }})</option>{% endfor %}</select></div>
+                    <div class="mb-0"><label class="small fw-700 text-secondary mb-1">Character Persona</label><input type="text" name="character_name" class="form-control rounded-3" placeholder="Portrayed as..."></div>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0"><button type="submit" class="btn btn-sm btn-primary w-100 py-2 rounded-pill fw-800 shadow">Commit Assignment</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin_panel/css/admin_cast.css' %}">
+{% endblock %}
+{% endblock %}

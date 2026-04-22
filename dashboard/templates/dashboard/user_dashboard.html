@@ -1,0 +1,1541 @@
+{% load static movie_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinemastream | My Recommendations</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+    <style>
+        .card {
+            aspect-ratio: 2/3;
+            width: 190px !important;
+            height: 285px !important;
+            flex: 0 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .movie-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover !important;
+        }
+
+        
+        .card-progress-container-fixed {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 15;
+            overflow: hidden;
+        }
+
+        .card-progress-fill-fixed {
+            height: 100%;
+            background: #e50914;
+            
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.7);
+            transition: width 0.3s ease;
+        }
+
+        .card-progress-percent-badge {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(229, 9, 20, 0.95);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 1px 5px;
+            border-radius: 3px;
+            z-index: 14;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+        }
+
+        .match-badge {
+            background: linear-gradient(90deg, #10b981, #059669);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+            margin-bottom: 4px;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        
+        .recommendation-scroll-container,
+        .scroll-container {
+            padding-top: 35px !important;
+            padding-bottom: 35px !important;
+            margin-top: -15px !important;
+            overflow-y: visible !important;
+            overflow-x: auto;
+            display: flex;
+            gap: 12px;
+            scrollbar-width: none;
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        
+        .card:hover {
+            z-index: 100 !important;
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+        }
+
+        
+        .rating-active {
+            color: #ffc107 !important;
+            font-weight: bold !important;
+            background: rgba(255, 193, 7, 0.25) !important;
+            border: 1px solid rgba(255, 193, 7, 0.6) !important;
+            box-shadow: 0 0 8px rgba(255, 193, 7, 0.2) !important;
+        }
+
+        .rating-default {
+            color: #ffffff99 !important;
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-white">
+
+    {% include 'core/includes/navbar.html' %}
+
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar();"></div>
+    {% include 'core/includes/sidebar.html' %}
+
+    <main class="main-content-wrapper" id="main-content">
+
+
+        <div class="container-fluid px-3 pt-3">
+            <div class="language-dialog-premium glass-effect p-3 rounded-4 border-white-10 shadow-2xl d-flex align-items-center justify-content-between animate-fade-in"
+                style="background: linear-gradient(135deg, rgba(37, 117, 252, 0.1) 0%, rgba(106, 17, 203, 0.05) 100%);">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="lang-icon-wrapper rounded-circle d-flex align-items-center justify-content-center bg-primary bg-opacity-20 text-primary"
+                        style="width: 40px; height: 40px; border: 1px solid rgba(37, 117, 252, 0.3);">
+                        <i class="bi bi-translate fs-5"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-white-50 small mb-0 fw-600 text-uppercase tracking-wider">Your Language
+                            Preferences</h6>
+                        <div class="d-flex flex-wrap gap-2 mt-1">
+                            {% if current_user.language_preference %}
+                            {% for lang in current_user.language_preference.split %}
+                            <span
+                                class="badge rounded-pill bg-white bg-opacity-10 text-primary border-white-10 fw-bold px-3 py-1"
+                                style="font-size: 0.75rem;">
+                                {{ lang.strip|title }}
+                            </span>
+                            {% endfor %}
+                            {% else %}
+                            <span class="text-white opacity-75 small">No languages selected yet</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'users:profile' %}"
+                    class="btn btn-outline-primary btn-sm rounded-pill px-4 fw-600 transition-all"
+                    style="font-size: 0.7rem;">
+                    <i class="bi bi-pencil-square me-1"></i> Update
+                </a>
+            </div>
+        </div>
+
+        {% if messages %}
+        <div class="alert-container-floating">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+
+        <div id="recommendationCarousel" class="carousel slide hero-banner overflow-hidden" data-bs-ride="carousel">
+
+            <div class="carousel-indicators indicators-minimal">
+                {% for movie in trending_movies|slice:":5" %}
+                <button type="button" data-bs-target="#recommendationCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+                    {% if forloop.first %}class="active" aria-current="true" {% endif %}
+                    aria-label="Slide {{ forloop.counter }}">
+                </button>
+                {% endfor %}
+            </div>
+
+            <div class="carousel-inner h-100">
+                {% for movie in trending_movies|slice:":5" %}
+                <div class="carousel-item h-100 {% if forloop.first %}active{% endif %}" data-bs-interval="5000">
+                    <img src="{{ movie.backdrop_url }}" class="hero-bg-image" alt="{{ movie.title }}"
+                        onerror="this.src='{{ movie.poster_url }}'">
+                    <div class="hero-overlay">
+                        <div class="hero-content-wrapper animate-up ps-3 ps-md-5">
+                            <div class="cinematic-badge mb-3 shiny-blue-badge">
+                                <i class="bi bi-stars me-2"></i>
+                                <span>
+                                    {% if current_user.language_preference %}
+                                    Top {{ current_user.language_preference|default:"Recommended" }} Selection
+                                    {% else %}
+                                    Selection #{{ forloop.counter }}
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <h1 class="hero-title-main">{{ movie.title }}</h1>
+                            <div class="d-flex align-items-center gap-3 mb-3 text-white-50 small">
+                                <span class="text-success fw-bold">{{ movie.match_percentage }}% Match</span>
+                                <span>{{ movie.release_year }}</span>
+                                <span class="mx-age-badge">
+                                    {{ movie.content_rating|default:"13+" }}
+                                </span>
+                                <span class="badge border border-white-10 px-1 py-0 shadow-sm rounded-1"
+                                    style="font-size: 0.6rem;">4K HDR</span>
+                            </div>
+                            <p class="hero-description-main d-block" style="max-width: 500px;">
+                                {{ movie.description|truncatechars:180 }}
+                            </p>
+                            <div class="hero-actions">
+                                <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                    class="btn btn-cinematic-solid">Watch Now</a>
+                                <button class="btn btn-cinematic-glass hero-action-wishlist"
+                                    data-movie-id="{{ movie.movie_id }}" data-action="wishlist"
+                                    data-url="{% url 'dashboard:add_to_watchlist' movie.movie_id %}">
+                                    <i class="bi bi-plus-lg me-2"></i> Watchlist
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#recommendationCarousel"
+                data-bs-slide="prev" style="width: 5%;">
+                <span class="bi bi-chevron-left fs-2 text-white opacity-25"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#recommendationCarousel"
+                data-bs-slide="next" style="width: 5%;">
+                <span class="bi bi-chevron-right fs-2 text-white opacity-25"></span>
+            </button>
+        </div>
+
+
+        <div class="genre-container px-3 mt-4 position-relative z-3">
+            <div class="genre-nav-wrapper glass-effect py-2 rounded-pill shadow-lg">
+                <button class="scroll-btn left" onclick="scrollGenres(-200);">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <div class="genre-scroll flex-grow-1 mx-2" id="genreScroll"
+                    style="display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 12px;">
+                    <button class="btn btn-genre-pill active" data-genre="all" onclick="filterByGenre('all')">
+                        <i class="bi bi-grid-fill me-1"></i> All
+                    </button>
+                    {% for genre in all_genres_list %}
+                    <button class="btn btn-genre-pill" data-genre-id="genre_{{ genre.genre_id }}"
+                        onclick="filterByGenre('genre_{{ genre.genre_id }}')">
+                        {{ genre.genre_name }}
+                    </button>
+                    {% endfor %}
+                </div>
+                <button class="scroll-btn right" onclick="scrollGenres(200);">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="genre-preference-section py-2 py-md-3 animate-fade-in">
+            <div class="px-2 px-md-3">
+                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between p-3 p-md-4 rounded-4 glass-effect border-white-10 shadow-2xl"
+                    style="background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);">
+                    <div class="d-flex align-items-center gap-3 gap-md-4 text-center text-md-start mb-3 mb-md-0">
+                        <div class="d-none d-sm-flex align-items-center justify-content-center bg-primary bg-opacity-20 text-primary rounded-circle"
+                            style="width: 45px; height: 45px; border: 1px solid rgba(37, 117, 252, 0.3);">
+                            <i class="bi bi-stars fs-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold text-white mb-1" style="letter-spacing: -0.5px; font-size: 1.1rem;">Add
+                                Your Preferences</h4>
+                            <p class="text-white-50 x-small mb-0">Select your favorite genres in your profile to refine
+                                your AI recommendations instantly.</p>
+                        </div>
+                    </div>
+                    <a href="{% url 'users:profile' %}" class="btn btn- px-4 py-2 fw-bold tracking-wider"
+                        style="white-space: nowrap; font-size: 0.7rem; color: white;">
+                        <i class="bi bi-pencil-square me-2" style="color: white;"></i>ADD PREFERENCES
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-1 px-md-2 pb-5 mt-4">
+
+            {% if hybrid_movies or cold_start_movies %}
+            <div class="genre-section mt-4" id="section_profile_top_picks">
+                <div id="profile_top_picks" class="genre-heading">
+                    Demographic & Profile-Based Recommendations
+                </div>
+                <p class="text-white-50 small mb-3">
+                    Precision-matched films curated by our AI engine based on your profile, age, and language
+                    preferences.
+                </p>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container recommendation-scroll-container">
+                        {% with recommended_movies=hybrid_movies|default:cold_start_movies %}
+                        {% for movie in recommended_movies|slice:":30" %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        {% if movie.is_recommended %}
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);">
+                                            <i class="bi bi-hand-thumbs-up-fill me-1"></i> {{ movie.match_percentage|default:"98" }}% Match</div>
+                                        {% else %}
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ movie.match_percentage|default:"85" }}% Match</div>
+                                        {% endif %}
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge border border-white-10 rounded-1 text-uppercase"
+                                            style="font-size: 0.55rem; background: rgba(0,0,0,0.4); width: fit-content; padding: 2px 6px !important; height: auto; display: inline-flex; align-items: center;">
+                                            {{ movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div
+                                        class="rating-badge badge glass-effect {% if movie.my_rating > 0 %}rating-active{% else %}rating-default{% endif %}">
+                                        <i
+                                            class="bi {% if movie.my_rating > 0 %}bi-star-fill{% else %}bi-star{% endif %} me-1"></i>
+                                        {% if movie.my_rating > 0 %}{{ movie.my_rating }}{% elif movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}
+                                    </div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                    <div class="side-actions">
+                                        <div class="action-btn-circle like" title="Like"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="like"><i
+                                                class="bi bi-hand-thumbs-up"></i></div>
+                                        <div class="action-btn-circle unlike" title="Unlike"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="unlike"><i
+                                                class="bi bi-hand-thumbs-down"></i></div>
+                                        <div class="action-btn-circle wishlist" title="Add to Watchlist"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="wishlist"
+                                            data-url="{% url 'dashboard:add_to_watchlist' movie.movie_id %}">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% endwith %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500)">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if true_collab_movies and history_count >= 1 %}
+            <div class="genre-section mt-4" id="section_true_collaborative">
+                <div id="true_collaborative" class="genre-heading">Collaborative Filtering (Users Who Liked This Also
+                    Liked)</div>
+                <p class="text-white-50 small mb-3">Shared Taste Engine: Recommendations from viewers who have enjoyed
+                    the same movies as you.</p>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container recommendation-scroll-container">
+                        {% for movie in true_collab_movies|slice:":20" %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ movie.match_percentage }}% Match</div>
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning"><i
+                                            class="bi bi-star-fill me-1"></i> {% if movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}</div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                </div>
+                                <div class="movie-card-overlay pb-2"
+                                    style="background: linear-gradient(0deg, rgba(8, 145, 178, 0.4) 0%, transparent 100%);">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500)">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+
+
+
+            {% if history_based_movies and watched_30_percent >= 1 and history_count >= 1 %}
+            <div class="genre-section mt-4" id="section_deep_dive">
+                <div id="deep_dive" class="genre-heading">History Deep Dive: Top Picks for You</div>
+                <p class="text-white-50 small mb-3">Recommendations based on your watch patterns and explored genres.
+                </p>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container recommendation-scroll-container">
+                        {% for movie in history_based_movies|slice:":20" %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        {% if movie.is_recommended %}
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);">
+                                            <i class="bi bi-hand-thumbs-up-fill me-1"></i> Match</div>
+                                        {% else %}
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ movie.match_percentage }}% Match</div>
+                                        {% endif %}
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning">
+                                        <i class="bi bi-star-fill me-1"></i> {% if movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}
+                                    </div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                    <div class="side-actions">
+                                        <div class="action-btn-circle like" title="Like"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="like"><i
+                                                class="bi bi-hand-thumbs-up"></i></div>
+                                        <div class="action-btn-circle unlike" title="Unlike"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="unlike"><i
+                                                class="bi bi-hand-thumbs-down"></i></div>
+                                        <div class="action-btn-circle wishlist" title="Add to Wishlist"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="wishlist"
+                                            data-url="{% url 'dashboard:add_to_watchlist' movie.movie_id %}">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500)">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if chromatic_harmony_movies and history_count >= 2 %}
+            <div class="genre-section mt-4 always-show" id="section_chromatic_harmony">
+                <div id="chromatic_harmony" class="genre-heading">Visuals Based Recommendation</div>
+                <p class="text-white-50 small mb-3">Movies with similar **{{ visual_theme_name }}** aesthetics and
+                    visual themes you enjoy.</p>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container recommendation-scroll-container">
+                        {% for movie in chromatic_harmony_movies|slice:":20" %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    {% if movie.is_recommended %}
+                                    <div class="match-badge badge"
+                                        style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);">
+                                        <i class="bi bi-hand-thumbs-up-fill me-1"></i> Match</div>
+                                    {% else %}
+                                    <div class="match-badge badge"
+                                        style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                        {{ movie.match_percentage }}% Match</div>
+                                    {% endif %}
+                                    <div class="rating-badge badge glass-effect text-warning"><i
+                                            class="bi bi-star-fill"></i> {% if movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}</div>
+                                    <div class="age-rating-badge-mini badge">{{ movie.content_rating|default:"13+" }}
+                                    </div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                    <div class="side-actions">
+                                        <div class="action-btn-circle like" title="Like"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="like"><i
+                                                class="bi bi-hand-thumbs-up"></i></div>
+                                        <div class="action-btn-circle unlike" title="Unlike"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="unlike"><i
+                                                class="bi bi-hand-thumbs-down"></i></div>
+                                        <div class="action-btn-circle wishlist" title="Add to Watchlist"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="wishlist"
+                                            data-url="{% url 'dashboard:add_to_watchlist' movie.movie_id %}">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500)">&#10095;</button>
+                </div>
+            </div>
+            {% elif poster_based_movies and history_count >= 2 %}
+            <div class="genre-section mt-4" id="section_poster_based">
+                <div id="poster_based" class="genre-heading">Based on Your Poster Visuals</div>
+                <p class="text-white-50 small mb-3">Movies with similar cinematic aesthetics and visual themes you
+                    enjoy.</p>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container recommendation-scroll-container">
+                        {% for movie in poster_based_movies|slice:":20" %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ movie.match_percentage|default:"88" }}% Match</div>
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning" style="color: #ffc107;"><i
+                                            class="bi bi-star-fill me-1"></i> {% if movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}</div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                    <div class="side-actions">
+                                        <div class="action-btn-circle like" title="Like"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="like"><i
+                                                class="bi bi-hand-thumbs-up"></i></div>
+                                        <div class="action-btn-circle unlike" title="Unlike"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="unlike"><i
+                                                class="bi bi-hand-thumbs-down"></i></div>
+                                        <div class="action-btn-circle wishlist" title="Add to Wishlist"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="wishlist"
+                                            data-url="{% url 'dashboard:add_to_watchlist' movie.movie_id %}">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500)">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+
+            {% if continue_watching %}
+            <div class="genre-section mt-3 mt-md-5" id="section_continue">
+                <div id="continue" class="genre-heading">Continue Watching</div>
+                <div class="genre-nav-wrapper mt-2">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container" style="padding: 10px 0;">
+                        {% for record in continue_watching %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' record.movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ record.movie.poster_url }}" class="movie-img"
+                                    alt="{{ record.movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ record.movie.match_percentage }}% Match</div>
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ record.movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ record.movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning">
+                                        <i class="bi bi-star-fill me-1"></i> {% if record.movie.stats.avg_rating > 0 %}{{ record.movie.stats.avg_rating }}{% else %}New{% endif %}
+                                    </div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                    <div class="side-actions">
+                                        <div class="action-btn-circle like" title="Like"
+                                            data-movie-id="{{ record.movie.movie_id }}" data-action="like"><i
+                                                class="bi bi-hand-thumbs-up"></i></div>
+                                        <div class="action-btn-circle unlike" title="Unlike"
+                                            data-movie-id="{{ record.movie.movie_id }}" data-action="unlike"><i
+                                                class="bi bi-hand-thumbs-down"></i></div>
+                                        <div class="action-btn-circle wishlist" title="Add to Wishlist"
+                                            data-movie-id="{{ record.movie.movie_id }}" data-action="wishlist"
+                                            data-url="{% url 'dashboard:add_to_watchlist' record.movie.movie_id %}">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% with current_progress=record.movie|get_watch_progress:current_user %}
+                                {% if current_progress > 0 %}
+                                <div class="card-progress-container-fixed">
+                                    <div class="card-progress-fill-fixed" data-progress="{{ current_progress }}"></div>
+                                </div>
+                                <div class="card-progress-percent-badge">{{ current_progress|floatformat:0 }}%</div>
+                                {% endif %}
+                                {% endwith %}
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ record.movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ record.movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="{% url 'dashboard:delete_history' record.history_id %}"
+                                class="btn-delete-card position-absolute top-0 end-0 m-2 z-3"
+                                onclick="return confirm('Remove from history?');">
+                                <i class="bi bi-trash small"></i>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500);">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+
+            {% if full_history %}
+            <div class="genre-section mt-3 mt-md-5" id="section_history">
+                <div id="history" class="genre-heading d-flex justify-content-between align-items-center mb-1">
+                    <div>Recent History</div>
+                    <a href="{% url 'dashboard:clear_all_history' %}"
+                        class="btn btn-sm btn-outline-danger rounded-pill px-3" style="font-size: 0.7rem;"
+                        onclick="return confirm('Clear your entire watch history?')">Clear All</a>
+                </div>
+                <div class="genre-nav-wrapper mt-1">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container" style="padding: 10px 0;">
+                        {% for record in full_history %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:delete_history' record.history_id %}" class="btn-delete-card"
+                                onclick="return confirm('Remove from history?');">
+                                <i class="bi bi-trash small" style="pointer-events: none;"></i>
+                            </a>
+                            <a href="{% url 'dashboard:moviedetails' record.movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ record.movie.poster_url }}" class="movie-img"
+                                    alt="{{ record.movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ record.movie.match_percentage }}% Match</div>
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ record.movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ record.movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning">
+                                        <i class="bi bi-star-fill me-1"></i> {% if record.movie.stats.avg_rating > 0 %}{{ record.movie.stats.avg_rating }}{% else %}New{% endif %}
+                                    </div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                    <div class="side-actions">
+                                        <div class="action-btn-circle like" title="Like"
+                                            data-movie-id="{{ record.movie.movie_id }}" data-action="like"><i
+                                                class="bi bi-hand-thumbs-up"></i></div>
+                                        <div class="action-btn-circle unlike" title="Unlike"
+                                            data-movie-id="{{ record.movie.movie_id }}" data-action="unlike"><i
+                                                class="bi bi-hand-thumbs-down"></i></div>
+                                        <div class="action-btn-circle wishlist" title="Add to Wishlist"
+                                            data-movie-id="{{ record.movie.movie_id }}" data-action="wishlist"
+                                            data-url="{% url 'dashboard:add_to_watchlist' record.movie.movie_id %}">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% with current_progress=record.movie|get_watch_progress:current_user %}
+                                {% if current_progress > 0 %}
+                                <div class="card-progress-container-fixed">
+                                    <div class="card-progress-fill-fixed" data-progress="{{ current_progress }}"></div>
+                                </div>
+                                <div class="card-progress-percent-badge">{{ current_progress|floatformat:0 }}%</div>
+                                {% endif %}
+                                {% endwith %}
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ record.movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ record.movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500);">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+
+            {% if wishlist %}
+            <div class="genre-section mt-5" id="section_wishlist">
+                <div id="wishlist" class="genre-heading">Your Watchlist</div>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container" style="padding: 10px 0;">
+                        {% for item in wishlist %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' item.movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ item.movie.poster_url }}" class="movie-img" alt="{{ item.movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ item.movie.match_percentage }}% Match</div>
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ item.movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ item.movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning">
+                                        <i class="bi bi-star-fill me-1"></i> {% if item.movie.stats.avg_rating > 0 %}{{ item.movie.stats.avg_rating }}{% else %}New{% endif %}
+                                    </div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                    <div class="side-actions">
+                                        <div class="action-btn-circle like" title="Like"><i
+                                                class="bi bi-hand-thumbs-up"></i></div>
+                                        <div class="action-btn-circle unlike" title="Unlike"><i
+                                                class="bi bi-hand-thumbs-down"></i></div>
+                                        <div class="action-btn-circle wishlist active" title="In Wishlist">
+                                            <i class="bi bi-check-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% with current_progress=item.movie|get_watch_progress:current_user %}
+                                {% if current_progress > 0 %}
+                                <div class="card-progress-container-fixed">
+                                    <div class="card-progress-fill-fixed" data-progress="{{ current_progress }}"></div>
+                                </div>
+                                <div class="card-progress-percent-badge">{{ current_progress|floatformat:0 }}%</div>
+                                {% endif %}
+                                {% endwith %}
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ item.movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ item.movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                    <div class="movie-card-info">Added on {{ item.added_at|date:"M d" }}</div>
+                                </div>
+                            </a>
+                            <form action="{% url 'dashboard:delete_from_watchlist' item.movie.movie_id %}"
+                                method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-delete-card">
+                                    <i class="bi bi-trash small"></i>
+                                </button>
+                            </form>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500);">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if rating_based_movies and has_ratings %}
+            <div class="genre-section mt-4" id="section_rating_based">
+                <div id="rating_based" class="genre-heading">Based on Your Ratings</div>
+                <p class="text-white-50 small mb-3">Top recommendations based on movies you've highly rated or
+                    recommended.</p>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container recommendation-scroll-container">
+                        {% for movie in rating_based_movies|slice:":20" %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        {% if movie.is_recommended %}
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);">
+                                            <i class="bi bi-hand-thumbs-up-fill me-1"></i> {{ movie.match_percentage|default:"98" }}% Match</div>
+                                        {% else %}
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ movie.match_percentage|default:"85" }}% Match</div>
+                                        {% endif %}
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div
+                                        class="rating-badge badge glass-effect {% if movie.my_rating > 0 %}rating-active{% else %}rating-default{% endif %}">
+                                        <i
+                                            class="bi {% if movie.my_rating > 0 %}bi-star-fill{% else %}bi-star{% endif %} me-1"></i>
+                                        {% if movie.my_rating > 0 %}{{ movie.my_rating }}{% elif movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}
+                                    </div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                    <div class="side-actions">
+                                        <div class="action-btn-circle like" title="Like"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="like"><i
+                                                class="bi bi-hand-thumbs-up"></i></div>
+                                        <div class="action-btn-circle unlike" title="Unlike"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="unlike"><i
+                                                class="bi bi-hand-thumbs-down"></i></div>
+                                        <div class="action-btn-circle wishlist" title="Add to Wishlist"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="wishlist"
+                                            data-url="{% url 'dashboard:add_to_watchlist' movie.movie_id %}">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% with current_progress=movie|get_watch_progress:current_user %}
+                                {% if current_progress > 0 %}
+                                <div class="card-progress-container-fixed">
+                                    <div class="card-progress-fill-fixed" data-progress="{{ current_progress }}"></div>
+                                </div>
+                                <div class="card-progress-percent-badge">{{ current_progress|floatformat:0 }}%</div>
+                                {% endif %}
+                                {% endwith %}
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500)">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+
+            {% if collaborative_movies %}
+            <div class="genre-section mt-4" id="section_collaborative_based">
+                <div id="collaborative_based" class="genre-heading">Trending Now</div>
+                <p class="text-white-50 small mb-3">The most watched movies by everyone on the platform right now.</p>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container recommendation-scroll-container">
+                        {% for movie in collaborative_movies|slice:":20" %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ movie.match_percentage }}% Match</div>
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge border border-white-10 rounded-1 text-uppercase"
+                                            style="font-size: 0.55rem; background: rgba(0,0,0,0.4); width: fit-content; padding: 2px 4px !important;">
+                                            {{ movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning"><i
+                                            class="bi bi-star-fill me-1"></i> {% if movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}</div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                    <div class="side-actions">
+                                        <div class="action-btn-circle like" title="Like"><i
+                                                class="bi bi-hand-thumbs-up"></i></div>
+                                        <div class="action-btn-circle unlike" title="Unlike"><i
+                                                class="bi bi-hand-thumbs-down"></i></div>
+                                        <div class="action-btn-circle wishlist" title="Add to Wishlist"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="wishlist"
+                                            data-url="{% url 'dashboard:add_to_watchlist' movie.movie_id %}">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% with current_progress=movie|get_watch_progress:current_user %}
+                                {% if current_progress > 0 %}
+                                <div class="card-progress-container-fixed">
+                                    <div class="card-progress-fill-fixed" data-progress="{{ current_progress }}"></div>
+                                </div>
+                                <div class="card-progress-percent-badge">{{ current_progress|floatformat:0 }}%</div>
+                                {% endif %}
+                                {% endwith %}
+                                <div class="movie-card-overlay pb-2"
+                                    style="background: linear-gradient(0deg, rgba(106, 17, 203, 0.4) 0%, transparent 100%);">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500)">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if punjabi_movies %}
+            <div class="genre-section mt-4">
+                <div class="genre-heading">Punjabi Hits</div>
+                <p class="text-white-50 small mb-3">Top trending movies from the heart of Punjab.</p>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container recommendation-scroll-container">
+                        {% for movie in punjabi_movies %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ movie.match_percentage }}% Match</div>
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning"><i
+                                            class="bi bi-star-fill me-1"></i> {% if movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}</div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                </div>
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500)">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if hindi_movies %}
+            <div class="genre-section mt-4">
+                <div class="genre-heading">Bollywood Blockbusters</div>
+                <p class="text-white-50 small mb-3">Essential Hindi cinema picked for you.</p>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container recommendation-scroll-container">
+                        {% for movie in hindi_movies %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ movie.match_percentage }}% Match</div>
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning"><i
+                                            class="bi bi-star-fill me-1"></i> {% if movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}</div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                </div>
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500)">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if korean_movies %}
+            <div class="genre-section mt-4">
+                <div class="genre-heading">Korean Wave (K-Cinema)</div>
+                <p class="text-white-50 small mb-3">Edge-of-your-seat thrillers and heartwarming dramas from Korea.</p>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container recommendation-scroll-container">
+                        {% for movie in korean_movies %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ movie.match_percentage }}% Match</div>
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning"><i
+                                            class="bi bi-star-fill me-1"></i> {% if movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}</div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                </div>
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500)">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if japanese_movies %}
+            <div class="genre-section mt-4">
+                <div class="genre-heading">Top Japanese Cinema</div>
+                <p class="text-white-50 small mb-3">Masterpieces and modern classics from Japan.</p>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container recommendation-scroll-container">
+                        {% for movie in japanese_movies %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ movie.match_percentage }}% Match</div>
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning"><i
+                                            class="bi bi-star-fill me-1"></i> {% if movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}</div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                </div>
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500)">&#10095;</button>
+                </div>
+            </div>
+            {% endif %}
+
+
+            <div class="genre-section mt-5" id="section_trending_main">
+                <div id="trending_main" class="genre-heading">Trending Now</div>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container">
+                        {% for movie in trending_movies %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        {% if movie.is_recommended %}
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);">
+                                            <i class="bi bi-hand-thumbs-up-fill me-1"></i> Match</div>
+                                        {% else %}
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ movie.match_percentage }}% Match</div>
+                                        {% endif %}
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning">
+                                        <i class="bi bi-star-fill me-1"></i> {% if movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}
+                                    </div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                    <div class="side-actions">
+                                        <div class="action-btn-circle like" title="Like"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="like"><i
+                                                class="bi bi-hand-thumbs-up"></i></div>
+                                        <div class="action-btn-circle unlike" title="Unlike"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="unlike"><i
+                                                class="bi bi-hand-thumbs-down"></i></div>
+                                        <div class="action-btn-circle wishlist" title="Add to Wishlist"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="wishlist"
+                                            data-url="{% url 'dashboard:add_to_watchlist' movie.movie_id %}">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                                {% with current_progress=movie|get_watch_progress:current_user %}
+                                {% if current_progress > 0 %}
+                                <div class="card-progress-container-fixed">
+                                    <div class="card-progress-fill-fixed" data-progress="{{ current_progress }}"></div>
+                                </div>
+                                <div class="card-progress-percent-badge">{{ current_progress|floatformat:0 }}%</div>
+                                {% endif %}
+                                {% endwith %}
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500);">&#10095;</button>
+                </div>
+
+            </div>
+
+            {% for section in genre_sections_data %}
+            {% if section.movies %}
+            <div class="genre-section mt-5" id="section_genre_{{ section.genre_id }}">
+                <div id="genre_{{ section.genre_id }}" class="genre-heading">{{ section.genre_name }}</div>
+                <p class="text-white-50 small mb-3">Explore top-rated {{ section.genre_name|lower }} hits curated for
+                    your profile.</p>
+                <div class="genre-nav-wrapper">
+                    <button class="scroll-btn left" onclick="scrollSection(this, -500);">&#10094;</button>
+                    <div class="scroll-container">
+                        {% for movie in section.movies %}
+                        <div class="card position-relative">
+                            <a href="{% url 'dashboard:moviedetails' movie.movie_id %}"
+                                class="h-100 w-100 text-decoration-none">
+                                <img src="{{ movie.poster_url }}" class="movie-img" alt="{{ movie.title }}"
+                                    onerror="this.src='https://placehold.co/400x600?text=No+Poster';">
+                                <div
+                                    class="card-badges position-absolute top-0 start-0 w-100 d-flex justify-content-between p-2">
+                                    <div class="d-flex flex-column gap-1">
+                                        {% if movie.is_recommended %}
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);">
+                                            <i class="bi bi-hand-thumbs-up-fill me-1"></i> Match</div>
+                                        {% else %}
+                                        <div class="match-badge badge"
+                                            style="width: fit-content; background: linear-gradient(90deg, #10b981, #059669); font-size: 0.6rem;">
+                                            {{ movie.match_percentage }}% Match</div>
+                                        {% endif %}
+                                        <div class="duration-badge badge glass-effect small"
+                                            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                                            <i class="bi bi-clock me-1 text-primary"></i> {{ movie.duration_formatted }}
+                                        </div>
+                                        <div class="age-rating-badge-mini badge">{{ movie.content_rating|default:"13+" }}</div>
+                                    </div>
+                                    <div class="rating-badge badge glass-effect text-warning">
+                                        <i class="bi bi-star-fill me-1"></i> {% if movie.stats.avg_rating > 0 %}{{ movie.stats.avg_rating }}{% else %}New{% endif %}
+                                    </div>
+                                </div>
+                                <div class="hover-actions">
+                                    <div class="play-btn-main"><i class="bi bi-play-fill"></i></div>
+                                    <div class="side-actions">
+                                        <div class="action-btn-circle like" title="Like"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="like"><i
+                                                class="bi bi-hand-thumbs-up"></i></div>
+                                        <div class="action-btn-circle unlike" title="Unlike"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="unlike"><i
+                                                class="bi bi-hand-thumbs-down"></i></div>
+                                        <div class="action-btn-circle wishlist" title="Add to Wishlist"
+                                            data-movie-id="{{ movie.movie_id }}" data-action="wishlist"
+                                            data-url="{% url 'dashboard:add_to_watchlist' movie.movie_id %}">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="movie-card-overlay pb-2">
+                                    <div class="movie-card-title">{{ movie.title }}</div>
+                                    <div class="hover-meta">
+                                        <span class="age-badge">{{ movie.content_rating|default:"UA" }}</span>
+                                    </div>
+                                </div>
+                                {% with current_progress=movie|get_watch_progress:current_user %}
+                                {% if current_progress > 0 %}
+                                <div class="card-progress-container-fixed">
+                                    <div class="card-progress-fill-fixed" data-progress="{{ current_progress }}"></div>
+                                </div>
+                                <div class="card-progress-percent-badge">{{ current_progress|floatformat:0 }}%</div>
+                                {% endif %}
+                                {% endwith %}
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="scroll-btn right" onclick="scrollSection(this, 500);">&#10095;</button>
+                </div>
+            </div>
+
+            {% endif %}
+
+            {% endfor %}
+        </div>
+
+        <div class="px-1 px-md-2 mt-5">
+            <div class="pt-5 border-top border-white-10">
+                <h4 class="mb-4 fw-bold gradient-text">Quick Navigation</h4>
+                <div class="row g-4">
+                    <div class="col-6 col-sm-4 col-md-3">
+                        <a href="{% url 'dashboard:user_dashboard' %}"
+                            class="nav-grid-item text-decoration-none d-block p-4 rounded-4 shadow text-center glass-effect">
+                            <i class="bi bi-stars fs-2 mb-3 d-block"></i>
+                            <div class="fw-semibold">Recommendations</div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3">
+                        <a href="{% url 'users:profile' %}"
+                            class="nav-grid-item text-decoration-none d-block p-4 rounded-4 shadow text-center glass-effect">
+                            <i class="bi bi-person-circle fs-2 mb-3 d-block"></i>
+                            <div class="fw-semibold">My Profile</div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3">
+                        <a href="{% url 'dashboard:history' %}"
+                            class="nav-grid-item text-decoration-none d-block p-4 rounded-4 shadow text-center glass-effect">
+                            <i class="bi bi-clock-history fs-2 mb-3 d-block"></i>
+                            <div class="fw-semibold">History</div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-3">
+                        <a href="{% url 'core:setting' %}"
+                            class="nav-grid-item text-decoration-none d-block p-4 rounded-4 shadow text-center glass-effect">
+                            <i class="bi bi-gear fs-2 mb-3 d-block"></i>
+                            <div class="fw-semibold">Settings</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    {% include 'core/includes/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.btn-genre-pill');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+        });
+
+        
+        function filterByGenre(sectionId) {
+            const sections = document.querySelectorAll('.genre-section');
+            const aiSections = ['section_profile_top_picks', 'section_poster_based', 'section_continue', 'section_trending', 'section_collab_recs'];
+
+            if (sectionId === 'all') {
+                sections.forEach(s => s.style.display = 'block');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            
+            const targetId = sectionId.startsWith('genre_') ? 'section_' + sectionId : 'section_genre_' + sectionId;
+
+            sections.forEach(s => {
+                
+                if (aiSections.includes(s.id)) {
+                    s.style.display = 'none';
+                    return;
+                }
+
+                if (s.id === targetId || s.id === 'section_' + sectionId) {
+                    s.style.display = 'block';
+                    s.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    s.style.display = 'none';
+                }
+            });
+        }
+
+        
+        function scrollGenres(distance) {
+            const container = document.getElementById('genreScroll');
+            container.scrollBy({
+                left: distance,
+                behavior: 'smooth'
+            });
+        }
+
+        function scrollSection(btn, distance) {
+            const wrapper = btn.closest('.genre-nav-wrapper');
+            const container = wrapper.querySelector('.scroll-container');
+            if (container) {
+                container.scrollBy({
+                    left: distance,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    </script>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const actionButtons = document.querySelectorAll('.action-btn-circle, .hero-action-wishlist');
+
+            actionButtons.forEach(btn => {
+                btn.onclick = async (e) => {
+                    
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const movieId = btn.dataset.movieId;
+                    const action = btn.dataset.action;
+                    let url = '';
+                    let formData = new FormData();
+
+                    if (action === 'wishlist') {
+                        url = btn.dataset.url;
+                    } else if (action === 'like' || action === 'unlike') {
+                        url = `/submit-review/${movieId}/`;
+                        formData.append('recommend', action === 'like' ? 'yes' : 'no');
+                        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+                    }
+
+                    if (!url) return;
+
+                    
+                    btn.classList.add('btn-animating');
+                    setTimeout(() => btn.classList.remove('btn-animating'), 200);
+
+                    try {
+                        const response = await fetch(url, {
+                            method: action === 'wishlist' ? 'GET' : 'POST',
+                            body: action === 'wishlist' ? null : formData,
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        });
+
+                        if (response.ok) {
+                            if (action === 'wishlist') {
+                                btn.classList.add('active');
+                                btn.innerHTML = '<i class="bi bi-check-lg"></i>';
+                                btn.style.background = '#6366f1';
+                                btn.style.borderColor = '#6366f1';
+                            } else if (action === 'like') {
+                                btn.style.background = '#10b981';
+                                btn.style.borderColor = '#10b981';
+                                
+                                const sister = btn.closest('.side-actions').querySelector('.unlike');
+                                if (sister) sister.style.background = '';
+                            } else if (action === 'unlike') {
+                                btn.style.background = '#ef4444';
+                                btn.style.borderColor = '#ef4444';
+                                const sister = btn.closest('.side-actions').querySelector('.like');
+                                if (sister) sister.style.background = '';
+                            }
+                        }
+                    } catch (err) {
+                        console.error('Action failed:', err);
+                    }
+                };
+            });
+        });
+    </script>
+
+    <script>
+        
+        const applyProgress = () => {
+            document.querySelectorAll('.progress-bar[data-progress], .card-progress-fill-fixed[data-progress]').forEach(el => {
+                el.style.width = el.dataset.progress + '%';
+            });
+        };
+        applyProgress();
+    </script>
+
+    {% if request.GET.new_user %}
+    <div id="new_user_prompt"
+        class="position-fixed bottom-0 end-0 m-4 p-3 glass-effect rounded-4 shadow-lg border-white-10 animate-fade-in-up"
+        style="z-index: 9999; max-width: 350px; background: linear-gradient(135deg, rgba(37, 117, 252, 0.2) 0%, rgba(106, 17, 203, 0.1) 100%);">
+        <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center shadow-sm"
+                style="width: 45px; height: 45px; flex-shrink: 0;">
+                <i class="bi bi-emoji-smile-fill fs-4"></i>
+            </div>
+            <div class="flex-grow-1">
+                <h6 class="fw-bold text-white mb-1">Welcome!</h6>
+                <p class="text-white-50 x-small mb-0">Add your favorite genres for better recommendations.</p>
+            </div>
+            <a href="{% url 'users:profile' %}" class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm fw-bold"
+                style="font-size: 0.7rem;">SET UP</a>
+            <button type="button" class="btn-close btn-close-white x-small-btn"
+                onclick="document.getElementById('new_user_prompt').remove()"></button>
+        </div>
+    </div>
+    <style>
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    {% endif %}
+
+</body>
+
+</html>

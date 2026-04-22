@@ -1,0 +1,81 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'core/css/footer.css' %}">
+
+<footer class="footer-premium pt-4 pb-3 mt-5 overflow-hidden">
+    
+    <div class="footer-glow-top"></div>
+    <div class="footer-glow-bottom"></div>
+
+    <div class="container-fluid px-4 px-md-5 position-relative">
+        <div class="row g-4 justify-content-between">
+            
+            <div class="col-lg-3">
+                <div class="footer-brand mb-3 d-flex align-items-center gap-2">
+                    <div class="logo-circle-wrapper">
+                        <img src="{% static 'images/logo_futuristic.png' %}" alt="Logo">
+                    </div>
+                    <h2 class="brand-text fw-bold mb-0 fs-5">Cinemastream</h2>
+                </div>
+                <p class="text-secondary opacity-75 mb-3 footer-desc">
+                    Experience the next generation of discovery. We sculpt unique cinematic timelines just for you.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="https://www.instagram.com/creativezens/" class="social-icon-cool" target="_blank"><i class="bi bi-instagram fs-6"></i></a>
+                    <a href="https://x.com/home" class="social-icon-cool" target="_blank"><i class="bi bi-twitter-x fs-6"></i></a>
+                    <a href="https://www.linkedin.com/feed/" class="social-icon-cool" target="_blank"><i class="bi bi-linkedin fs-6"></i></a>
+                </div>
+            </div>
+
+            
+            <div class="col-lg-8">
+                <div class="row g-3">
+                    <div class="col-6 col-md-3">
+                        <h6 class="text-info fw-bold mb-3 text-uppercase tracking-widest opacity-75 footer-section-title">Discovery</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="{% url 'dashboard:user_dashboard' %}" class="footer-nav-link-cool">Portal Home</a></li>
+                            <li class="mb-2"><a href="{% url 'dashboard:user_dashboard' %}" class="footer-nav-link-cool">AI Engine</a></li>
+                            <li class="mb-2"><a href="{% url 'dashboard:user_dashboard' %}" class="footer-nav-link-cool">Vault History</a></li>
+                            <li class="mb-2"><a href="{% url 'core:faq' %}" class="footer-nav-link-cool">System FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <h6 class="text-info fw-bold mb-3 text-uppercase tracking-widest opacity-75 footer-section-title">Identity</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="{% url 'users:profile' %}" class="footer-nav-link-cool">Preferences</a></li>
+                            <li class="mb-2"><a href="{% url 'core:security' %}" class="footer-nav-link-cool">Security</a></li>
+                            {% if current_user.is_admin %}
+                            <li class="mb-2"><a href="{% url 'admin_panel:admin_dashboard' %}" class="footer-nav-link-cool text-primary fw-600"><i class="bi bi-speedometer2 me-1"></i> Admin Panel</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="col-md-5 mt-4 mt-md-0">
+                        <div class="glass-card p-3 rounded-4 border border-white border-opacity-10 mb-4 footer-support-card">
+                            <p class="text-secondary mb-2">Facing an anomaly? Our team is active 24/7.</p>
+                            <a href="mailto:harschx31@gmail.com" class="btn btn-primary-gradient w-100 rounded-pill fw-bold py-1 shadow-sm border-0">
+                                <i class="bi bi-rocket-takeoff me-1"></i> Reach Support
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom mt-4 pt-3 border-top border-white border-opacity-5">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                <div class="text-secondary opacity-50 fw-500 footer-bottom-text">
+                    © 2026 Cinemastream Network. <span class="text-primary-gradient">Designed for the future of cinema.</span>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="{% url 'users:termsofservices' %}" class="footer-legal-link">Terms</a>
+                    <a href="#" class="footer-legal-link">Privacy</a>
+                    {% if current_user.is_admin %}
+                    <a href="{% url 'admin_panel:admin_dashboard' %}" class="btn btn-outline-info btn-sm rounded-pill px-3 fw-bold admin-badge-footer">
+                        <i class="bi bi-speedometer2 me-1"></i> ADMIN PANEL
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

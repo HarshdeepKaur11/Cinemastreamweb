@@ -1,0 +1,141 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load static %}
+
+{% block title %}Manage Users | Cinemastream Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin_panel/css/admin_users.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<header class="header-actions d-flex justify-content-between align-items-center mb-4 gap-3">
+    <div>
+        <h1 class="h3 fw-800 mb-1 text-dark">User Management</h1>
+        <p class="text-secondary small mb-0">Review and manage site members</p>
+    </div>
+    
+    <div class="d-flex align-items-center gap-2 search-form">
+        <form class="d-flex gap-2 w-100" method="GET" action="{% url 'admin_panel:users_list' %}">
+            <input type="hidden" name="tab" value="{{ tab }}">
+            <div class="input-group input-group-sm shadow-sm rounded-pill overflow-hidden border">
+                <input type="text" name="q" class="form-control border-0 px-3" style="min-width: 200px;" placeholder="Search in {{ tab }}..." value="{{ query|default:'' }}">
+                <select name="sort" class="form-select border-0 bg-light fw-600" style="max-width: 140px;" onchange="this.form.submit()">
+                    <option value="-created_at" {% if current_sort == '-created_at' %}selected{% endif %}>Join Date (New) </option>
+                    <option value="created_at" {% if current_sort == 'created_at' %}selected{% endif %}>Join Date (Old)</option>
+                    <option value="username" {% if current_sort == 'username' %}selected{% endif %}>Name (A-Z)</option>
+                    <option value="-username" {% if current_sort == '-username' %}selected{% endif %}>Name (Z-A)</option>
+                </select>
+                <button type="submit" class="btn btn-dark border-0 px-3 fw-600"><i class="bi bi-search"></i></button>
+            </div>
+        </form>
+        {% if query or current_sort != '-created_at' %}
+            <a href="{% url 'admin_panel:users_list' %}?tab={{ tab }}" class="btn btn-sm btn-light rounded-circle border shadow-sm p-2" title="Reset Filters"><i class="bi bi-arrow-counterclockwise"></i></a>
+        {% endif %}
+    </div>
+</header>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-4 shadow-sm mb-4">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<ul class="nav nav-tabs nav-tabs-custom mb-4" id="userTabs">
+    <li class="nav-item">
+        <a class="nav-link {% if tab == 'users' %}active{% endif %}" href="?tab=users&q={{ query|urlencode }}&sort={{ current_sort|urlencode }}">
+            Regular Users <span class="badge bg-light text-dark ms-1 shadow-sm">{{ user_count }}</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if tab == 'admins' %}active{% endif %}" href="?tab=admins&q={{ query|urlencode }}&sort={{ current_sort|urlencode }}">
+            Admins <span class="badge bg-light text-dark ms-1 shadow-sm">{{ admin_count }}</span>
+        </a>
+    </li>
+</ul>
+
+<div class="table-card p-0">
+    {% if tab == 'admins' %}
+        {% with target_list=admins %}
+            {% include "admin_panel/includes/user_list_inner.html" %}
+        {% endwith %}
+    {% else %}
+        {% with target_list=regular_users %}
+            {% include "admin_panel/includes/user_list_inner.html" %}
+        {% endwith %}
+    {% endif %}
+</div>
+</div>
+
+{% if current_user.email == "harschx31@gmail.com" %}
+{% for u in all_users_for_modals %}
+{% if u.email != "harschx31@gmail.com" %}
+<div class="modal fade" id="adminModal{{ u.user_id }}" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow-lg">
+            <form action="{% url 'admin_panel:assign_admin_privileges' u.user_id %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-header border-0 pb-0 px-4 pt-4">
+                    <h5 class="fw-800 text-primary mb-0">Manage Admin Privileges</h5>
+                </div>
+                <div class="modal-body p-4 text-dark">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <p class="small text-secondary fw-500 mb-0">Set permissions for <strong>{{ u.username }}</strong>.</p>
+                        <div class="d-flex gap-1">
+                            <button type="button" class="btn btn-xs btn-light border px-2 py-1 rounded-pill" style="font-size: 0.65rem;" onclick="toggleAllPerms('adminModal{{ u.user_id }}', true)">Check All</button>
+                            <button type="button" class="btn btn-xs btn-light border px-2 py-1 rounded-pill" style="font-size: 0.65rem;" onclick="toggleAllPerms('adminModal{{ u.user_id }}', false)">Clear All</button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-light p-3 rounded-3 mb-3">
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" name="permissions" value="users" {% if "users" in u.admin_permissions or u.admin_permissions == "all" %}checked{% endif %}>
+                            <label class="form-check-label fw-600 small ms-1">User Management (Delete/Ban)</label>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" name="permissions" value="movies" {% if "movies" in u.admin_permissions or u.admin_permissions == "all" %}checked{% endif %}>
+                            <label class="form-check-label fw-600 small ms-1">Movie & Library Editing</label>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" name="permissions" value="cast" {% if "cast" in u.admin_permissions or u.admin_permissions == "all" %}checked{% endif %}>
+                            <label class="form-check-label fw-600 small ms-1">Cast & Crew Relations</label>
+                        </div>
+                        <div class="form-check form-switch mb-0">
+                            <input class="form-check-input" type="checkbox" name="permissions" value="support" {% if "support" in u.admin_permissions or u.admin_permissions == "all" %}checked{% endif %}>
+                            <label class="form-check-label fw-600 small ms-1">View Support Messages</label>
+                        </div>
+                    </div>
+                    
+                    <p class="x-small text-danger fst-italic mb-0">Note: If you uncheck all boxes (Clear All), this user will be demoted to USER and moved to the Regular Users tab.</p>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-sm btn-light rounded-pill px-4 fw-600" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-sm btn-primary rounded-pill px-4 fw-800 shadow">Update Admin Rights</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    
+    function toggleAllPerms(modalId, state) {
+        const modal = document.querySelector('#' + modalId);
+        if (modal) {
+            const checkboxes = modal.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function(cb) {
+                cb.checked = state;
+            });
+        }
+    }
+</script>
+{% endblock %}

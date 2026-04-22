@@ -1,0 +1,27 @@
+<div class="sidebar px-0" id="sidebar">
+    <div class="py-2">
+        <a href="{% url 'dashboard:user_dashboard' %}" class="{% if request.resolver_match.view_name == 'dashboard:user_dashboard' %}active{% endif %}">
+            <i class="bi bi-stars me-2"></i> Recommendations
+        </a>
+        <hr class="text-white-50 my-2">
+        <a href="{% url 'users:profile' %}" class="{% if request.resolver_match.view_name == 'users:profile' %}active{% endif %}">
+            <i class="bi bi-person-circle me-2"></i> Profile
+        </a>
+        <a href="{% url 'dashboard:history' %}" class="{% if request.resolver_match.view_name == 'dashboard:history' %}active{% endif %}">
+            <i class="bi bi-clock-history me-2"></i> History
+        </a>
+        <a href="{% url 'users:profile' %}#preferences" class="{% if request.resolver_match.view_name == 'users:profile' %}active{% endif %}">
+            <i class="bi bi-stars me-2"></i> Add Preferences
+        </a>
+        <a href="{% url 'core:setting' %}" class="{% if request.resolver_match.view_name == 'core:setting' %}active{% endif %}">
+            <i class="bi bi-gear me-2"></i> Settings
+        </a>
+        <a href="{% url 'core:security' %}" class="{% if request.resolver_match.view_name == 'core:security' %}active{% endif %}">
+            <i class="bi bi-shield-lock me-2"></i> Security
+        </a>
+        <hr class="text-white-50 my-4">
+        <a href="{% url 'users:logout' %}" class="logout-btn">
+            <i class="bi bi-box-arrow-right me-2"></i> Logout
+        </a>
+    </div>
+</div>

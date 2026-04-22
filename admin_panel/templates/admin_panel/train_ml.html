@@ -1,0 +1,526 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load static %}
+
+{% block title %}ML Intelligence Studio | CinemaStream Admin{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --ml-purple: #6366f1;
+        --ml-pink: #d946ef;
+        --ml-cyan: #06b6d4;
+        --ml-indigo-dark: #0f172a;
+        --ml-card-bg: #1e293b;
+        --ml-glass-bg: rgba(30, 41, 59, 0.7);
+    }
+
+    body, .content, main.content { 
+        background-color: #0f172a !important; 
+        color: #f1f5f9 !important; 
+    }
+
+    .bg-white, .bg-light { background-color: transparent !important; }
+    .ml-studio-container { z-index: 10; position: relative; }
+
+    .ml-bg-blur {
+        position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; overflow: hidden; pointer-events: none;
+    }
+    .blob {
+        position: absolute; width: 500px; height: 500px; background: var(--ml-purple); filter: blur(150px); opacity: 0.15; border-radius: 50%; animation: move 25s infinite alternate;
+    }
+    .blob-2 { background: var(--ml-pink); left: 60%; top: 20%; animation-delay: -5s; }
+    .blob-3 { background: var(--ml-cyan); left: 10%; top: 70%; animation-delay: -10s; }
+
+    @keyframes move {
+        from { transform: translate(0, 0) scale(1); }
+        to { transform: translate(100px, 50px) scale(1.1); }
+    }
+
+    .ml-stat-card {
+        background-color: var(--ml-card-bg);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 1.5rem;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        transition: 0.3s;
+    }
+    .ml-stat-card:hover { transform: translateY(-5px); border-color: rgba(99, 102, 241, 0.4); }
+
+    .chart-container { height: 260px; position: relative; margin-bottom: 1rem; }
+    .chart-container-lg { height: 350px; position: relative; }
+
+    .ml-nav-pills { background: rgba(0,0,0,0.3); padding: 5px; border-radius: 14px; display: inline-flex; }
+    .ml-nav-pills .nav-link { color: #94a3b8; border-radius: 10px; padding: 0.6rem 1.2rem; font-weight: 600; border: none; }
+    .ml-nav-pills .nav-link.active { background: var(--ml-purple); color: white; box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
+
+    .glow-icon {
+        width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+        background: rgba(99, 102, 241, 0.1); color: var(--ml-purple); margin-bottom: 1rem;
+    }
+
+    .btn-ml-action {
+        background: var(--ml-purple); border: none; color: white; font-weight: 700; border-radius: 50px;
+        padding: 0.7rem 2rem; box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3); transition: 0.3s;
+    }
+    .btn-ml-action:hover { transform: scale(1.03); box-shadow: 0 15px 25px rgba(99, 102, 241, 0.5); }
+
+    .gradient-text {
+        background: linear-gradient(90deg, #fff, #818cf8);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    
+    @media (max-width: 991px) {
+        .ml-stat-card {
+            padding: 0.5rem 0.2rem !important;
+            border-radius: 12px !important;
+            min-height: 85px !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .ml-stat-card .glow-icon {
+            width: 24px !important;
+            height: 24px !important;
+            margin-bottom: 0.25rem !important;
+            font-size: 0.7rem !important;
+            border-radius: 6px !important;
+        }
+        .ml-stat-card .h3 {
+            font-size: 0.75rem !important;
+            margin-bottom: 0.1rem !important;
+            font-weight: 800 !important;
+            line-height: 1 !important;
+        }
+        .ml-stat-card .text-secondary.small {
+            font-size: 0.4rem !important;
+            letter-spacing: -0.2px !important;
+            line-height: 1 !important;
+            margin-bottom: 0.15rem !important;
+            white-space: nowrap !important;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+        .ml-stat-card .small.fw-600 {
+            font-size: 0.38rem !important;
+            display: block !important;
+            line-height: 1 !important;
+            white-space: nowrap !important;
+        }
+        .ml-studio-container header h1 {
+            font-size: 1.35rem !important;
+        }
+        .ml-studio-container header p {
+            font-size: 0.6rem !important;
+        }
+        .row.g-4.mb-5 {
+            gap: 0 !important;
+            margin-bottom: 1.5rem !important;
+            margin-left: -5px !important;
+            margin-right: -5px !important;
+        }
+        .row.g-4.mb-5 > div {
+            padding-left: 2px !important;
+            padding-right: 2px !important;
+        }
+        .ml-nav-pills {
+            margin-top: 1.5rem !important;
+            padding: 3px !important;
+        }
+        .ml-nav-pills .nav-link {
+            padding: 0.4rem 0.8rem !important;
+            font-size: 0.7rem !important;
+        }
+        .tab-content .p-4 {
+            padding: 0.75rem !important;
+        }
+        .tab-content .rounded-4 {
+            border-radius: 12px !important;
+            margin-bottom: 1.25rem !important;
+            padding: 0.85rem !important;
+            border: 1px solid rgba(255,255,255,0.08) !important;
+        }
+        .tab-content .h5 {
+            font-size: 0.75rem !important;
+            margin-bottom: 0.15rem !important;
+            font-weight: 700 !important;
+        }
+        .tab-content .small.text-white-50 {
+            font-size: 0.5rem !important;
+        }
+        .tab-content .x-small {
+            font-size: 0.45rem !important;
+            letter-spacing: 0.5px !important;
+        }
+        .tab-content .text-info, .tab-content .text-white.fw-800 {
+            font-size: 0.7rem !important;
+        }
+        .tab-content .btn-ml-action {
+            padding: 0.5rem 1.25rem !important;
+            font-size: 0.65rem !important;
+            width: 100% !important;
+            margin-top: 0.75rem !important;
+            border-radius: 10px !important;
+        }
+        .tab-content .col-md-7, .tab-content .col-md-5 {
+            text-align: left !important;
+        }
+        .tab-content .col-md-5 {
+            margin-top: -0.25rem !important;
+        }
+        .tab-content .d-flex.gap-4 {
+            gap: 1.5rem !important;
+        }
+    }
+
+    
+    .btn-outline-light:hover, 
+    .btn-outline-info:hover {
+        color: #000 !important;
+        background-color: #fff !important; 
+    }
+
+    .btn-outline-info:hover {
+        background-color: #0dcaf0 !important; 
+    }
+
+    
+    .algo-scroll-container {
+        flex: 1;
+        overflow-y: auto;
+        padding-right: 10px;
+        max-height: 420px; 
+    }
+    .algo-scroll-container::-webkit-scrollbar {
+        width: 6px;
+    }
+    .algo-scroll-container::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+    .algo-scroll-container::-webkit-scrollbar-thumb {
+        background: rgba(99, 102, 241, 0.3);
+        border-radius: 10px;
+    }
+    .algo-scroll-container::-webkit-scrollbar-thumb:hover {
+        background: var(--ml-purple);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="ml-bg-blur">
+    <div class="blob"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+</div>
+
+<div class="ml-studio-container">
+    <header class="d-flex justify-content-between align-items-end mb-5">
+        <div>
+            <h1 class="h2 fw-800 mb-1 gradient-text">Intelligence Studio</h1>
+            <p class="text-white-50 small fw-500"><i class="bi bi-cpu-fill me-2"></i>Admin ML Governance Panel</p>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-light btn-sm rounded-pill px-4 border-white-10" onclick="location.reload()">Sync Data</button>
+            <button class="btn btn-ml-action btn-sm px-4" id="mainTrainBtn" onclick="triggerTraining(this)">Initialize Model</button>
+        </div>
+    </header>
+
+    <div class="row g-4 mb-5">
+        <div class="col-3 col-md-3">
+            <div class="ml-stat-card text-center">
+                <div class="glow-icon mx-auto"><i class="bi bi-clock-history"></i></div>
+                <div class="text-secondary small fw-700 text-uppercase mb-1">Training Status</div>
+                <div class="h3 fw-800 mb-2">{{ stats.total_training_hours }}</div>
+                <div class="small fw-600 text-success">Uptime Active</div>
+            </div>
+        </div>
+        <div class="col-3 col-md-3">
+            <div class="ml-stat-card text-center">
+                <div class="glow-icon mx-auto" style="color: var(--ml-pink); background: rgba(217, 70, 239, 0.1);"><i class="bi bi-cpu"></i></div>
+                <div class="text-secondary small fw-700 text-uppercase mb-1">Compute Load</div>
+                <div class="h3 fw-800 mb-2">{{ stats.gpu_usage }}</div>
+                <div class="small fw-600 text-info">Processing...</div>
+            </div>
+        </div>
+        <div class="col-3 col-md-3">
+            <div class="ml-stat-card text-center">
+                <div class="glow-icon mx-auto" style="color: var(--ml-cyan); background: rgba(6, 182, 212, 0.1);"><i class="bi bi-bullseye"></i></div>
+                <div class="text-secondary small fw-700 text-uppercase mb-1">Convergence</div>
+                <div class="h3 fw-800 mb-2">{{ stats.convergence_rate }}</div>
+                <div class="small fw-600 text-success">Optimized</div>
+            </div>
+        </div>
+        <div class="col-3 col-md-3">
+            <div class="ml-stat-card text-center">
+                <div class="glow-icon mx-auto" style="color: #fbbf24; background: rgba(251, 191, 36, 0.1);"><i class="bi bi-star-fill"></i></div>
+                <div class="text-secondary small fw-700 text-uppercase mb-1">Avg Global Rating</div>
+                <div class="h3 fw-800 mb-2">{{ stats.avg_rating_all }}</div>
+                <div class="small fw-600 text-muted">Base Confidence</div>
+            </div>
+        </div>
+    </div>
+
+    <ul class="nav ml-nav-pills gap-2 mb-4" role="tablist">
+        <li class="nav-item">
+            <button class="nav-link active" id="models-tab" data-bs-toggle="pill" data-bs-target="#pills-models">Algorithmic Models</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" id="analytics-tab" data-bs-toggle="pill" data-bs-target="#pills-analytics">Visual Analytics</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" id="pipeline-tab" data-bs-toggle="pill" data-bs-target="#pills-pipeline">Release Roadmap</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-models" role="tabpanel">
+            <div class="row g-4 align-items-stretch">
+                <div class="col-lg-8">
+                    <div class="ml-stat-card border-0 p-0 overflow-hidden h-100 d-flex flex-column">
+                        <div class="p-4 border-bottom border-white-10 d-flex justify-content-between align-items-center" style="background: rgba(255,255,255,0.03);">
+                            <h5 class="fw-700 m-0 text-white"><i class="bi bi-collection-play me-2"></i>Active Algorithms</h5>
+                        </div>
+                        <div class="p-4 algo-scroll-container">
+                            {% for model in models %}
+                            <div class="p-4 rounded-4 border border-white-10 mb-4 position-relative overflow-hidden" style="background: rgba(255,255,255,0.03);">
+                                <div class="row align-items-center">
+                                    <div class="col-md-7">
+                                        <div class="d-flex align-items-center gap-2 mb-1">
+                                            <div class="fw-800 h5 mb-0 text-white">{{ model.model_name }}</div>
+                                            <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 x-small px-2 py-1">v1.{{ model.version }}</span>
+                                        </div>
+                                        
+                                        <div class="small text-white-50 fw-600 mb-2">{{ model.model_type }} • {{ model.algorithm }}</div>
+                                        
+                                        
+                                        <p class="x-small text-white-50 mb-3" style="max-width: 90%;">
+                                            {% if model.model_name == 'HybridConfig' %}
+                                                Governs optimization weights between User-to-Movie similarity and Visual themes. It sets the baseline logic for the recommendation logic.
+                                            {% elif model.model_name == "Hybrid Recommendation Model" %}
+                                                The core logic engine. Combines Collaborative Filtering (User behavior) with Visual CNN attributes to rank movie recommendations for every user.
+                                            {% elif model.model_name == "CV Media Analyzer" %}
+                                                Uses OpenCV for visual theme extraction from movie posters, identifying dominant colors and aesthetic patterns for aesthetic symmetry.
+                                            {% endif %}
+                                        </p>
+                                
+                                        <div class="d-flex gap-4">
+                                            <div>
+                                                <div class="x-small text-white-50 text-uppercase fw-700">Precision</div>
+                                                <div class="fw-800 text-info">{{ model.accuracy }}%</div>
+                                            </div>
+                                            <div>
+                                                <div class="x-small text-white-50 text-uppercase fw-700">Last Train</div>
+                                                <div class="fw-800 small text-white">{{ model.trained_on|date:"d M H:i"|default:"Just Now" }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 pt-3 pt-md-0 text-end">
+                                        <button class="btn btn-ml-action btn-sm px-4" onclick="triggerTraining(this)">Retrain Only {{ model.model_name }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="ml-stat-card h-100" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(0,0,0,0));">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="fw-800 m-0"><i class="bi bi-robot me-2"></i>Auto-Learning</h6>
+                            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 x-small px-2 py-1">ACTIVE</span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between x-small fw-800 text-white-50 mb-1">
+                                <span>Recent Feedback Sync</span>
+                                <span>{{ chart_data.pending_count }}/{{ chart_data.threshold }}</span>
+                            </div>
+                            <div class="progress bg-white bg-opacity-10" style="height: 6px; border-radius: 3px;">
+                                <div class="progress-bar bg-info" id="pendingProgressBar" role="progressbar"></div>
+                            </div>
+                        </div>
+
+                        <p class="x-small text-white-50 mb-4">The AI autonomously monitors user behavior. After 10 new ratings, a background optimization cycle begins automatically.</p>
+                        
+                        <h6 class="fw-800 mb-2 x-small text-uppercase text-white-50">Quick Actions</h6>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-ml-action btn-sm" id="mainTrainBtn" onclick="triggerTraining(this)">Manual Full Re-Train</button>
+                            <button class="btn btn-outline-info btn-sm border-info-25 text-info" onclick="simulateFeedback(this)"><i class="bi bi-play-circle me-1"></i>Simulate 10 User Feedbacks</button>
+                            <button class="btn btn-outline-light btn-sm border-white-10 text-white-50" onclick="location.reload()">Sync Dashboard</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="pills-analytics" role="tabpanel">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="ml-stat-card">
+                        <h6 class="fw-800 mb-4">Genre Frequencies</h6>
+                        <div class="chart-container"><canvas id="frequencyChart"></canvas></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ml-stat-card">
+                        <h6 class="fw-800 mb-4">Cosine Similarity</h6>
+                        <div class="chart-container"><canvas id="cosineChart"></canvas></div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="ml-stat-card">
+                        <h6 class="fw-800 mb-4">Logistic Regression Score</h6>
+                        <div class="chart-container-lg"><canvas id="logisticChart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="pills-pipeline" role="tabpanel">
+            <div class="ml-stat-card border-0" style="background: rgba(255,255,255,0.02);">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="fw-800 m-0 text-white">Model Pipeline (Gantt Chart)</h5>
+                    <div class="small fw-700 text-info bg-info bg-opacity-10 px-3 py-1 rounded-pill">Status: Finalized</div>
+                </div>
+                
+                <div class="gantt-wrapper position-relative py-3">
+                    
+                    <div class="position-absolute top-0 bottom-0 border-start border-white border-opacity-10" style="left: 150px; z-index: 1;"></div>
+                    <div class="position-absolute h-100 border-start border-primary border-opacity-25 border-dashed" style="left: 85%; z-index: 1;"></div>
+                    
+                    
+                    <div class="d-flex mb-2 text-white-50 x-small fw-700 text-uppercase" style="margin-left: 150px;">
+                        <div style="width: 33.3%;">Ingestion</div>
+                        <div style="width: 33.3%; text-align: center;">Analysis</div>
+                        <div style="width: 33.3%; text-align: right;">Deployment</div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="fw-700 small text-white-50" style="width: 150px;">Data Ingestion</div>
+                        <div class="flex-grow-1 position-relative">
+                            <div class="gantt-bar-gradient" style="width: 25%; background: linear-gradient(90deg, #6366f1, #818cf8); height: 12px; border-radius: 6px; box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="fw-700 small text-white-50" style="width: 150px;">CV Poster Analysis</div>
+                        <div class="flex-grow-1 position-relative">
+                            <div class="gantt-bar-gradient" style="width: 45%; margin-left: 20%; background: linear-gradient(90deg, #06b6d4, #22d3ee); height: 12px; border-radius: 6px; box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="fw-700 small text-white-50" style="width: 150px;">Collaborative Train</div>
+                        <div class="flex-grow-1 position-relative">
+                            <div class="gantt-bar-gradient" style="width: 35%; margin-left: 60%; background: linear-gradient(90deg, #d946ef, #e879f9); height: 12px; border-radius: 6px; box-shadow: 0 0 15px rgba(217, 70, 239, 0.3);"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-top border-white border-opacity-5 d-flex gap-3">
+                        <div class="d-flex align-items-center gap-2"><div style="width: 8px; height: 8px; border-radius: 50%; background: #6366f1;"></div> <span class="x-small text-white-50 fw-600">Sync Pipeline</span></div>
+                        <div class="d-flex align-items-center gap-2"><div style="width: 8px; height: 8px; border-radius: 50%; background: #06b6d4;"></div> <span class="x-small text-white-50 fw-600">CV Engine</span></div>
+                        <div class="d-flex align-items-center gap-2"><div style="width: 8px; height: 8px; border-radius: 50%; background: #d946ef;"></div> <span class="x-small text-white-50 fw-600">Model Deployment</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ chart_data.frequencies|json_script:"freq-data" }}
+{{ chart_data.labels|json_script:"freq-labels" }}
+{{ chart_data.cosine_curve|json_script:"cosine-data" }}
+{{ chart_data.logistic_data|json_script:"logistic-data" }}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const freqData = JSON.parse(document.getElementById('freq-data').textContent);
+        const freqLabels = JSON.parse(document.getElementById('freq-labels').textContent);
+        const cosineData = JSON.parse(document.getElementById('cosine-data').textContent);
+        const logisticData = JSON.parse(document.getElementById('logistic-data').textContent);
+
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }
+            }
+        };
+
+        new Chart(document.getElementById('frequencyChart'), {
+            type: 'bar',
+            data: {
+                labels: freqLabels,
+                datasets: [{ data: freqData, backgroundColor: '#6366f1', borderRadius: 5 }]
+            },
+            options: commonOptions
+        });
+
+        new Chart(document.getElementById('cosineChart'), {
+            type: 'line',
+            data: {
+                labels: ['0', '15', '30', '45', '60', '75', '90'],
+                datasets: [{ data: cosineData, borderColor: '#d946ef', tension: 0.4, fill: true, backgroundColor: 'rgba(217, 70, 239, 0.1)' }]
+            },
+            options: commonOptions
+        });
+
+        new Chart(document.getElementById('logisticChart'), {
+            type: 'line',
+            data: {
+                labels: logisticData.map((_, i) => i * 10),
+                datasets: [{ data: logisticData, borderColor: '#06b6d4', tension: 0.1, fill: true, backgroundColor: 'rgba(6, 182, 212, 0.1)' }]
+            },
+            options: commonOptions
+        });
+
+        
+        const pb = document.getElementById('pendingProgressBar');
+        if (pb) pb.style.width = "{{ chart_data.pending_progress }}%";
+    });
+
+    function triggerTraining(btn) {
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Processing...';
+        
+        fetch("{% url 'admin_panel:train_ml_ajax' %}")
+            .then(r => r.json())
+            .then(data => {
+                alert('ML Training Pipeline started! The models will update in the background.');
+            })
+            .catch(e => alert('Failed to start training.'))
+            .finally(() => {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            });
+    }
+
+    function simulateFeedback(btn) {
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Simulating...';
+        
+        fetch("{% url 'admin_panel:simulate_feedback_ajax' %}")
+            .then(r => r.json())
+            .then(data => {
+                alert(data.message);
+                location.reload();
+            })
+            .catch(e => alert('Simulation failed.'))
+            .finally(() => {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            });
+    }
+</script>
+{% endblock %}

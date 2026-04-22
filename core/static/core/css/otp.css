@@ -1,0 +1,83 @@
+
+.otp-input-field {
+    letter-spacing: 12px;
+    font-size: 2.2rem !important;
+    font-weight: 800 !important;
+    text-indent: 12px;
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 20px !important;
+    transition: all 0.3s ease;
+}
+
+.otp-input-field:focus {
+    background: rgba(0, 0, 0, 0.6) !important;
+    border-color: #2575fc !important;
+    box-shadow: 0 0 15px rgba(37, 117, 252, 0.2) !important;
+}
+
+.otp-input-field::placeholder {
+    letter-spacing: 8px;
+    text-indent: 8px;
+    font-size: 1.5rem !important;
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.auth-card {
+    border: 1px solid rgba(37, 117, 252, 0.2) !important;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(15px);
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.timer-b {
+    color: #0dcaf0;
+    font-weight: 700;
+}
+
+.resend-link {
+    transition: all 0.3s ease;
+}
+
+.resend-link:hover {
+    filter: brightness(1.2);
+    text-shadow: 0 0 10px rgba(13, 202, 240, 0.3);
+}
+
+.otp-icon-wrapper {
+    width: 65px;
+    height: 65px;
+    background: rgba(37, 117, 252, 0.1);
+    color: #2575fc;
+}
+
+.blob-1 {
+    top: -10%;
+    right: -10%;
+    background: rgba(37, 117, 252, 0.1);
+}
+
+.blob-2 {
+    bottom: -10%;
+    left: -10%;
+    background: rgba(106, 17, 203, 0.1);
+}
+
+.glass-morphism {
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.opacity-60 {
+    opacity: 0.6;
+}
+
+.letter-spacing-05 {
+    letter-spacing: 0.5px;
+}
