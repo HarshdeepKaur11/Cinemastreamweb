@@ -6438,5 +6438,33 @@
         "vibe": "Desaturated/Gritty",
         "complexity": 4875.7509546921265,
         "visual_style": "Action-Packed/Complex"
+    },
+    "1103024": {
+        "palette": [
+            {
+                "r": 175,
+                "g": 73,
+                "b": 65,
+                "hex": "#af4941"
+            },
+            {
+                "r": 205,
+                "g": 184,
+                "b": 161,
+                "hex": "#cdb8a1"
+            },
+            {
+                "r": 51,
+                "g": 53,
+                "b": 55,
+                "hex": "#333537"
+            }
+        ],
+        "dominant_hex": "#af4941",
+        "saturation": 120.64171851851852,
+        "brightness": 137.77045925925927,
+        "vibe": "Standard",
+        "complexity": 4319.062323091139,
+        "visual_style": "Action-Packed/Complex"
     }
 }
