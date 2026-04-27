@@ -13,7 +13,7 @@ if env_path.exists():
                 os.environ[key] = value
 
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-s7h69hkds!+oh50)mzeaf-(it%)+%tqd^qoxf=jl4h)umyybck')
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-this-secret-key')
 
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
@@ -80,19 +80,19 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.getenv('DB_NAME', 'movierecsysweb'),
         'USER': os.getenv('DB_USER', 'root'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'MitsRecommendation31_'),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
         'HOST': os.getenv('DB_HOST', '127.0.0.1'),
         'PORT': os.getenv('DB_PORT', '3306'),
     }
 }
 
-BOSS_EMAIL = os.getenv('BOSS_EMAIL', 'harschx31@gmail.com')
+BOSS_EMAIL = os.getenv('BOSS_EMAIL', '')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_USE_TLS = True
 EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'harschx31@gmail.com')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 AUTH_PASSWORD_VALIDATORS = [
