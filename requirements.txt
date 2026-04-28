@@ -67,7 +67,6 @@ lxml==6.0.2
 MarkupSafe==3.0.2
 matplotlib-inline==0.2.1
 mistune==3.1.4
-mysql==0.0.3
 mysqlclient==2.2.7
 nbclient==0.10.2
 nbconvert==7.16.6
