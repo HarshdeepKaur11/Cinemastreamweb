@@ -73,7 +73,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 WSGI_APPLICATION = 'cinemastreamweb.wsgi.application'
 
-USE_SQLITE = os.getenv('USE_SQLITE', 'False').lower() in ('1', 'true', 'yes')
+USE_SQLITE = os.getenv('USE_SQLITE', 'False').lower() in ('1', 'true', 'yes') or not os.getenv('DB_NAME')
 
 if USE_SQLITE:
     DATABASES = {
