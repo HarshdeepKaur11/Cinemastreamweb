@@ -1,10 +1,5 @@
 import os
 from pathlib import Path
-import pymysql
-
-# Spoof mysqlclient for Django 6.0 Compatibility
-pymysql.version_info = (2, 2, 7, "final", 0)
-pymysql.install_as_MySQLdb()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -81,40 +76,21 @@ WSGI_APPLICATION = 'cinemastreamweb.wsgi.application'
 # Use MySQL but fallback to SQLite if connection fails
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
         'NAME': os.getenv('DB_NAME', 'movierecsysweb'),
         'USER': os.getenv('DB_USER', 'root'),
         'PASSWORD': os.getenv('DB_PASSWORD', ''),
         'HOST': os.getenv('DB_HOST', '127.0.0.1'),
         'PORT': os.getenv('DB_PORT', '3306'),
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             'charset': 'utf8mb4',
         },
         'CONN_MAX_AGE': 600,
     }
 }
 
-# Connection test for build-time safety
-if os.getenv('DB_NAME'):
-    try:
-        conn = pymysql.connect(
-            host=os.getenv('DB_HOST', '127.0.0.1'),
-            user=os.getenv('DB_USER', 'root'),
-            password=os.getenv('DB_PASSWORD', ''),
-            database=os.getenv('DB_NAME'),
-            connect_timeout=3
-        )
-        conn.close()
-    except Exception:
-        USE_SQLITE = True
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': BASE_DIR / 'db.sqlite3',
-            }
-        }
-else:
+# Database fallback logic
+if not os.getenv('DB_NAME'):
     USE_SQLITE = True
     DATABASES = {
         'default': {
@@ -122,6 +98,8 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+else:
+    USE_SQLITE = False
 
 BOSS_EMAIL = os.getenv('BOSS_EMAIL', '')
 

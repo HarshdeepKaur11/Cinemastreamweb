@@ -12,7 +12,7 @@ idna
 Jinja2
 joblib
 MarkupSafe
-PyMySQL
+mysql-connector-python
 numpy
 opencv-python-headless
 packaging
