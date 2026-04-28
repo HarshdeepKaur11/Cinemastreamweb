@@ -107,10 +107,28 @@ else:
             import pymysql
             pymysql.version_info = (2, 2, 7, "final", 0)
             pymysql.install_as_MySQLdb()
-            # We don't actually connect here to avoid slowing down startup, 
-            # but we've ensured the driver is spoofed correctly.
+            
+            # During build/collectstatic, we might not have DB access.
+            # Only try to connect if we have all credentials.
+            if os.getenv('DB_NAME'):
+                host = os.getenv('DB_HOST', '127.0.0.1')
+                user = os.getenv('DB_USER', 'root')
+                password = os.getenv('DB_PASSWORD', '')
+                database = os.getenv('DB_NAME')
+                
+                # We don't block the whole app, but we set a flag
+                # to use SQLite for the current process if MySQL is dead
+                conn = pymysql.connect(host=host, user=user, password=password, database=database, connect_timeout=3)
+                conn.close()
         except Exception:
-            pass
+            # Force SQLite for this process if MySQL connection fails
+            USE_SQLITE = True
+            DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.sqlite3',
+                    'NAME': BASE_DIR / 'db.sqlite3',
+                }
+            }
 
 BOSS_EMAIL = os.getenv('BOSS_EMAIL', '')
 
