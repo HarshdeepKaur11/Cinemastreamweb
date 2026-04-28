@@ -1,6 +1,10 @@
-
 import os
 from pathlib import Path
+import pymysql
+
+# Spoof mysqlclient for Django 6.0 Compatibility
+pymysql.version_info = (2, 2, 7, "final", 0)
+pymysql.install_as_MySQLdb()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -74,61 +78,50 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 WSGI_APPLICATION = 'cinemastreamweb.wsgi.application'
 
-USE_SQLITE = os.getenv('USE_SQLITE', 'False').lower() in ('1', 'true', 'yes') or not os.getenv('DB_NAME')
+# Use MySQL but fallback to SQLite if connection fails
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('DB_NAME', 'movierecsysweb'),
+        'USER': os.getenv('DB_USER', 'root'),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+        'PORT': os.getenv('DB_PORT', '3306'),
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+        },
+        'CONN_MAX_AGE': 600,
+    }
+}
 
-if USE_SQLITE:
+# Connection test for build-time safety
+if os.getenv('DB_NAME'):
+    try:
+        conn = pymysql.connect(
+            host=os.getenv('DB_HOST', '127.0.0.1'),
+            user=os.getenv('DB_USER', 'root'),
+            password=os.getenv('DB_PASSWORD', ''),
+            database=os.getenv('DB_NAME'),
+            connect_timeout=3
+        )
+        conn.close()
+    except Exception:
+        USE_SQLITE = True
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
+else:
+    USE_SQLITE = True
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-else:
-    # Use MySQL as the primary production database
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.getenv('DB_NAME', 'movierecsysweb'),
-            'USER': os.getenv('DB_USER', 'root'),
-            'PASSWORD': os.getenv('DB_PASSWORD', ''),
-            'HOST': os.getenv('DB_HOST', '127.0.0.1'),
-            'PORT': os.getenv('DB_PORT', '3306'),
-            'OPTIONS': {
-                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-                'charset': 'utf8mb4',
-            },
-            'CONN_MAX_AGE': 600,
-        }
-    }
-    
-    # Final safety check: if we are not using SQLite, verify the connection
-    if not USE_SQLITE:
-        try:
-            import pymysql
-            pymysql.version_info = (2, 2, 7, "final", 0)
-            pymysql.install_as_MySQLdb()
-            
-            # During build/collectstatic, we might not have DB access.
-            # Only try to connect if we have all credentials.
-            if os.getenv('DB_NAME'):
-                host = os.getenv('DB_HOST', '127.0.0.1')
-                user = os.getenv('DB_USER', 'root')
-                password = os.getenv('DB_PASSWORD', '')
-                database = os.getenv('DB_NAME')
-                
-                # We don't block the whole app, but we set a flag
-                # to use SQLite for the current process if MySQL is dead
-                conn = pymysql.connect(host=host, user=user, password=password, database=database, connect_timeout=3)
-                conn.close()
-        except Exception:
-            # Force SQLite for this process if MySQL connection fails
-            USE_SQLITE = True
-            DATABASES = {
-                'default': {
-                    'ENGINE': 'django.db.backends.sqlite3',
-                    'NAME': BASE_DIR / 'db.sqlite3',
-                }
-            }
 
 BOSS_EMAIL = os.getenv('BOSS_EMAIL', '')
 
