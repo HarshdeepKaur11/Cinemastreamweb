@@ -7,8 +7,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),
-    path('', include('dashboard.urls')),
+
+    path('', include('core.urls')),              # homepage only here
+
+    path('dashboard/', include('dashboard.urls')),
+
     path('users/', include('users.urls')),
+
     path('admin_panel/', include('admin_panel.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
