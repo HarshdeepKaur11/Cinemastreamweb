@@ -1,3 +1,13 @@
 gunicorn
 whitenoise
 Django
+django-environ
+python-dotenv
+mysql-connector-python
+pillow
+requests
+numpy
+pandas
+scipy
+scikit-learn
+opencv-python-headless

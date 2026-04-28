@@ -73,33 +73,48 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 WSGI_APPLICATION = 'cinemastreamweb.wsgi.application'
 
-# Use MySQL but fallback to SQLite if connection fails
-DATABASES = {
-    'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': os.getenv('DB_NAME', 'movierecsysweb'),
-        'USER': os.getenv('DB_USER', 'root'),
-        'PASSWORD': os.getenv('DB_PASSWORD', ''),
-        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
-        'PORT': os.getenv('DB_PORT', '3306'),
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-        },
-        'CONN_MAX_AGE': 600,
-    }
-}
+# --- Database Configuration ---
+DB_NAME = os.getenv('DB_NAME')
+DB_USER = os.getenv('DB_USER')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT')
 
-# Database fallback logic
-if not os.getenv('DB_NAME'):
-    USE_SQLITE = True
+if DB_NAME:
+    print(f"--- Connecting to MySQL Database: {DB_NAME} at {DB_HOST}:{DB_PORT} ---")
+    
+    # Quick connectivity test
+    try:
+        import mysql.connector
+        conn = mysql.connector.connect(
+            user=DB_USER,
+            password=DB_PASSWORD,
+            host=DB_HOST,
+            port=DB_PORT,
+            database=DB_NAME
+        )
+        print("--- Connection Successful! ---")
+        conn.close()
+    except Exception as e:
+        print(f"--- Connection Failed: {e} ---")
+
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            'ENGINE': 'mysql.connector.django',
+            'NAME': DB_NAME,
+            'USER': DB_USER,
+            'PASSWORD': DB_PASSWORD,
+            'HOST': DB_HOST,
+            'PORT': DB_PORT,
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+            },
+            'CONN_MAX_AGE': 600,
         }
     }
-else:
     USE_SQLITE = False
+else:
+    USE_SQLITE = True
 
 BOSS_EMAIL = os.getenv('BOSS_EMAIL', '')
 
