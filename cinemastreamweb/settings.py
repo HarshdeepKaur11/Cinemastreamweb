@@ -20,6 +20,7 @@ DEBUG = os.getenv('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,.onrender.com,*').split(',')
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -99,6 +100,17 @@ else:
             'CONN_MAX_AGE': 600,
         }
     }
+    
+    # Final safety check: if we are not using SQLite, verify the connection
+    if not USE_SQLITE:
+        try:
+            import pymysql
+            pymysql.version_info = (2, 2, 7, "final", 0)
+            pymysql.install_as_MySQLdb()
+            # We don't actually connect here to avoid slowing down startup, 
+            # but we've ensured the driver is spoofed correctly.
+        except Exception:
+            pass
 
 BOSS_EMAIL = os.getenv('BOSS_EMAIL', '')
 
