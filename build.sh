@@ -66,14 +66,18 @@ with connection.cursor() as cursor:
             cursor.execute('ALTER TABLE ml_models_genre ADD COLUMN name VARCHAR(100) NULL')
     except Exception as e: print(f'Genre fix error: {e}')
 
-    # 3. Fix ml_models table
-    ml_cols = [('trained_on', 'DATETIME'), ('version', 'INT')]
-    for col_name, col_type in ml_cols:
-        try:
-            cursor.execute(f'SHOW COLUMNS FROM ml_models LIKE \"{col_name}\"')
-            if not cursor.fetchone():
-                cursor.execute(f'ALTER TABLE ml_models ADD COLUMN {col_name} {col_type} NULL')
-        except Exception as e: print(f'ML fix error: {e}')
+    # 3. Fix ml_models table (and potentially create it)
+    try:
+        cursor.execute('CREATE TABLE IF NOT EXISTS ml_models (model_id INT AUTO_INCREMENT PRIMARY KEY, model_name VARCHAR(255), model_type VARCHAR(100), algorithm VARCHAR(100), accuracy FLOAT, weight FLOAT, is_active BOOLEAN, trained_on DATETIME, version INT)')
+    except Exception as e: print(f'ML table error: {e}')
+
+    # 4. Fix Dashboard tables (ViewingHistory, Watchlist, SearchHistory)
+    try:
+        cursor.execute('CREATE TABLE IF NOT EXISTS dashboard_viewinghistory (history_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, movie_id BIGINT, watched_at DATETIME, time_spent_seconds INT, trailer_watch_seconds INT, click_count INT, progress FLOAT)')
+        cursor.execute('CREATE TABLE IF NOT EXISTS dashboard_watchlist (wishlist_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, movie_id BIGINT, added_at DATETIME)')
+        cursor.execute('CREATE TABLE IF NOT EXISTS dashboard_searchhistory (search_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, query VARCHAR(255), searched_at DATETIME)')
+        print('Repair: Ensured dashboard tables exist.')
+    except Exception as e: print(f'Dashboard table error: {e}')
 "
 
 echo "--- Running remaining migrations ---"
