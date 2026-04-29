@@ -78,6 +78,13 @@ with connection.cursor() as cursor:
         cursor.execute('CREATE TABLE IF NOT EXISTS dashboard_searchhistory (search_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, query VARCHAR(255), searched_at DATETIME)')
         print('Repair: Ensured dashboard tables exist.')
     except Exception as e: print(f'Dashboard table error: {e}')
+
+    # 5. Fix Users table
+    try:
+        cursor.execute('CREATE TABLE IF NOT EXISTS users_user (user_id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(150) UNIQUE, email VARCHAR(255) UNIQUE, password VARCHAR(255), age INT, gender VARCHAR(10), profile_pic VARCHAR(255), bio TEXT, date_of_birth DATE, is_active BOOLEAN DEFAULT 1, is_admin BOOLEAN DEFAULT 0, admin_permissions VARCHAR(500), is_verified BOOLEAN DEFAULT 0, verification_token VARCHAR(100), duration_preference VARCHAR(20), language_preference VARCHAR(255), two_fa_code VARCHAR(10), reset_code VARCHAR(10), password_last_updated DATETIME, adult_content_filter BOOLEAN DEFAULT 0, otp_created_at DATETIME, created_at DATETIME)')
+        cursor.execute('CREATE TABLE IF NOT EXISTS users_genrepreference (pref_id BIGINT AUTO_INCREMENT PRIMARY KEY, user_id INT, genre_id INT, preference_score FLOAT, created_at DATETIME)')
+        print('Repair: Ensured users tables exist.')
+    except Exception as e: print(f'Users table error: {e}')
 "
 
 echo "--- Running remaining migrations ---"
