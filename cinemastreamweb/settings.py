@@ -112,7 +112,8 @@ if DB_NAME:
             'OPTIONS': {
                 'charset': 'utf8mb4',
             },
-            'CONN_MAX_AGE': 600,
+            'CONN_MAX_AGE': 30,
+            'CONN_HEALTH_CHECKS': True,
         }
     }
     USE_SQLITE = False
