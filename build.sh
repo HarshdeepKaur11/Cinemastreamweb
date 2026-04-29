@@ -13,7 +13,7 @@ pip install -r requirements.txt
 
 echo "--- Running Migrations ---"
 python manage.py showmigrations
-python manage.py migrate --noinput
+python manage.py migrate --noinput --fake-initial
 
 echo "--- Running Collectstatic ---"
 python manage.py collectstatic --noinput --clear

@@ -81,11 +81,9 @@ DB_HOST = os.getenv('DB_HOST')
 DB_PORT = os.getenv('DB_PORT')
 
 if DB_NAME:
-    print(f"--- Connecting to MySQL Database: {DB_NAME} at {DB_HOST}:{DB_PORT} ---")
-    
-    # Quick connectivity test
     try:
         import mysql.connector
+        print(f"--- Connecting to MySQL Database: {DB_NAME} at {DB_HOST}:{DB_PORT} ---")
         conn = mysql.connector.connect(
             user=DB_USER,
             password=DB_PASSWORD,
@@ -94,9 +92,14 @@ if DB_NAME:
             database=DB_NAME
         )
         print("--- Connection Successful! ---")
+        
+        cursor = conn.cursor()
+        cursor.execute("SHOW TABLES;")
+        tables = [row[0] for row in cursor.fetchall()]  # type: ignore
+        print(f"--- Tables in {DB_NAME}: {tables} ---")
         conn.close()
     except Exception as e:
-        print(f"--- Connection Failed: {e} ---")
+        print(f"--- Database Debug Failed: {e} ---")
 
     DATABASES = {
         'default': {

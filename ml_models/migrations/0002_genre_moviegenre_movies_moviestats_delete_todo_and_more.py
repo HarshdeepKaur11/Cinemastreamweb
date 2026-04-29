@@ -9,6 +9,8 @@ class Migration(migrations.Migration):
         ('ml_models', '0001_initial'),
     ]
 
+    initial = True
+
     operations = [
         migrations.CreateModel(
             name='Genre',
