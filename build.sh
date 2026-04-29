@@ -59,11 +59,19 @@ with connection.cursor() as cursor:
                 cursor.execute(f'ALTER TABLE ml_models_movies ADD COLUMN {col_name} {col_type} NULL')
         except Exception as e: print(f'Skipping {col_name}: {e}')
 
-    # 2. Fix ml_models_genre (ensure name column exists)
+    # 2. Fix ml_models_genre (handle genre_name vs name conflict)
     try:
-        cursor.execute('SHOW COLUMNS FROM ml_models_genre LIKE \"name\"')
+        # Check if 'name' exists
+        cursor.execute('SHOW COLUMNS FROM ml_models_genre LIKE "name"')
         if not cursor.fetchone():
-            cursor.execute('ALTER TABLE ml_models_genre ADD COLUMN name VARCHAR(100) NULL')
+            # If 'name' is missing, check if 'genre_name' exists to rename it
+            cursor.execute('SHOW COLUMNS FROM ml_models_genre LIKE "genre_name"')
+            if cursor.fetchone():
+                print('Repair: Renaming genre_name to name in ml_models_genre')
+                cursor.execute('ALTER TABLE ml_models_genre CHANGE COLUMN genre_name name VARCHAR(100) NULL')
+            else:
+                print('Repair: Adding name column to ml_models_genre')
+                cursor.execute('ALTER TABLE ml_models_genre ADD COLUMN name VARCHAR(100) NULL')
     except Exception as e: print(f'Genre fix error: {e}')
 
     # 3. Fix ml_models table (and potentially create it)
