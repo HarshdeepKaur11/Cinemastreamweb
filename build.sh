@@ -62,6 +62,11 @@ with connection.cursor() as cursor:
             else:
                 print('Repair: Adding name column to ml_models_genre')
                 cursor.execute('ALTER TABLE ml_models_genre ADD COLUMN name VARCHAR(100) NULL')
+        
+        # FINAL FIX: If both exist, drop genre_name to avoid loaddata failure
+        if 'name' in cols and 'genre_name' in cols:
+            print('Repair: Dropping redundant genre_name from ml_models_genre')
+            cursor.execute('ALTER TABLE ml_models_genre DROP COLUMN genre_name')
         else:
             print('DEBUG: ml_models_genre already has \"name\" column.')
     except Exception as e: print(f'DEBUG: Genre fix failed: {e}')

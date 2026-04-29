@@ -349,7 +349,7 @@ def login_view(request):
                         # But your custom login_required_custom uses session['user_id']
                         request.session['user_id'] = user.user_id
                         messages.success(request, f"Welcome back, {user.username}! (Demo Login)")
-                        return redirect('core:home')
+                        return redirect('core:index')
 
                     request.session['temp_user_id'] = user.user_id
                     messages.success(request, f"A verification code has been sent to {user.email}")
