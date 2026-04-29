@@ -90,19 +90,36 @@ with connection.cursor() as cursor:
         if not AuthUser.objects.filter(username='admin').exists():
             AuthUser.objects.create_superuser('admin', 'admin@example.com', 'admin123')
             print('Repair: Created superuser admin/admin123')
-    except Exception as e: print(f'Superuser error: {e}')
+    # 7. Create Custom User in users_user if not exists
+    try:
+        from users.models import User as CustomUser
+        from django.contrib.auth.hashers import make_password
+        if not CustomUser.objects.filter(username='admin_viva').exists():
+            CustomUser.objects.create(
+                username='admin_viva',
+                email='admin@viva.com',
+                password=make_password('viva123'),
+                age=25,
+                gender='Male',
+                is_active=True,
+                is_admin=True,
+                is_verified=True,
+                admin_permissions='all'
+            )
+            print('Repair: Created custom user admin_viva/viva123')
+    except Exception as e: print(f'Custom user error: {e}')
 "
 
 echo "--- Running remaining migrations ---"
 python manage.py migrate --noinput
 
-echo "--- Running Collectstatic ---"
-python manage.py collectstatic --noinput --clear
-
 # Load data from backup if it exists
 if [ -f "full_database_backup.json" ]; then
     echo "--- Loading Data from Backup ---"
-    python manage.py loaddata full_database_backup.json
+    python manage.py loaddata full_database_backup.json || echo "Warning: loaddata failed, but continuing..."
 fi
+
+echo "--- Running Collectstatic ---"
+python manage.py collectstatic --noinput --clear
 
 echo "--- Build Complete ---"
