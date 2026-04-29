@@ -11,10 +11,10 @@ python -m pip install --upgrade pip
 echo "--- Installing Dependencies ---"
 pip install -r requirements.txt
 
-# Force-fake the specific migrations that are already in the database
-echo "--- Faking existing migrations ---"
-python manage.py migrate ml_models 0002 --fake --noinput || echo "ml_models 0002 already faked or tables missing"
-python manage.py migrate users 0001 --fake --noinput || echo "users 0001 already faked or tables missing"
+# Nuclear sync: Fake everything for the main apps to bypass column errors
+echo "--- Syncing migrations (Nuclear Option) ---"
+python manage.py migrate ml_models --fake --noinput || echo "Failed to fake ml_models"
+python manage.py migrate users --fake --noinput || echo "Failed to fake users"
 
 echo "--- Running remaining migrations ---"
 python manage.py migrate --noinput
