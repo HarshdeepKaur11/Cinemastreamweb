@@ -58,7 +58,7 @@ with connection.cursor() as cursor:
         if 'name' not in cols:
             if 'genre_name' in cols:
                 print('Repair: Renaming genre_name to name in ml_models_genre')
-                cursor.execute('ALTER TABLE ml_models_genre CHANGE COLUMN genre_name name VARCHAR(100) NULL')
+                cursor.execute('ALTER TABLE ml_models_genre RENAME COLUMN genre_name TO name')
             else:
                 print('Repair: Adding name column to ml_models_genre')
                 cursor.execute('ALTER TABLE ml_models_genre ADD COLUMN name VARCHAR(100) NULL')

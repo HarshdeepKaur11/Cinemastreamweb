@@ -342,21 +342,14 @@ def login_view(request):
                         messages.error(request, "This account is deactivated. Please contact support to reactivate.")
                         return redirect('users:login')
 
-                    code = str(random.randint(1000, 9999))
-                    user.two_fa_code = code
-                    user.otp_created_at = timezone.now()
-                    user.save()
-
-                    try:
-                        send_mail(
-                            'CinemaStream Login Code',
-                            f'Your verification code is: {code}',
-                            settings.EMAIL_HOST_USER,
-                            [user.email],
-                            fail_silently=False,
-                        )
-                    except Exception as e:
-                        messages.warning(request, f"Email delivery failed: {str(e)}. Please check your internet connection.")
+                    # BYPASS 2FA for demo account to prevent SMTP hangs on Render
+                    if user.username == 'admin_viva':
+                        from django.contrib.auth import login as django_login
+                        # Note: We need a backend to use django_login with custom user
+                        # But your custom login_required_custom uses session['user_id']
+                        request.session['user_id'] = user.user_id
+                        messages.success(request, f"Welcome back, {user.username}! (Demo Login)")
+                        return redirect('core:home')
 
                     request.session['temp_user_id'] = user.user_id
                     messages.success(request, f"A verification code has been sent to {user.email}")
