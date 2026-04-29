@@ -99,4 +99,10 @@ python manage.py migrate --noinput
 echo "--- Running Collectstatic ---"
 python manage.py collectstatic --noinput --clear
 
+# Load data from backup if it exists
+if [ -f "full_database_backup.json" ]; then
+    echo "--- Loading Data from Backup ---"
+    python manage.py loaddata full_database_backup.json
+fi
+
 echo "--- Build Complete ---"
