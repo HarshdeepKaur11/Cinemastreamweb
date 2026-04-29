@@ -99,6 +99,8 @@ with connection.cursor() as cursor:
         'ml_models_rating': 'rating_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, movie_id BIGINT, score INT, review TEXT, is_recommended BOOLEAN, created_at DATETIME, updated_at DATETIME, UNIQUE KEY user_movie (user_id, movie_id)',
         'ml_models_person': 'person_id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(200), role VARCHAR(20), photo VARCHAR(255), photo_url_external VARCHAR(2000)',
         'ml_models_moviecast': 'id INT AUTO_INCREMENT PRIMARY KEY, movie_id BIGINT, person_id INT, character_name VARCHAR(200), UNIQUE KEY movie_person (movie_id, person_id)',
+        'movie_stats': 'stat_id INT AUTO_INCREMENT PRIMARY KEY, movie_id BIGINT UNIQUE, total_views INT DEFAULT 0, avg_rating FLOAT DEFAULT 0.0, baseline_rating FLOAT DEFAULT 3.5, baseline_weight INT DEFAULT 15, avg_completion FLOAT DEFAULT 0.0, total_watch_seconds BIGINT DEFAULT 0, wishlist_count INT DEFAULT 0, last_updated DATETIME',
+        'ml_models_postercolorprofile': 'profile_id BIGINT AUTO_INCREMENT PRIMARY KEY, movie_id BIGINT UNIQUE, theme VARCHAR(50), dominant_hex VARCHAR(10), palette_json TEXT, brightness FLOAT, saturation FLOAT, analyzed_at DATETIME',
         'dashboard_viewinghistory': 'history_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, movie_id BIGINT, watched_at DATETIME, time_spent_seconds INT, trailer_watch_seconds INT, click_count INT, progress FLOAT',
         'dashboard_watchlist': 'wishlist_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, movie_id BIGINT, added_at DATETIME',
         'dashboard_searchhistory': 'search_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, query VARCHAR(255), searched_at DATETIME',
