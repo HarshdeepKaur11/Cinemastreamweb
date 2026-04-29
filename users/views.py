@@ -325,7 +325,7 @@ def send_otp_view(request):
 
 def login_view(request):
     if request.method == 'POST':
-        identifier = request.POST.get('identifier')
+        identifier = request.POST.get('identifier', '').strip()
         pw = request.POST.get('password')
 
         try:
