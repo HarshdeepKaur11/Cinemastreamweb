@@ -48,9 +48,29 @@ def get_columns(cursor, table_name):
     return [row[0] for row in cursor.fetchall()]
 
 with connection.cursor() as cursor:
-    # 1. Fix ml_models_movies
-    if table_exists(cursor, 'ml_models_movies'):
-        cols = get_columns(cursor, 'ml_models_movies')
+    print('--- Starting Repair Logic ---')
+    
+    # 1. Fix ml_models_genre
+    try:
+        cursor.execute('DESCRIBE ml_models_genre')
+        cols = [row[0].lower() for row in cursor.fetchall()]
+        print(f'DEBUG: ml_models_genre columns found: {cols}')
+        if 'name' not in cols:
+            if 'genre_name' in cols:
+                print('Repair: Renaming genre_name to name in ml_models_genre')
+                cursor.execute('ALTER TABLE ml_models_genre CHANGE COLUMN genre_name name VARCHAR(100) NULL')
+            else:
+                print('Repair: Adding name column to ml_models_genre')
+                cursor.execute('ALTER TABLE ml_models_genre ADD COLUMN name VARCHAR(100) NULL')
+        else:
+            print('DEBUG: ml_models_genre already has \"name\" column.')
+    except Exception as e: print(f'DEBUG: Genre fix failed: {e}')
+
+    # 2. Fix ml_models_movies
+    try:
+        cursor.execute('DESCRIBE ml_models_movies')
+        cols = [row[0].lower() for row in cursor.fetchall()]
+        print(f'DEBUG: ml_models_movies columns found: {cols}')
         movies_cols = [
             ('duration_minutes', 'INT'),
             ('poster_url_external', 'VARCHAR(2000)'),
@@ -63,22 +83,10 @@ with connection.cursor() as cursor:
             ('dominant_color', 'VARCHAR(50)')
         ]
         for col_name, col_type in movies_cols:
-            if col_name not in cols:
-                try:
-                    print(f'Repair: Adding {col_name} to ml_models_movies')
-                    cursor.execute(f'ALTER TABLE ml_models_movies ADD COLUMN {col_name} {col_type} NULL')
-                except Exception as e: print(f'Skipping {col_name}: {e}')
-
-    # 2. Fix ml_models_genre (handle genre_name vs name conflict)
-    if table_exists(cursor, 'ml_models_genre'):
-        cols = get_columns(cursor, 'ml_models_genre')
-        if 'name' not in cols:
-            if 'genre_name' in cols:
-                print('Repair: Renaming genre_name to name in ml_models_genre')
-                cursor.execute('ALTER TABLE ml_models_genre CHANGE COLUMN genre_name name VARCHAR(100) NULL')
-            else:
-                print('Repair: Adding name column to ml_models_genre')
-                cursor.execute('ALTER TABLE ml_models_genre ADD COLUMN name VARCHAR(100) NULL')
+            if col_name.lower() not in cols:
+                print(f'Repair: Adding {col_name} to ml_models_movies')
+                cursor.execute(f'ALTER TABLE ml_models_movies ADD COLUMN {col_name} {col_type} NULL')
+    except Exception as e: print(f'DEBUG: Movies fix failed: {e}')
 
     # 3. Ensure other tables exist
     tables = {
@@ -92,7 +100,8 @@ with connection.cursor() as cursor:
     for table_name, schema in tables.items():
         try:
             cursor.execute(f'CREATE TABLE IF NOT EXISTS {table_name} ({schema})')
-        except Exception as e: print(f'Table {table_name} error: {e}')
+            print(f'DEBUG: Checked table {table_name}')
+        except Exception as e: print(f'DEBUG: Table {table_name} error: {e}')
 
     # 4. Create Superusers
     try:
@@ -106,7 +115,7 @@ with connection.cursor() as cursor:
         if not CustomUser.objects.filter(username='admin_viva').exists():
             CustomUser.objects.create(username='admin_viva', email='admin@viva.com', password=make_password('viva123'), age=25, gender='Male', is_active=True, is_admin=True, is_verified=True, admin_permissions='all')
             print('Repair: Created custom user admin_viva/viva123')
-    except Exception as e: print(f'User creation error: {e}')
+    except Exception as e: print(f'DEBUG: User creation error: {e}')
 "
 
 echo "--- Running remaining migrations ---"
