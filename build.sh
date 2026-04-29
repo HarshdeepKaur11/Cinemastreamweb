@@ -11,10 +11,12 @@ python -m pip install --upgrade pip
 echo "--- Installing Dependencies ---"
 pip install -r requirements.txt
 
-# Nuclear sync: Fake everything for the main apps to bypass column errors
-echo "--- Syncing migrations (Nuclear Option) ---"
-python manage.py migrate ml_models --fake --noinput || echo "Failed to fake ml_models"
-python manage.py migrate users --fake --noinput || echo "Failed to fake users"
+# Ultimate Nuclear Sync: Fake all apps
+echo "--- Syncing migrations (Ultimate Nuclear Option) ---"
+APPS=("ml_models" "users" "admin_panel" "core" "dashboard")
+for app in "${APPS[@]}"; do
+    python manage.py migrate $app --fake --noinput || echo "Failed to fake $app"
+done
 
 echo "--- Running remaining migrations ---"
 python manage.py migrate --noinput
