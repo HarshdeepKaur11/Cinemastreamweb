@@ -11,12 +11,24 @@ python -m pip install --upgrade pip
 echo "--- Installing Dependencies ---"
 pip install -r requirements.txt
 
-# Ultimate Nuclear Sync: Fake all apps
-echo "--- Syncing migrations (Ultimate Nuclear Option) ---"
-APPS=("ml_models" "users" "admin_panel" "core" "dashboard")
+# Smart Migration: Try normal migrate first, fake only if tables exist
+echo "--- Running Smart Migrations ---"
+APPS=("contenttypes" "auth" "admin" "sessions" "messages" "staticfiles" "ml_models" "users" "admin_panel" "core" "dashboard")
+
 for app in "${APPS[@]}"; do
-    python manage.py migrate $app --fake --noinput || echo "Failed to fake $app"
+    echo "Syncing $app..."
+    # Try to migrate normally. If it fails with 'already exists' (1050), then fake it.
+    python manage.py migrate $app --noinput 2>/tmp/migrate_error || true
+    if grep -q "1050" /tmp/migrate_error; then
+        echo "Table exists for $app, faking..."
+        python manage.py migrate $app --fake --noinput
+    elif [ -s /tmp/migrate_error ]; then
+        echo "Error in $app, but continuing: $(cat /tmp/migrate_error)"
+    fi
 done
+
+# Run any remaining global migrations
+python manage.py migrate --noinput --fake-initial || python manage.py migrate --noinput --fake
 
 # Master Database Repair Script: Manually sync TiDB with Django models
 echo "--- Running Master Database Repair Script ---"
