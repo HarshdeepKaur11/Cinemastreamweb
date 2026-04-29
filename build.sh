@@ -96,6 +96,9 @@ with connection.cursor() as cursor:
     # 3. Ensure other tables exist
     tables = {
         'ml_models': 'model_id INT AUTO_INCREMENT PRIMARY KEY, model_name VARCHAR(255), model_type VARCHAR(100), algorithm VARCHAR(100), accuracy FLOAT, weight FLOAT, is_active BOOLEAN, trained_on DATETIME, version INT',
+        'ml_models_rating': 'rating_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, movie_id BIGINT, score INT, review TEXT, is_recommended BOOLEAN, created_at DATETIME, updated_at DATETIME, UNIQUE KEY user_movie (user_id, movie_id)',
+        'ml_models_person': 'person_id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(200), role VARCHAR(20), photo VARCHAR(255), photo_url_external VARCHAR(2000)',
+        'ml_models_moviecast': 'id INT AUTO_INCREMENT PRIMARY KEY, movie_id BIGINT, person_id INT, character_name VARCHAR(200), UNIQUE KEY movie_person (movie_id, person_id)',
         'dashboard_viewinghistory': 'history_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, movie_id BIGINT, watched_at DATETIME, time_spent_seconds INT, trailer_watch_seconds INT, click_count INT, progress FLOAT',
         'dashboard_watchlist': 'wishlist_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, movie_id BIGINT, added_at DATETIME',
         'dashboard_searchhistory': 'search_id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, query VARCHAR(255), searched_at DATETIME',
